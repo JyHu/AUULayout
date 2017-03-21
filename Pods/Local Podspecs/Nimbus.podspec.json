@@ -1,0 +1,130 @@
+{
+  "name": "Nimbus",
+  "version": "0.1.0",
+  "summary": "The iOS framework that grows only as fast as its documentation",
+  "description": "Nimbus is an iOS framework whose feature set grows only as fast as its documentation. By focusing\non documentation first and features second, Nimbus hopes to be a framework that accelerates the\ndevelopment process of any application by being easy to use and simple to understand.",
+  "homepage": "http://nimbuskit.info",
+  "license": "Apache License, Version 2.0",
+  "authors": {
+    "Jeff Verkoeyen": "jverkoey@gmail.com",
+    "Bubnov Slavik": "bubnovslavik@gmail.com",
+    "Roger Chapman": "rogchap@gmail.com",
+    "Manu Cornet": "manu.cornet@gmail.com",
+    "Glenn Grant": "glenn@ensquared.net",
+    "Aviel Lazar": "aviellazar@gmail.com",
+    "Benedikt Meurer": "benedikt.meurer@googlemail.com",
+    "Anderson Miller": "anderson@submarinerich.com",
+    "Basil Shkara": "basil@neat.io",
+    "Peter Steinberger": "me@petersteinberger.com",
+    "Hwee-Boon Yar": "hboon@motionobj.com",
+    "Stephane Moore": "stephane.moore@gmail.com"
+  },
+  "social_media_url": "http://twitter.com/NimbusKit",
+  "platforms": {
+    "ios": "7.0"
+  },
+  "source": {
+    "git": "https://github.com/JyHu/nimbus_thin.git",
+    "tag": "0.1.0"
+  },
+  "requires_arc": true,
+  "resource_bundles": {
+    "Overview": [
+      "src/overview/resources/NimbusOverviewer.bundle/*"
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "AttributedLabel",
+      "source_files": "NimbusAttributedLabel",
+      "dependencies": {
+        "Nimbus/Core": [
+
+        ]
+      }
+    },
+    {
+      "name": "Core",
+      "source_files": "NimbusCore"
+    },
+    {
+      "name": "Badge",
+      "source_files": "NimbusBadge",
+      "dependencies": {
+        "Nimbus/Core": [
+
+        ]
+      }
+    },
+    {
+      "name": "Collections",
+      "source_files": "NimbusCollections",
+      "dependencies": {
+        "Nimbus/Core": [
+
+        ]
+      }
+    },
+    {
+      "name": "Interapp",
+      "source_files": "NimbusInterapp",
+      "dependencies": {
+        "Nimbus/Core": [
+
+        ]
+      },
+      "frameworks": "CoreLocation"
+    },
+    {
+      "name": "Launcher",
+      "source_files": "NimbusLauncher",
+      "dependencies": {
+        "Nimbus/Core": [
+
+        ],
+        "Nimbus/PagingScrollView": [
+
+        ]
+      }
+    },
+    {
+      "name": "Models",
+      "source_files": "NimbusModels",
+      "dependencies": {
+        "Nimbus/Core": [
+
+        ]
+      }
+    },
+    {
+      "name": "Overview",
+      "source_files": "NimbusOverview",
+      "dependencies": {
+        "Nimbus/Core": [
+
+        ],
+        "Nimbus/Models": [
+
+        ]
+      }
+    },
+    {
+      "name": "PagingScrollView",
+      "source_files": "NimbusPagingScrollView",
+      "dependencies": {
+        "Nimbus/Core": [
+
+        ]
+      }
+    },
+    {
+      "name": "Textfield",
+      "source_files": "NimbusTextField",
+      "dependencies": {
+        "Nimbus/Core": [
+
+        ]
+      }
+    }
+  ]
+}

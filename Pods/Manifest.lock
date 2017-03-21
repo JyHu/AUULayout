@@ -1,0 +1,23 @@
+PODS:
+  - Nimbus/Core (0.1.0)
+  - Nimbus/Models (0.1.0):
+    - Nimbus/Core
+
+DEPENDENCIES:
+  - Nimbus/Models (from `https://github.com/JyHu/nimbus_thin.git`)
+
+EXTERNAL SOURCES:
+  Nimbus:
+    :git: https://github.com/JyHu/nimbus_thin.git
+
+CHECKOUT OPTIONS:
+  Nimbus:
+    :commit: 756676e22bff1ebfe2bd07dfa448f0c365b9caaa
+    :git: https://github.com/JyHu/nimbus_thin.git
+
+SPEC CHECKSUMS:
+  Nimbus: 29f15a364a8416d3bcbd0bc6f9f31b7ba41e0c1e
+
+PODFILE CHECKSUM: dd656eb1252b1e4ee27017f5902ea5f1aa923645
+
+COCOAPODS: 1.2.0
