@@ -45,105 +45,68 @@
 - (UIView *(^)(AUULayoutAttribute *))topEqual
 {
     return [^(AUULayoutAttribute *layoutAttribute){
-        [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:layoutAttribute.secondView
-                                                                   attribute:layoutAttribute.secondlayoutAttribute
-                                                                  multiplier:layoutAttribute.multiplier
-                                                                    constant:layoutAttribute.margin]];
-        return self;
+        return [self layoutWithLayoutAttribute:layoutAttribute type:NSLayoutAttributeTop];
     } copy];
 }
 
 - (UIView *(^)(AUULayoutAttribute *))leftEqual
 {
     return [^(AUULayoutAttribute *layoutAttribute){
-        [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeLeft
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:layoutAttribute.secondView
-                                                                   attribute:layoutAttribute.secondlayoutAttribute
-                                                                  multiplier:layoutAttribute.multiplier
-                                                                    constant:layoutAttribute.margin]];
-        return self;
+        return [self layoutWithLayoutAttribute:layoutAttribute type:NSLayoutAttributeLeft];
     } copy];
 }
 
 - (UIView *(^)(AUULayoutAttribute *))bottomEqual
 {
     return [^(AUULayoutAttribute *layoutAttribute){
-        [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:layoutAttribute.secondView
-                                                                   attribute:layoutAttribute.secondlayoutAttribute
-                                                                  multiplier:layoutAttribute.multiplier
-                                                                    constant:layoutAttribute.margin]];
-        return self;
+        return [self layoutWithLayoutAttribute:layoutAttribute type:NSLayoutAttributeBottom];
     } copy];
 }
 
 - (UIView *(^)(AUULayoutAttribute *))rightEqual
 {
     return [^(AUULayoutAttribute *layoutAttribute){
-        [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeRight
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:layoutAttribute.secondView
-                                                                   attribute:layoutAttribute.secondlayoutAttribute
-                                                                  multiplier:layoutAttribute.multiplier
-                                                                    constant:layoutAttribute.margin]];
-        return self;
+        return [self layoutWithLayoutAttribute:layoutAttribute type:NSLayoutAttributeRight];
     } copy];
 }
 
 - (UIView *(^)(AUULayoutAttribute *))widthEqual
 {
     return [^(AUULayoutAttribute *layoutAttribute){
-        [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:layoutAttribute.secondView
-                                                                   attribute:layoutAttribute.secondlayoutAttribute
-                                                                  multiplier:layoutAttribute.multiplier
-                                                                    constant:layoutAttribute.margin]];
-        return self;
+        return [self layoutWithLayoutAttribute:layoutAttribute type:NSLayoutAttributeWidth];
     } copy];
 }
 
 - (UIView *(^)(AUULayoutAttribute *))heightEqual
 {
     return [^(AUULayoutAttribute *layoutAttribute){
-        [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:layoutAttribute.secondView
-                                                                   attribute:layoutAttribute.secondlayoutAttribute
-                                                                  multiplier:layoutAttribute.multiplier
-                                                                    constant:layoutAttribute.margin]];
-        return self;
+        return [self layoutWithLayoutAttribute:layoutAttribute type:NSLayoutAttributeHeight];
     } copy];
 }
 
 - (UIView *(^)(AUULayoutAttribute *))centerXEqual
 {
     return [^(AUULayoutAttribute *layoutAttribute){
-        [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterX
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:layoutAttribute.secondView
-                                                                   attribute:layoutAttribute.secondlayoutAttribute
-                                                                  multiplier:layoutAttribute.multiplier
-                                                                    constant:layoutAttribute.margin]];
-        return self;
+        return [self layoutWithLayoutAttribute:layoutAttribute type:NSLayoutAttributeCenterX];
     } copy];
 }
 
 - (UIView *(^)(AUULayoutAttribute *))centerYEqual
 {
     return [^(AUULayoutAttribute *layoutAttribute){
-        [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterY
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:layoutAttribute.secondView
-                                                                   attribute:layoutAttribute.secondlayoutAttribute
-                                                                  multiplier:layoutAttribute.multiplier
-                                                                    constant:layoutAttribute.margin]];
-        return self;
+        return [self layoutWithLayoutAttribute:layoutAttribute type:NSLayoutAttributeCenterY];
     } copy];
+}
+
+- (instancetype)layoutWithLayoutAttribute:(AUULayoutAttribute *)layoutAttribute type:(NSLayoutAttribute)type
+{
+    [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:type
+                                                               relatedBy:NSLayoutRelationEqual
+                                                                  toItem:layoutAttribute.secondView
+                                                               attribute:layoutAttribute.secondlayoutAttribute
+                                                              multiplier:layoutAttribute.multiplier
+                                                                constant:layoutAttribute.margin]];
+    return self;
 }
 
 @end

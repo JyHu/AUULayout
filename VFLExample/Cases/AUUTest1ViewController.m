@@ -30,9 +30,9 @@
     
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     // 可以直接使用get方法来设定
-    [self.Hori.interval(30).nextTo(view).interval(40) end];
+    [H.interval(30).nextTo(view).interval(40) end];
     // 也能接取get方法返回的vfl字符串
-    NSString *vfl = self.Vert.interval(100).nextTo(view).interval(20).end;
+    NSString *vfl = V.interval(100).nextTo(view).interval(20).end;
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     NSLog(@"我拿到了一个VFL ： %@", vfl);

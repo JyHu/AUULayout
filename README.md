@@ -21,7 +21,7 @@ VFL是一个简单而又强大的描述性语言，由于VFL是使用字符串�
 比如：
 
 ```objective-c
-self.Hori.interval(10).nextTo(view1.lengthEqual(view2)).interval(10).nextTo(view2).interval(20).end,
+H.interval(10).nextTo(view1.lengthEqual(view2)).interval(10).nextTo(view2).interval(20).end,
 ```
 
 这条语句描述的是：
@@ -33,7 +33,7 @@ self.Hori.interval(10).nextTo(view1.lengthEqual(view2)).interval(10).nextTo(view
 再比如：
 
 ```objective-c
-[self.Hori.interval(10).nextTo(label1.priority(100, 100)).interval(5).nextTo(label2.priority(100, 200)).interval(10) end];
+[H.interval(10).nextTo(label1.priority(100, 100)).interval(5).nextTo(label2.priority(100, 200)).interval(10) end];
 ```
 
 这条语句描述的是：
@@ -72,3 +72,7 @@ view2.edge(UIEdgeInsetsMake(30, 40, 50, 60));
 * 级联关系的检查
 * 命名的优化
 * category中不确定因素的排查
+
+## 期望
+
+能做到跟VFL原生接近的简洁写法体验。

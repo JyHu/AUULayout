@@ -29,10 +29,12 @@
     return [^(UIView *view){
         NSString *releation = view.releation;
         if (releation) {
-            NSAssert2(![releation matchesWithPattern:@"(?<=\\()@[\\d\\.]+(?=\\))"],
+            NSAssert2(![releation matchWithPattern:@"(?<=\\()@[\\d\\.]+(?=\\))"],
                       @"设置优先级错误，在设置优先级的同时必须设定相关联的最小宽高，请使用lengthIs或者lengthEqual添加 view:%@, releation:%@", view, releation);
         }
-        NSString *res =  [self append:@"[%@%@]", [self.base addHashKey:view], releation ?: @""];
+        
+        self.base = view.superview;
+        NSString *res =  [self append:@"[%@%@]", [view hashKey], releation ?: @""];
         view.releation = nil;
         return res;
     } copy];
@@ -44,7 +46,11 @@
 }
 
 - (NSString *)endL
-{
+{    
+    // 遍历所有的视图并做判断
+    for (NSString *hk in [self matchesWithPattern:@"(?<=\\[)[\\w\\d]*?(?=[\\(\\]])"]) {
+        NSAssert2([[self.base.layoutKits allKeys] containsObject:hk], @"\n要布局的视图在视图字典中没有保存\nvfl:%@\ndict:%@", self, self.base.layoutKits);
+    }
     [self.base addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:self options:NSLayoutFormatDirectionMask metrics:nil views:self.base.layoutKits]];
     return self;
 }

@@ -23,7 +23,7 @@ const char *kBaseAssociatedKey = (void *)@"kBaseAssociatedKey";
     return objc_getAssociatedObject(self, kBaseAssociatedKey);
 }
 
-- (NSString *)matchesWithPattern:(NSString *)pattern
+- (NSString *)matchWithPattern:(NSString *)pattern
 {
     NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
     NSTextCheckingResult *textCheckingResult = [reg firstMatchInString:self options:NSMatchingCompleted range:NSMakeRange(0, self.length)];
@@ -31,6 +31,21 @@ const char *kBaseAssociatedKey = (void *)@"kBaseAssociatedKey";
         return [self substringWithRange:textCheckingResult.range];
     }
     return nil;
+}
+
+- (NSArray *)matchesWithPattern:(NSString *)pattern
+{
+    NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
+    NSArray *matches = [reg matchesInString:self options:NSMatchingCompleted range:NSMakeRange(0, self.length)];
+    NSMutableArray *res = [[NSMutableArray alloc] initWithCapacity:matches.count];
+    if (matches) {
+        for (NSTextCheckingResult *tcr in matches) {
+            if (tcr.range.location != NSNotFound) {
+                [res addObject:[self substringWithRange:tcr.range]];
+            }
+        }
+    }
+    return res;
 }
 
 @end
@@ -62,14 +77,13 @@ const char *kReleationAssociateKey = (void *)@"kReleationAssociateKey";
     return objc_getAssociatedObject(self, kReleationAssociateKey);
 }
 
-- (NSString *)addHashKey:(UIView *)view {
+- (NSString *)hashKey {
+    NSAssert1(self.superview, @"没有添加到父视图 %@", self);
     
-    NSAssert1(view.superview, @"没有添加到父视图 %@", view);
-    
-    view.translatesAutoresizingMaskIntoConstraints = NO;
-    NSString *hashKey = [NSString stringWithFormat:@"%@%@", NSStringFromClass([view class]), @([view hash])];
-    if (![self.layoutKits objectForKey:hashKey]) {
-        [self.layoutKits setObject:view forKey:hashKey];
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    NSString *hashKey = [NSString stringWithFormat:@"%@%@", NSStringFromClass([self class]), @([self hash])];
+    if (![self.superview.layoutKits objectForKey:hashKey]) {
+        [self.superview.layoutKits setObject:self forKey:hashKey];
     }
     
     return hashKey;

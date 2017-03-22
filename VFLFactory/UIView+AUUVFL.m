@@ -11,14 +11,23 @@
 #import "NSString+AUUVFL.h"
 #import "UIView+AUUVFLEdge.h"
 
+
+
+
+NSString const *H = @"H:";
+NSString const *V = @"V:";
+
+
+
+
 @implementation UIView (AUUVFL)
 
 - (NSArray *(^)(UIEdgeInsets))edge
 {
     return [^(UIEdgeInsets insets){
         NSAssert1(self.superview, @"没有设置父视图 %@", self);
-        return @[self.superview.Hori.interval(insets.left).nextTo(self).interval(insets.right).end,
-                 self.superview.Vert.interval(insets.top).nextTo(self).interval(insets.bottom).end];
+        return @[H.interval(insets.left).nextTo(self).interval(insets.right).end,
+                 V.interval(insets.top).nextTo(self).interval(insets.bottom).end];
     } copy];
 }
 
@@ -36,8 +45,8 @@
 - (NSArray *(^)(CGSize))fixedSize
 {
     return [^(CGSize size){
-        return @[self.superview.Hori.nextTo(self.lengthEqual(@(size.width))).endL,
-                 self.superview.Vert.nextTo(self.lengthEqual(@(size.height))).endL];
+        return @[H.nextTo(self.lengthEqual(@(size.width))).endL,
+                 V.nextTo(self.lengthEqual(@(size.height))).endL];
     } copy];
 }
 
@@ -51,12 +60,12 @@
             NSAssert1([obj floatValue] > 0, @"设置宽高关系错误，对于一个视图的宽高只能是一个非负的值", self);
         }
         if (self.releation) {
-            NSString *priority = [self.releation matchesWithPattern:@"(?<=\\()@[\\d\\.]+(?=\\))"];
+            NSString *priority = [self.releation matchWithPattern:@"(?<=\\()@[\\d\\.]+(?=\\))"];
             NSAssert1(priority, @"设置宽高关系错误，在设置宽高前仅可以设置priority或者不做任何设置 %@", self);
             NSAssert2([obj isKindOfClass:[NSString class]] || [obj isKindOfClass:[NSNumber class]], @"设置宽高关系错误，如果之前设置了priority优先级属性的话，这里只能设置指定的宽高值，不可设置成有关系的视图 self:%@ releation:%@", self, self.releation);
             self.releation = [NSString stringWithFormat:@"(%@%@)", obj, priority];
         } else {
-            self.releation = [NSString stringWithFormat:@"(%@)", [obj isKindOfClass:[UIView class]] ? [self addHashKey:obj] : obj];
+            self.releation = [NSString stringWithFormat:@"(%@)", [obj isKindOfClass:[UIView class]] ? [obj hashKey] : obj];
         }
         return self;
     } copy];
@@ -70,7 +79,7 @@
 
 - (UIView *(^)(UIView *))equalToV {
     return [^(UIView *view){
-        self.releation = [NSString stringWithFormat:@"(==%@)", [self.superview addHashKey:view]];
+        self.releation = [NSString stringWithFormat:@"(==%@)", [view hashKey]];
         return self;
     } copy];
 }
@@ -85,7 +94,7 @@
 - (UIView *(^)(CGFloat))priority {
     return [^(CGFloat pri){
         if (self.releation) {
-            NSString *length = [self.releation matchesWithPattern:@"(?<=\\()[\\d\\.]+(?=\\))"];
+            NSString *length = [self.releation matchWithPattern:@"(?<=\\()[\\d\\.]+(?=\\))"];
             NSAssert1(length, @"设置优先级错误，在设置优先级前仅可以设置lengthEqual或者lengthIs或者不做任何设置 %@", self);
             self.releation = [NSString stringWithFormat:@"(%@@%@)", length, @(pri)];
         } else {
@@ -104,31 +113,32 @@
 
 @end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @implementation UIView (AUUVFLStarting)
-
-- (NSString *)Hori {
-    NSString *H = @"H:";
-    H.base = self;
-    return H;
-}
-
-- (NSString *)Vert {
-    NSString *V = @"V:";
-    V.base = self;
-    return V;
-}
-
+- (NSString *)Hori { return H; }
+- (NSString *)Vert { return V; }
 @end
-
 @implementation UIViewController (AUUVFLStarting)
-
-- (NSString *)Hori {
-    return self.view.Hori;
-}
-
-- (NSString *)Vert {
-    return self.view.Vert;
-}
-
+- (NSString *)Hori { return self.view.Hori; }
+- (NSString *)Vert { return self.view.Vert; }
 @end
 

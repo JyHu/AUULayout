@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "VFLFactory"
-  s.version      = "0.0.1"
+  s.version      = "0.1.0"
   s.summary      = "An auto layout framework using VFL and NSLayoutConstraint"
 
   # This description is used to generate tags and improve search results.
@@ -65,7 +65,7 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  # s.platform     = :ios, "5.0"
+  # s.platform     = :ios, "8.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/JyHu/VFLFactory.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/JyHu/VFLFactory.git", :tag => "0.1.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -118,7 +118,7 @@ Pod::Spec.new do |s|
   #
 
   # s.framework  = "SomeFramework"
-  s.frameworks = "UIKit"
+  # s.frameworks = "UIKit"
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"

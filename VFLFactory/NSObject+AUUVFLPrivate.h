@@ -23,7 +23,9 @@
  @param pattern 正则表达式
  @return 截取出的部分，截取不到的，返回nil
  */
-- (NSString *)matchesWithPattern:(NSString *)pattern;
+- (NSString *)matchWithPattern:(NSString *)pattern;
+
+- (NSArray *)matchesWithPattern:(NSString *)pattern;
 
 @end
 
@@ -42,6 +44,6 @@
 /**
  保存视图并生成key
  */
-- (NSString *)addHashKey:(UIView *)view;
+- (NSString *)hashKey;
 
 @end

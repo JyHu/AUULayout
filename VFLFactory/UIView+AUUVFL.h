@@ -7,6 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AUUVFLConsts.h"
+
+
+
+#pragma mark - VFL的开始语句
+#pragma mark -
+
+/*
+ VFL的开始语句，写法源自原生的VFL写法。
+ 
+ 如果想开始横向的布局，那么就使用`H`开始，如果想要开始纵向的布局，就使用`V`开始
+ */
+
+extern NSString const *H;
+extern NSString const *V;
+
 
 #pragma mark - 子视图封装的多属性布局方式
 #pragma mark -
@@ -50,7 +66,7 @@
  
  下列方法是用于设置子视图的宽高和优先级，只能在 `NSString+AUUVFL.h` 的 `NSString *(^nextTo)(UIView *)` 方法中使用
  
- 比如： `self.Hori.interval(20).nextTo(view1.lengthEqual(view2))`
+ 比如： `V.interval(20).nextTo(view1.lengthEqual(view2))`
  
  */
 
@@ -105,49 +121,28 @@
 
 
 
-#pragma mark - VFL的开始语句
-#pragma mark -
 
-/*
- 
- VFL的开始语句，必须由一个view发起，而且必须是要自动布局的视图的父视图
- 
- 比如 [A addSubview:B]
- 
- 那么此时A视图就是父视图，VFL语句的开始就必须从A开始，这样才能对其上得所有视图比如B做自动布局的设定
- 
- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @interface UIView (AUUVFLStarting)
-
-/**
- horizontal vfl
- */
-@property (retain, nonatomic, readonly) NSString *Hori;
-
-/**
- vertical vfl
- */
-@property (retain, nonatomic, readonly) NSString *Vert;
-
+@property (retain, nonatomic, readonly) NSString *Hori AUUVFLDeprecated("方法已过期，之前的使用如 view.Hori，现在请直接使用H即可");
+@property (retain, nonatomic, readonly) NSString *Vert AUUVFLDeprecated("方法已过期，之前的使用如 view.Vert，现在请直接使用V即可");
 @end
-
-/*
- 
- 给 UIViewController 添加的辅助属性，其实内部使用的是 UIViewController 的 view 来做的。
- 
- */
-
 @interface UIViewController (AUUVFLStarting)
-
-/**
- horizontal vfl
- */
-@property (retain, nonatomic, readonly) NSString *Hori;
-
-/**
- vertical vfl
- */
-@property (retain, nonatomic, readonly) NSString *Vert;
-
+@property (retain, nonatomic, readonly) NSString *Hori AUUVFLDeprecated("方法已过期，之前的使用如 self.Hori，现在请直接使用H即可");
+@property (retain, nonatomic, readonly) NSString *Vert AUUVFLDeprecated("方法已过期，之前的使用如 self.Vert，现在请直接使用V即可");
 @end

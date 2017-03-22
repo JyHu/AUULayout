@@ -23,8 +23,8 @@
     
     
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    [self.Hori.interval(10).nextTo(horiContainer).interval(10) end];
-    [self.Vert.interval(74).nextTo(horiContainer.lengthEqual(@400)) endL];
+    [H.interval(10).nextTo(horiContainer).interval(10) end];
+    [V.interval(74).nextTo(horiContainer.lengthEqual(@400)) endL];
     [self viewsWithContainer:horiContainer].absVertLayout(-1, 100, 10);
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     

@@ -21,7 +21,7 @@
  eg：
  
  
- [self.Vert.nextTo(view1.topEqual(view2.u_top)) end];
+ [V.nextTo(view1.topEqual(view2.u_top)) end];
  
  在这里使用topEqual来描述view1的顶部与view2的顶部对齐
  

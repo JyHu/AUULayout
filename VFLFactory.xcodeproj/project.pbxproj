@@ -49,6 +49,8 @@
 		1CF7358D1E8271DF003C5FDE /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1CF7358A1E8271DF003C5FDE /* LICENSE */; };
 		1CF7358E1E8271DF003C5FDE /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1CF7358B1E8271DF003C5FDE /* README.md */; };
 		1CF7358F1E8271DF003C5FDE /* VFLFactory.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 1CF7358C1E8271DF003C5FDE /* VFLFactory.podspec */; };
+		1CF735921E82ADE2003C5FDE /* AUUVFLConsts.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF735901E82ADE2003C5FDE /* AUUVFLConsts.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1CF735931E82ADE2003C5FDE /* AUUVFLConsts.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735911E82ADE2003C5FDE /* AUUVFLConsts.m */; };
 		CBD218AE98C6354DF43AE884 /* Pods_VFLExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF23D5152FD60E5B5ACCF31 /* Pods_VFLExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +118,8 @@
 		1CF7358A1E8271DF003C5FDE /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1CF7358B1E8271DF003C5FDE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1CF7358C1E8271DF003C5FDE /* VFLFactory.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VFLFactory.podspec; sourceTree = "<group>"; };
+		1CF735901E82ADE2003C5FDE /* AUUVFLConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUVFLConsts.h; sourceTree = "<group>"; };
+		1CF735911E82ADE2003C5FDE /* AUUVFLConsts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUVFLConsts.m; sourceTree = "<group>"; };
 		237A7992AED78FA193822068 /* Pods-VFLExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VFLExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VFLExample/Pods-VFLExample.debug.xcconfig"; sourceTree = "<group>"; };
 		59149635369E77566B1AC9FA /* Pods-VFLExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VFLExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-VFLExample/Pods-VFLExample.release.xcconfig"; sourceTree = "<group>"; };
 		ECF23D5152FD60E5B5ACCF31 /* Pods_VFLExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VFLExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				1CF7350E1E811680003C5FDE /* VFLFactory.h */,
+				1CF735901E82ADE2003C5FDE /* AUUVFLConsts.h */,
+				1CF735911E82ADE2003C5FDE /* AUUVFLConsts.m */,
 				1CF735361E811AA8003C5FDE /* NSObject+AUUVFLPrivate.h */,
 				1CF735371E811AA8003C5FDE /* NSObject+AUUVFLPrivate.m */,
 				1CF7353A1E811ADB003C5FDE /* UIView+AUUVFL.h */,
@@ -289,6 +295,7 @@
 				1CF735101E811680003C5FDE /* VFLFactory.h in Headers */,
 				1CF735401E811BB8003C5FDE /* NSString+AUUVFL.h in Headers */,
 				1CF735441E811C12003C5FDE /* NSArray+AUUVFL.h in Headers */,
+				1CF735921E82ADE2003C5FDE /* AUUVFLConsts.h in Headers */,
 				1CF7357A1E822154003C5FDE /* UIView+AUUVFLEdge.h in Headers */,
 				1CF735801E824D94003C5FDE /* AUULayoutAttribute.h in Headers */,
 				1CF7353C1E811ADB003C5FDE /* UIView+AUUVFL.h in Headers */,
@@ -450,6 +457,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CF735931E82ADE2003C5FDE /* AUUVFLConsts.m in Sources */,
 				1CF735891E82534F003C5FDE /* AUULayoutAttribute+AUUPrivate.m in Sources */,
 				1CF735811E824D94003C5FDE /* AUULayoutAttribute.m in Sources */,
 				1CF735411E811BB8003C5FDE /* NSString+AUUVFL.m in Sources */,

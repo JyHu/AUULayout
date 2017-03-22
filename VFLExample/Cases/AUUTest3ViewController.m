@@ -30,13 +30,13 @@
     
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     // 父视图的左边 --20-- view1(宽度为100) -- view2(宽度为200)
-    [self.Hori.interval(20).nextTo(view1.lengthEqual(@100)).interval(-20).nextTo(view2.lengthEqual(@200)) endL];
-    [self.Vert.interval(100).nextTo(view1.lengthEqual(@200)) endL];
-    [self.Vert.interval(100).nextTo(view2.lengthEqual(@100)) endL];
+    [H.interval(20).nextTo(view1.lengthEqual(@100)).interval(-20).nextTo(view2.lengthEqual(@200)) endL];
+    [V.interval(100).nextTo(view1.lengthEqual(@200)) endL];
+    [V.interval(100).nextTo(view2.lengthEqual(@100)) endL];
     
-    [self.Hori.nextTo(view3.lengthEqual(@200)).nextTo(view4.lengthEqual(@100)).interval(10) end];
-    [self.Vert.nextTo(view3.lengthEqual(@100)).interval(10) end];
-    [self.Vert.nextTo(view4.lengthEqual(@200)).interval(10) end];
+    [H.nextTo(view3.lengthEqual(@200)).nextTo(view4.lengthEqual(@100)).interval(10) end];
+    [V.nextTo(view3.lengthEqual(@100)).interval(10) end];
+    [V.nextTo(view4.lengthEqual(@200)).interval(10) end];
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     
