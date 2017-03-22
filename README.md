@@ -68,3 +68,7 @@ view2.edge(UIEdgeInsetsMake(30, 40, 50, 60));
 
 * 优化子视图的releation
 * 调整VFL的终点
+* 逻辑判断、警告、调试信息的处理
+* 级联关系的检查
+* 命名的优化
+* category中不确定因素的排查
