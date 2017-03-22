@@ -23,6 +23,16 @@ const char *kBaseAssociatedKey = (void *)@"kBaseAssociatedKey";
     return objc_getAssociatedObject(self, kBaseAssociatedKey);
 }
 
+- (NSString *)matchesWithPattern:(NSString *)pattern
+{
+    NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
+    NSTextCheckingResult *textCheckingResult = [reg firstMatchInString:self options:NSMatchingCompleted range:NSMakeRange(0, self.length)];
+    if (textCheckingResult && textCheckingResult.range.location != NSNotFound) {
+        return [self substringWithRange:textCheckingResult.range];
+    }
+    return nil;
+}
+
 @end
 
 @implementation UIView (Private)

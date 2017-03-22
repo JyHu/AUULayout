@@ -15,8 +15,7 @@
 - (NSString *(^)(CGFloat))interval
 {
     return [^(CGFloat interval){
-        NSAssert1(interval >=0, @"设置的间距必须是个有效值", self);
-        return [self append:@"%@-%@-", self && self.length == 2 ? @"|" : @"", @(interval)];
+        return [self append:@"%@-(%@)-", self && self.length == 2 ? @"|" : @"", @(interval)];
     } copy];
 }
 
@@ -28,7 +27,12 @@
 - (NSString *(^)(UIView *))nextTo
 {
     return [^(UIView *view){
-        NSString *res =  [self append:@"[%@%@]", [self.base addHashKey:view], view.releation ?: @""];
+        NSString *releation = view.releation;
+        if (releation) {
+            NSAssert2(![releation matchesWithPattern:@"(?<=\\()@[\\d\\.]+(?=\\))"],
+                      @"设置优先级错误，在设置优先级的同时必须设定相关联的最小宽高，请使用lengthIs或者lengthEqual添加 view:%@, releation:%@", view, releation);
+        }
+        NSString *res =  [self append:@"[%@%@]", [self.base addHashKey:view], releation ?: @""];
         view.releation = nil;
         return res;
     } copy];

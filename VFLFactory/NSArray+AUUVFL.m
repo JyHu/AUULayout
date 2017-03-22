@@ -36,7 +36,6 @@
 - (NSArray *(^)(AUULayoutDirection, UIEdgeInsets, CGFloat))avgLayoutDEM
 {
     return [^(AUULayoutDirection direction, UIEdgeInsets insets, CGFloat margin){
-        NSAssert1(margin >= 0, @"设置间距非法 %@", self);
         NSMutableArray *vfls = [[NSMutableArray alloc] initWithCapacity:self.count + 1];
         
         // 如果只有一个元素，那么直接就能设置其布局的vfl
@@ -101,7 +100,6 @@
 {
     return [^(AUULayoutDirection direction, CGFloat width, CGFloat height, CGFloat margin){
         NSMutableArray *vfls = [[NSMutableArray alloc] initWithCapacity:self.count + 1];
-        NSAssert1(margin >= 0, @"设置间距非法 %@", self);
         BOOL isHorizontal = direction == AUULayoutDirectionHorizontal;
         
         // 如果只有一个视图，那么可以直接对其设置vfl布局属性

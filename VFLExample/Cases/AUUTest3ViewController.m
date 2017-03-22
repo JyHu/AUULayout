@@ -30,7 +30,7 @@
     
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     // 父视图的左边 --20-- view1(宽度为100) -- view2(宽度为200)
-    [self.Hori.interval(20).nextTo(view1.lengthEqual(@100)).nextTo(view2.lengthEqual(@200)) endL];
+    [self.Hori.interval(20).nextTo(view1.lengthEqual(@100)).interval(-20).nextTo(view2.lengthEqual(@200)) endL];
     [self.Vert.interval(100).nextTo(view1.lengthEqual(@200)) endL];
     [self.Vert.interval(100).nextTo(view2.lengthEqual(@100)) endL];
     

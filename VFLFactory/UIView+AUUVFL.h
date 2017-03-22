@@ -11,7 +11,6 @@
 #pragma mark - 子视图封装的多属性布局方式
 #pragma mark -
 
-
 /*
  
  为子视图封装的布局属性，可以由子视图进行调用，而不需要经过父视图作为开始的引导
@@ -43,7 +42,7 @@
 
 /*
  
- 子视图级联的单个属性，必须由子视图调用
+ 子视图级联的单个属性，必须由子视图调用，这里的属性属于“用完即走”型的，在外部nextTo执行到下一步的时候，此处设置的宽高对比属性已经被清空了
  
  比如 [A addSubview:B]
  
@@ -58,12 +57,17 @@
 @interface UIView (AUUSub)
 
 /**
- 设置view的长宽   H:|-0-[view(80)]-0-|        H:|-0-[view(label)]-0-|
+ 设置view的长宽   H:|-0-[view(@80)]-0-|        H:|-0-[view(label)]-0-|
  
  t 要相等的对象，可以是number、uiview
  */
 
 @property (copy, nonatomic, readonly) UIView *(^lengthEqual)(id t);
+
+/**
+ 设置view的宽高，跟lengthEqual一样，只不过这里接收的是一个CGFloat类型的数据而不是对象
+ */
+@property (copy, nonatomic, readonly) UIView *(^lengthIs)(CGFloat len);
 
 /**
  设置与某个视图相等的长宽 H:|-0-[view(==label)]-0-|  其中的 (==label)
@@ -82,11 +86,11 @@
 /**
  设置宽高和优先级     H:|-0-[view(100@20)]-0-|        其中的 (100@20)
  
- len 可被压缩到得最小的宽高值
  priority 优先级的高低，优先级高的先背压缩
  
+ 设置这个属性的同时必须设置可被压缩到的最小的宽高值，请使用lengthEqual或者lengthIs设置
  */
-@property (copy, nonatomic, readonly) UIView *(^priority)(CGFloat len, CGFloat priority);
+@property (copy, nonatomic, readonly) UIView *(^priority)(CGFloat priority);
 
 /**
  设置长宽在某个区间      H:|-0-[view(>=80,<=100)]-0-|        其中的(>=80,<=100)
