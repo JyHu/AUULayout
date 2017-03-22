@@ -28,7 +28,7 @@
 
 @implementation UIView (AUUSub)
 
-- (UIView *(^)(id))equalTo {
+- (UIView *(^)(id))lengthEqual {
     return [^(id obj){
         self.releation = [NSString stringWithFormat:@"(%@)", [obj isKindOfClass:[UIView class]] ? [self addHashKey:obj] : obj];
         return self;

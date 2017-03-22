@@ -23,6 +23,19 @@ const char *kBaseAssociatedKey = (void *)@"kBaseAssociatedKey";
     return objc_getAssociatedObject(self, kBaseAssociatedKey);
 }
 
+//const char *kHashKeyIndexAssociatedKey = (void *)@"kHashKeyIndexAssociatedKey";
+//
+//- (void)setHashKeyIndex:(NSInteger)hashKeyIndex
+//{
+//    objc_setAssociatedObject(self, kHashKeyIndexAssociatedKey, @(hashKeyIndex), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//}
+//
+//- (NSInteger)hashKeyIndex
+//{
+//    id obj = objc_getAssociatedObject(self, kHashKeyIndexAssociatedKey);
+//    return obj ? [obj integerValue] : -1;
+//}
+
 @end
 
 @implementation UIView (Private)

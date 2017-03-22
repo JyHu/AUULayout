@@ -38,6 +38,10 @@
 		1CF7356E1E8152FC003C5FDE /* AUUTest8ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF7356D1E8152FC003C5FDE /* AUUTest8ViewController.m */; };
 		1CF735711E815715003C5FDE /* AUUTest9ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735701E815715003C5FDE /* AUUTest9ViewController.m */; };
 		1CF735741E815BAA003C5FDE /* UIColor+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735731E815BAA003C5FDE /* UIColor+Factory.m */; };
+		1CF735771E821D44003C5FDE /* AUUTest10ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735761E821D44003C5FDE /* AUUTest10ViewController.m */; };
+		1CF7357A1E822154003C5FDE /* UIView+AUUVFLEdge.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF735781E822154003C5FDE /* UIView+AUUVFLEdge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1CF7357B1E822154003C5FDE /* UIView+AUUVFLEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735791E822154003C5FDE /* UIView+AUUVFLEdge.m */; };
+		1CF7357D1E822D7F003C5FDE /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF7357C1E822D7F003C5FDE /* SafariServices.framework */; };
 		CBD218AE98C6354DF43AE884 /* Pods_VFLExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF23D5152FD60E5B5ACCF31 /* Pods_VFLExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +97,11 @@
 		1CF735701E815715003C5FDE /* AUUTest9ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUTest9ViewController.m; sourceTree = "<group>"; };
 		1CF735721E815BAA003C5FDE /* UIColor+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Factory.h"; sourceTree = "<group>"; };
 		1CF735731E815BAA003C5FDE /* UIColor+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Factory.m"; sourceTree = "<group>"; };
+		1CF735751E821D44003C5FDE /* AUUTest10ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUTest10ViewController.h; sourceTree = "<group>"; };
+		1CF735761E821D44003C5FDE /* AUUTest10ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUTest10ViewController.m; sourceTree = "<group>"; };
+		1CF735781E822154003C5FDE /* UIView+AUUVFLEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AUUVFLEdge.h"; sourceTree = "<group>"; };
+		1CF735791E822154003C5FDE /* UIView+AUUVFLEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AUUVFLEdge.m"; sourceTree = "<group>"; };
+		1CF7357C1E822D7F003C5FDE /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/SafariServices.framework; sourceTree = DEVELOPER_DIR; };
 		237A7992AED78FA193822068 /* Pods-VFLExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VFLExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VFLExample/Pods-VFLExample.debug.xcconfig"; sourceTree = "<group>"; };
 		59149635369E77566B1AC9FA /* Pods-VFLExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VFLExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-VFLExample/Pods-VFLExample.release.xcconfig"; sourceTree = "<group>"; };
 		ECF23D5152FD60E5B5ACCF31 /* Pods_VFLExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VFLExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CF7357D1E822D7F003C5FDE /* SafariServices.framework in Frameworks */,
 				1CF735311E811760003C5FDE /* VFLFactory.framework in Frameworks */,
 				1CF735301E81175E003C5FDE /* Nimbus.framework in Frameworks */,
 				CBD218AE98C6354DF43AE884 /* Pods_VFLExample.framework in Frameworks */,
@@ -156,6 +166,8 @@
 				1CF735371E811AA8003C5FDE /* NSObject+AUUVFLPrivate.m */,
 				1CF7353A1E811ADB003C5FDE /* UIView+AUUVFL.h */,
 				1CF7353B1E811ADB003C5FDE /* UIView+AUUVFL.m */,
+				1CF735781E822154003C5FDE /* UIView+AUUVFLEdge.h */,
+				1CF735791E822154003C5FDE /* UIView+AUUVFLEdge.m */,
 				1CF7353E1E811BB8003C5FDE /* NSString+AUUVFL.h */,
 				1CF7353F1E811BB8003C5FDE /* NSString+AUUVFL.m */,
 				1CF735421E811C12003C5FDE /* NSArray+AUUVFL.h */,
@@ -215,6 +227,8 @@
 				1CF7356D1E8152FC003C5FDE /* AUUTest8ViewController.m */,
 				1CF7356F1E815715003C5FDE /* AUUTest9ViewController.h */,
 				1CF735701E815715003C5FDE /* AUUTest9ViewController.m */,
+				1CF735751E821D44003C5FDE /* AUUTest10ViewController.h */,
+				1CF735761E821D44003C5FDE /* AUUTest10ViewController.m */,
 			);
 			path = Cases;
 			sourceTree = "<group>";
@@ -237,6 +251,7 @@
 		86CDF935278C7429C258E8FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1CF7357C1E822D7F003C5FDE /* SafariServices.framework */,
 				1CF7352F1E81175E003C5FDE /* Nimbus.framework */,
 				ECF23D5152FD60E5B5ACCF31 /* Pods_VFLExample.framework */,
 			);
@@ -253,6 +268,7 @@
 				1CF735101E811680003C5FDE /* VFLFactory.h in Headers */,
 				1CF735401E811BB8003C5FDE /* NSString+AUUVFL.h in Headers */,
 				1CF735441E811C12003C5FDE /* NSArray+AUUVFL.h in Headers */,
+				1CF7357A1E822154003C5FDE /* UIView+AUUVFLEdge.h in Headers */,
 				1CF7353C1E811ADB003C5FDE /* UIView+AUUVFL.h in Headers */,
 				1CF735381E811AA8003C5FDE /* NSObject+AUUVFLPrivate.h in Headers */,
 			);
@@ -413,6 +429,7 @@
 				1CF735451E811C12003C5FDE /* NSArray+AUUVFL.m in Sources */,
 				1CF735391E811AA8003C5FDE /* NSObject+AUUVFLPrivate.m in Sources */,
 				1CF7353D1E811ADB003C5FDE /* UIView+AUUVFL.m in Sources */,
+				1CF7357B1E822154003C5FDE /* UIView+AUUVFLEdge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +438,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CF7355C1E812673003C5FDE /* AUUTest3ViewController.m in Sources */,
+				1CF735771E821D44003C5FDE /* AUUTest10ViewController.m in Sources */,
 				1CF735561E8122EA003C5FDE /* AUUBaseViewController.m in Sources */,
 				1CF735741E815BAA003C5FDE /* UIColor+Factory.m in Sources */,
 				1CF7354C1E811DFD003C5FDE /* UIView+Factory.m in Sources */,

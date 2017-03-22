@@ -27,13 +27,13 @@
                       
                       
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                      self.Hori.interval(10).nextTo(view1.equalTo(view2)).interval(10).nextTo(view2).interval(20).end,
+                      self.Hori.interval(10).nextTo(view1.lengthEqual(view2)).interval(10).nextTo(view2).interval(20).end,
                       self.Vert.interval(100).nextTo(view1).interval(50).end,
-                      self.Vert.interval(70).nextTo(view2.equalTo(@200)).endL,
+                      self.Vert.interval(70).nextTo(view2.lengthEqual(@200)).endL,
                       self.Hori.nextTo(view1).nextTo(view3).end,
-                      self.Vert.nextTo(view2).nextTo(view3.equalTo(@100)).endL,
+                      self.Vert.nextTo(view2).nextTo(view3.lengthEqual(@100)).endL,
                       self.Hori.interval(50).nextTo(view4.equalToV(view2)).endL,
-                      self.Vert.nextTo(view3).nextTo(view4.equalTo(@100)).endL,
+                      self.Vert.nextTo(view3).nextTo(view4.lengthEqual(@100)).endL,
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                       
                       

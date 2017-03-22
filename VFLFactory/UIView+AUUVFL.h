@@ -34,7 +34,7 @@
  
  下列方法是用于设置子视图的宽高和优先级，只能在 `NSString+AUUVFL.h` 的 `NSString *(^nextTo)(UIView *)` 方法中使用
  
- 比如： `self.Hori.interval(20).nextTo(view1.equalTo(view2))`
+ 比如： `self.Hori.interval(20).nextTo(view1.lengthEqual(view2))`
  
  */
 
@@ -45,21 +45,22 @@
  
  t 要相等的对象，可以是number、uiview
  */
-- (UIView *(^)(id t))equalTo;
+
+@property (copy, nonatomic, readonly) UIView *(^lengthEqual)(id t);
 
 /**
  设置与某个视图相等的长宽 H:|-0-[view(==label)]-0-|  其中的 (==label)
  
  view 要设置相等的视图
  */
-- (UIView *(^)(UIView *view))equalToV;
+@property (copy, nonatomic, readonly) UIView *(^equalToV)(UIView *view);
 
 /**
  长宽最小是多少      H:|-0-[view(>=20)]-0-|      其中的(>=20)
  
  len 长宽的最小值
  */
-- (UIView *(^)(CGFloat len))greaterThan;
+@property (copy, nonatomic, readonly) UIView *(^greaterThan)(CGFloat len);
 
 /**
  设置宽高和优先级     H:|-0-[view(100@20)]-0-|        其中的 (100@20)
@@ -68,7 +69,7 @@
  priority 优先级的高低，优先级高的先背压缩
  
  */
-- (UIView *(^)(CGFloat len, CGFloat priority))priority;
+@property (copy, nonatomic, readonly) UIView *(^priority)(CGFloat len, CGFloat priority);
 
 /**
  设置长宽在某个区间      H:|-0-[view(>=80,<=100)]-0-|        其中的(>=80,<=100)
@@ -76,9 +77,11 @@
  lenMin 宽度的最小值
  lenMax 宽度的最大值
  */
-- (UIView *(^)(CGFloat lenMin, CGFloat lenMax))between;
+@property (copy, nonatomic, readonly) UIView *(^between)(CGFloat lenMin, CGFloat lenMax);
 
 @end
+
+
 
 
 #pragma mark - VFL的开始语句

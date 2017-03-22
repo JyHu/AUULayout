@@ -28,14 +28,14 @@
                       
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                       // 父视图的左边 --间距20-- view1(宽度和view2相同) --间距10-- view2 --间距20-- 父视图的右边
-                      self.Hori.interval(20).nextTo(view1.equalTo(view2)).interval(10).nextTo(view2).interval(20).end,
+                      self.Hori.interval(20).nextTo(view1.lengthEqual(view2)).interval(10).nextTo(view2).interval(20).end,
                       self.Vert.interval(100).nextTo(view1).interval(10).end,
                       self.Vert.interval(100).nextTo(view2).interval(10).end
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                       
                       
                       ];
-    
+
     NSLog(@"收集到vfl \n %@", vfls);
 }
 

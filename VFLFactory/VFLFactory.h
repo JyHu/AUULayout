@@ -21,6 +21,7 @@
 #import "UIView+AUUVFL.h"
 #import "NSString+AUUVFL.h"
 #import "NSArray+AUUVFL.h"
+#import "UIView+AUUVFLEdge.h"
 
 //! Project version number for VFLFactory.
 FOUNDATION_EXPORT double VFLFactoryVersionNumber;

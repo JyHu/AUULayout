@@ -60,7 +60,7 @@
                     LVFL = (isHorizontal ? view.superview.Hori : view.superview.Vert).interval(isHorizontal ? insets.left : insets.top).nextTo(view);
                     lastView = view;
                 } else {
-                    LVFL = LVFL.interval(margin).nextTo(view.equalTo(lastView));
+                    LVFL = LVFL.interval(margin).nextTo(view.lengthEqual(lastView));
                     
                     if (i == self.count - 1) {
                         LVFL = LVFL.interval(isHorizontal ? insets.right : insets.bottom).end;
@@ -98,12 +98,12 @@
             NSAssert1(view.superview, @"没有添加到父视图 %@", view);
             
             if (width) {
-                [vfls addObject:view.superview.Hori.nextTo(view.equalTo(@(width))).endL];
+                [vfls addObject:view.superview.Hori.nextTo(view.lengthEqual(@(width))).endL];
             } else {
                 [vfls addObject:view.superview.Hori.nextTo(view).end];
             }
             if (height) {
-                [vfls addObject:view.superview.Vert.nextTo(view.equalTo(@(height))).endL];
+                [vfls addObject:view.superview.Vert.nextTo(view.lengthEqual(@(height))).endL];
             } else {
                 [vfls addObject:view.superview.Vert.nextTo(view).end];
             }
@@ -119,14 +119,14 @@
                 if (isHorizontal) {
                     NSAssert1(width > 0, @"横向布局的时候宽度设置非法 %@", view);
                     if (height > 0) {
-                        [vfls addObject:view.superview.Vert.interval(0).nextTo(view.equalTo(@(height))).endL];
+                        [vfls addObject:view.superview.Vert.interval(0).nextTo(view.lengthEqual(@(height))).endL];
                     } else {
                         [vfls addObject:view.superview.Vert.interval(0).nextTo(view).end];
                     }
                 } else {
                     NSAssert1(height > 0, @"纵向布局的时候高度设置非法 %@", view);
                     if (width > 0) {
-                        [vfls addObject:view.superview.Hori.interval(0).nextTo(view.equalTo(@(width))).endL];
+                        [vfls addObject:view.superview.Hori.interval(0).nextTo(view.lengthEqual(@(width))).endL];
                     } else {
                         [vfls addObject:view.superview.Hori.interval(0).nextTo(view).end];
                     }
@@ -134,13 +134,13 @@
                 
                 if (i == 0) {
                     if (isHorizontal) {
-                        LVFL = view.superview.Hori.interval(0).nextTo(view.equalTo(@(width)));
+                        LVFL = view.superview.Hori.interval(0).nextTo(view.lengthEqual(@(width)));
                     } else {
-                        LVFL = view.superview.Vert.interval(0).nextTo(view.equalTo(@(height)));
+                        LVFL = view.superview.Vert.interval(0).nextTo(view.lengthEqual(@(height)));
                     }
                     lastView = view;
                 } else {
-                    LVFL = LVFL.interval(margin).nextTo(view.equalTo(@(isHorizontal ? width : height)));
+                    LVFL = LVFL.interval(margin).nextTo(view.lengthEqual(@(isHorizontal ? width : height)));
                     if (i == self.count - 1) {
                         LVFL = LVFL.endL;
                     }
