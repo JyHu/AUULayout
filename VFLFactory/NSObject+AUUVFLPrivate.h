@@ -8,34 +8,29 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "AUULayoutAttribute.h"
 
 @interface NSString (Private)
 
 @property (weak, nonatomic) UIView *base;
 
-//@property (assign, nonatomic) NSInteger hashKeyIndex;
-
 @end
 
 @interface UIView (Private)
 
+/**
+ 保存涉及到的需要自动布局的视图
+ */
 @property (retain, nonatomic) NSMutableDictionary *layoutKits;
 
+/**
+ 保存子视图在设置宽度的时候的设置比对方式
+ */
 @property (retain, nonatomic) NSString *releation;
 
+/**
+ 保存视图并生成key
+ */
 - (NSString *)addHashKey:(UIView *)view;
-
-
-//@property (weak, nonatomic) UIView *topView;
-//@property (assign, nonatomic) CGFloat topMargin;
-//
-//@property (weak, nonatomic) UIView *leftView;
-//@property (assign, nonatomic) CGFloat leftMargin;
-//
-//@property (weak, nonatomic) UIView *bottomView;
-//@property (assign, nonatomic) CGFloat bottomMargin;
-//
-//@property (weak, nonatomic) UIView *rightView;
-//@property (assign, nonatomic) CGFloat rightMargin;
 
 @end

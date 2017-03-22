@@ -9,18 +9,35 @@
 #import "UIView+AUUVFL.h"
 #import "NSObject+AUUVFLPrivate.h"
 #import "NSString+AUUVFL.h"
+#import "UIView+AUUVFLEdge.h"
 
 @implementation UIView (AUUVFL)
 
 - (NSArray *(^)(UIEdgeInsets))edge
 {
     return [^(UIEdgeInsets insets){
-        if (!self.superview) {
-            NSLog(@"没有设置父视图 %@", self);
-            return @[];
-        }
+        NSAssert1(self.superview, @"没有设置父视图 %@", self);
         return @[self.superview.Hori.interval(insets.left).nextTo(self).interval(insets.right).end,
                  self.superview.Vert.interval(insets.top).nextTo(self).interval(insets.bottom).end];
+    } copy];
+}
+
+- (UIView *(^)())alignmentCenter
+{
+    return [^(){
+        NSAssert1(self.superview, @"没有设置父视图 %@", self);
+        self.centerXEqual(self.superview.u_centerX);
+        self.centerYEqual(self.superview.u_centerY);
+        
+        return self;
+    } copy];
+}
+
+- (NSArray *(^)(CGSize))fixedSize
+{
+    return [^(CGSize size){
+        return @[self.superview.Hori.nextTo(self.lengthEqual(@(size.width))).endL,
+                 self.superview.Vert.nextTo(self.lengthEqual(@(size.height))).endL];
     } copy];
 }
 

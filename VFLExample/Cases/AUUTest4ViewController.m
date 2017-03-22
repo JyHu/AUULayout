@@ -20,13 +20,20 @@
     
     UIView *view1 = [UIView generateView];
     UIView *view2 = [UIView generateView];
+    UIView *view3 = [UIView generateView];
     
     [self.view addSubview:view1];
     [view1 addSubview:view2];
+    [view2 addSubview:view3];
     
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
     view1.edge(UIEdgeInsetsMake(100, 20, 20, 20));
     view2.edge(UIEdgeInsetsMake(30, 40, 50, 60));
+    
+    // 在父视图居中，并固定大小为100
+    view3.alignmentCenter().fixedSize(CGSizeMake(100, 100));
+    
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
 }
@@ -36,14 +43,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)dealloc
+{
+    NSLog(@"%@ 在返回后被释放", NSStringFromClass([self class]));
 }
-*/
 
 @end

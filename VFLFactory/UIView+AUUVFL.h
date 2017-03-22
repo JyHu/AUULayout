@@ -11,12 +11,29 @@
 #pragma mark - 子视图封装的多属性布局方式
 #pragma mark -
 
+
+/*
+ 
+ 为子视图封装的布局属性，可以由子视图进行调用，而不需要经过父视图作为开始的引导
+ 
+ */
+
 @interface UIView (AUUVFL)
 
 /**
  设置其在父视图上得上下左右边距
  */
 @property (copy, nonatomic, readonly) NSArray *(^edge)(UIEdgeInsets);
+
+/**
+ 设置指定大小并在父视图上居中
+ */
+@property (copy, nonatomic, readonly) UIView *(^alignmentCenter)();
+
+/**
+ 设置视图的固定大小
+ */
+@property (copy, nonatomic, readonly) NSArray *(^fixedSize)(CGSize size);
 
 @end
 

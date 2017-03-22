@@ -24,9 +24,9 @@ typedef NS_ENUM(NSUInteger, AUULayoutDirection) {
  param margin 两个控件之间的间距
  */
 @property (copy, nonatomic, readonly) NSArray *(^avgLayoutDEM)(AUULayoutDirection direction, UIEdgeInsets insets, CGFloat margin);
-@property (copy, nonatomic, readonly) NSArray *(^avgLayoutDM)(AUULayoutDirection direction, CGFloat margin);
-@property (copy, nonatomic, readonly) NSArray *(^avgLayoutDE)(AUULayoutDirection direction, UIEdgeInsets insets);
-@property (copy, nonatomic, readonly) NSArray *(^avgLayoutD)(AUULayoutDirection direction);
+@property (copy, nonatomic, readonly) NSArray *(^avgLayoutDM) (AUULayoutDirection direction, CGFloat margin);
+@property (copy, nonatomic, readonly) NSArray *(^avgLayoutDE) (AUULayoutDirection direction, UIEdgeInsets insets);
+@property (copy, nonatomic, readonly) NSArray *(^avgLayoutD)  (AUULayoutDirection direction);
 
 
 /**

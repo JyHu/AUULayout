@@ -8,6 +8,7 @@
 
 #import "NSString+AUUVFL.h"
 #import "NSObject+AUUVFLPrivate.h"
+#import "AUULayoutAttribute+AUUPrivate.h"
 
 @implementation NSString (AUUVFL)
 

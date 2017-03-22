@@ -8,16 +8,50 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AUULayoutAttribute : NSObject
 
-+ (instancetype)layoutAttributeWithView:(UIView *)view attribute:(NSLayoutAttribute)layoutAttribute;
 
-@property (weak, nonatomic, readonly) UIView *view;
+/*
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+ 这里的两个category里的方法是用来描述两个视图间的相对关系。
+ 
+ AUUVFLEdgeEqual 发起对齐方式的比较
+ AUUVFLEdge      返回被比较视图的被比较的位置
+ 
+ eg：
+ 
+ 
+ [self.Vert.nextTo(view1.topEqual(view2.u_top)) end];
+ 
+ 在这里使用topEqual来描述view1的顶部与view2的顶部对齐
+ 
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ */
 
-@property (assign, nonatomic, readonly) NSLayoutAttribute layoutAttribute;
+
+
+
+@class AUULayoutAttribute;
+
+/*
+ 子视图调用的比较方法，用于设置其边界属性的对齐
+ */
+@interface UIView (AUUVFLEdgeEqual)
+
+@property (copy, nonatomic, readonly) UIView *(^topEqual)    (AUULayoutAttribute *layoutAttribute);
+@property (copy, nonatomic, readonly) UIView *(^leftEqual)   (AUULayoutAttribute *layoutAttribute);
+@property (copy, nonatomic, readonly) UIView *(^bottomEqual) (AUULayoutAttribute *layoutAttribute);
+@property (copy, nonatomic, readonly) UIView *(^rightEqual)  (AUULayoutAttribute *layoutAttribute);
+@property (copy, nonatomic, readonly) UIView *(^widthEqual)  (AUULayoutAttribute *layoutAttribute);
+@property (copy, nonatomic, readonly) UIView *(^heightEqual) (AUULayoutAttribute *layoutAttribute);
+@property (copy, nonatomic, readonly) UIView *(^centerXEqual)(AUULayoutAttribute *layoutAttribute);
+@property (copy, nonatomic, readonly) UIView *(^centerYEqual)(AUULayoutAttribute *layoutAttribute);
 
 @end
 
+/*
+ 被动比较的视图调用的方法，用于返回对齐的属性
+ */
 @interface UIView (AUUVFLEdge)
 
 @property (retain, nonatomic, readonly) AUULayoutAttribute *u_top;
@@ -28,23 +62,5 @@
 @property (retain, nonatomic, readonly) AUULayoutAttribute *u_height;
 @property (retain, nonatomic, readonly) AUULayoutAttribute *u_centerX;
 @property (retain, nonatomic, readonly) AUULayoutAttribute *u_centerY;
-
-@end
-
-@interface UIView (AUUVFLEdgeEqual)
-
-@property (copy, nonatomic, readonly) UIView *(^topEqual)(AUULayoutAttribute *layoutAttribute);
-@property (copy, nonatomic, readonly) UIView *(^leftEqual)(AUULayoutAttribute *layoutAttribute);
-@property (copy, nonatomic, readonly) UIView *(^bottomEqual)(AUULayoutAttribute *layoutAttribute);
-@property (copy, nonatomic, readonly) UIView *(^rightEqual)(AUULayoutAttribute *layoutAttribute);
-@property (copy, nonatomic, readonly) UIView *(^centerXEqual)(AUULayoutAttribute *layoutAttribute);
-@property (copy, nonatomic, readonly) UIView *(^centerYEqual)(AUULayoutAttribute *layoutAttribute);
-
-@property (copy, nonatomic, readonly) UIView *(^topMarginEqual)(AUULayoutAttribute *layoutAttribute, CGFloat margin);
-@property (copy, nonatomic, readonly) UIView *(^leftMarginEqual)(AUULayoutAttribute *layoutAttribute, CGFloat margin);
-@property (copy, nonatomic, readonly) UIView *(^bottomMarginEqual)(AUULayoutAttribute *layoutAttribute, CGFloat margin);
-@property (copy, nonatomic, readonly) UIView *(^rightMarginEqual)(AUULayoutAttribute *layoutAttribute, CGFloat margin);
-@property (copy, nonatomic, readonly) UIView *(^centerXMarginEqual)(AUULayoutAttribute *layoutAttribute, CGFloat margin);
-@property (copy, nonatomic, readonly) UIView *(^centerYMarginEqual)(AUULayoutAttribute *layoutAttribute, CGFloat margin);
 
 @end

@@ -23,19 +23,6 @@ const char *kBaseAssociatedKey = (void *)@"kBaseAssociatedKey";
     return objc_getAssociatedObject(self, kBaseAssociatedKey);
 }
 
-//const char *kHashKeyIndexAssociatedKey = (void *)@"kHashKeyIndexAssociatedKey";
-//
-//- (void)setHashKeyIndex:(NSInteger)hashKeyIndex
-//{
-//    objc_setAssociatedObject(self, kHashKeyIndexAssociatedKey, @(hashKeyIndex), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-//}
-//
-//- (NSInteger)hashKeyIndex
-//{
-//    id obj = objc_getAssociatedObject(self, kHashKeyIndexAssociatedKey);
-//    return obj ? [obj integerValue] : -1;
-//}
-
 @end
 
 @implementation UIView (Private)
@@ -71,7 +58,9 @@ const char *kReleationAssociateKey = (void *)@"kReleationAssociateKey";
     
     view.translatesAutoresizingMaskIntoConstraints = NO;
     NSString *hashKey = [NSString stringWithFormat:@"%@%@", NSStringFromClass([view class]), @([view hash])];
-    [self.layoutKits setObject:view forKey:hashKey];
+    if (![self.layoutKits objectForKey:hashKey]) {
+        [self.layoutKits setObject:view forKey:hashKey];
+    }
     
     return hashKey;
 }
