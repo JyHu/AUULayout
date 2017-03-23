@@ -82,7 +82,6 @@
         
         [H.interval(10).nextTo(label1.priority(100).lengthIs(100)).interval(5).nextTo(label2.priority(200).lengthIs(100)).interval(10) end];
         [H.interval(10).nextTo(label3.priority(200).lengthIs(100)).interval(5).nextTo(label4.priority(100).lengthIs(100)).interval(10) end];
-        
         [V.interval(100).nextTo(label1).interval(100).nextTo(label3) endL];
         [V.interval(100).nextTo(label2).interval(100).nextTo(label4) endL];
     }
