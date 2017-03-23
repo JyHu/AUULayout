@@ -17,7 +17,7 @@
     attribute.secondView = view;
     attribute.secondlayoutAttribute = layoutAttribute;
     attribute.multiplier = 1.0f;
-    attribute.margin = 0.0f;
+    attribute.constant = 0.0f;
     return attribute;
 }
 
@@ -55,12 +55,12 @@ const char *kFirstLayoutAttributeAssociatedKey = (void *)@"kFirstLayoutAttribute
     return obj ? [obj integerValue] : 0;
 }
 
-const char *kMarginAssociatedKey = (void *)@"kMarginAssociatedKey";
-- (void)setMargin:(CGFloat)margin {
-    objc_setAssociatedObject(self, kMarginAssociatedKey, @(margin), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+const char *kConstantAssociatedKey = (void *)@"kConstantAssociatedKey";
+- (void)setConstant:(CGFloat)constant {
+    objc_setAssociatedObject(self, kConstantAssociatedKey, @(constant), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-- (CGFloat)margin {
-    id obj = objc_getAssociatedObject(self, kMarginAssociatedKey);
+- (CGFloat)constant {
+    id obj = objc_getAssociatedObject(self, kConstantAssociatedKey);
     return obj ? [obj floatValue] : 0;
 }
 

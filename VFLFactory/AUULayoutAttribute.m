@@ -19,10 +19,10 @@
     } copy];
 }
 
-- (AUULayoutAttribute *(^)(CGFloat))u_margin
+- (AUULayoutAttribute *(^)(CGFloat))u_constant
 {
-    return [^(CGFloat margin){
-        self.margin = margin;
+    return [^(CGFloat constant){
+        self.constant = constant;
         return self;
     } copy];
 }

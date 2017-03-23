@@ -1,9 +1,11 @@
 PODS:
+  - Masonry (1.0.2)
   - Nimbus/Core (0.1.0)
   - Nimbus/Models (0.1.0):
     - Nimbus/Core
 
 DEPENDENCIES:
+  - Masonry (~> 1.0.2)
   - Nimbus/Models (from `https://github.com/JyHu/nimbus_thin.git`)
 
 EXTERNAL SOURCES:
@@ -16,8 +18,9 @@ CHECKOUT OPTIONS:
     :git: https://github.com/JyHu/nimbus_thin.git
 
 SPEC CHECKSUMS:
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   Nimbus: 29f15a364a8416d3bcbd0bc6f9f31b7ba41e0c1e
 
-PODFILE CHECKSUM: dd656eb1252b1e4ee27017f5902ea5f1aa923645
+PODFILE CHECKSUM: bd3a5136b69d85ae291d41114f56fb0401d7ecb0
 
 COCOAPODS: 1.2.0

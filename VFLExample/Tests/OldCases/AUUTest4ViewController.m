@@ -32,7 +32,7 @@
     view2.edge(UIEdgeInsetsMake(30, 40, 50, 60));
     
     // 在父视图居中，并固定大小为100
-    view3.alignmentCenter().fixedSize(CGSizeMake(100, 100));
+    view3.alignmentCenter().fixedSize(100, 100);
     
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     

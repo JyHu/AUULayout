@@ -100,12 +100,26 @@
 
 - (instancetype)layoutWithLayoutAttribute:(AUULayoutAttribute *)layoutAttribute type:(NSLayoutAttribute)type
 {
-    [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:type
-                                                               relatedBy:NSLayoutRelationEqual
-                                                                  toItem:layoutAttribute.secondView
-                                                               attribute:layoutAttribute.secondlayoutAttribute
-                                                              multiplier:layoutAttribute.multiplier
-                                                                constant:layoutAttribute.margin]];
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    layoutAttribute.secondView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    UIView *sup = self.superview;
+    
+    if (self.superview == layoutAttribute.secondView.superview) {
+        sup = self.superview;
+    } else if (self.superview == layoutAttribute.secondView) {
+        sup = self.superview;
+    } else if (self == layoutAttribute.secondView.superview) {
+        sup = self;
+    }
+    
+    [sup addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:type
+                                                    relatedBy:NSLayoutRelationEqual
+                                                       toItem:layoutAttribute.secondView
+                                                    attribute:layoutAttribute.secondlayoutAttribute
+                                                   multiplier:layoutAttribute.multiplier
+                                                     constant:layoutAttribute.constant]];
     return self;
 }
 

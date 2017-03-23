@@ -48,7 +48,7 @@ extern NSString const *V;
 /**
  设置视图的固定大小
  */
-@property (copy, nonatomic, readonly) NSArray *(^fixedSize)(CGSize size);
+@property (copy, nonatomic, readonly) NSArray *(^fixedSize)(CGFloat width, CGFloat height);
 
 @end
 

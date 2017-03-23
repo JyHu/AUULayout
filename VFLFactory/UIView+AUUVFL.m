@@ -42,11 +42,11 @@ NSString const *V = @"V:";
     } copy];
 }
 
-- (NSArray *(^)(CGSize))fixedSize
+- (NSArray *(^)(CGFloat, CGFloat))fixedSize
 {
-    return [^(CGSize size){
-        return @[H.nextTo(self.lengthEqual(@(size.width))).endL,
-                 V.nextTo(self.lengthEqual(@(size.height))).endL];
+    return [^(CGFloat width, CGFloat height){
+        return @[H.nextTo(self.lengthEqual(@(width))).endL,
+                 V.nextTo(self.lengthEqual(@(height))).endL];
     } copy];
 }
 

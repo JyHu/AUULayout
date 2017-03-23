@@ -26,7 +26,7 @@
 /**
  设置间距
  */
-@property (retain, nonatomic, readonly) AUULayoutAttribute *(^u_margin)(CGFloat margin);
+@property (retain, nonatomic, readonly) AUULayoutAttribute *(^u_constant)(CGFloat constant);
 
 /**
  设置相对比例

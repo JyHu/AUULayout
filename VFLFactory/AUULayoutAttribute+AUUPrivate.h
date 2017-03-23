@@ -40,7 +40,7 @@
 /**
  间距
  */
-@property (assign, nonatomic) CGFloat margin;
+@property (assign, nonatomic) CGFloat constant;
 
 /**
  相对比例
