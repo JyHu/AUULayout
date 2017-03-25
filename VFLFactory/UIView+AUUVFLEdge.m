@@ -100,9 +100,13 @@
 
 - (instancetype)layoutWithLayoutAttribute:(AUULayoutAttribute *)layoutAttribute type:(NSLayoutAttribute)type
 {
-    self.translatesAutoresizingMaskIntoConstraints = NO;
+    if (self.superview && [self.superview isKindOfClass:[UIView class]]) {
+        self.translatesAutoresizingMaskIntoConstraints = NO;
+    }
     
-    layoutAttribute.secondView.translatesAutoresizingMaskIntoConstraints = NO;
+    if (layoutAttribute.secondView && layoutAttribute.secondView.superview && [layoutAttribute.secondView.superview isKindOfClass:[UIView class]]) {
+        layoutAttribute.secondView.translatesAutoresizingMaskIntoConstraints = NO;
+    }
     
     UIView *sup = self.superview;
     

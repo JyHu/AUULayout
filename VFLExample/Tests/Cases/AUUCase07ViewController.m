@@ -15,21 +15,15 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIView *view1 = [UIView generateView];
-    UIView *view2 = [UIView generateView];
-    [self.view addSubview:view1];
-    [view1 addSubview:view2];
+    UIView *view = [UIView generateView];
+    [self.view addSubview:view];
 
     
     if (self.testCaseType == AUUTestCaseTypeMasonry)
     {
-        [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view).insets(UIEdgeInsetsMake(74, 20, 20, 20));
-        }];
-        
-        [view2 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(view1.mas_centerX);
-            make.centerY.equalTo(view1.mas_centerY);
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.view.mas_centerX);
+            make.centerY.equalTo(self.view.mas_centerY);
             make.size.equalTo([NSValue valueWithCGSize:CGSizeMake(180, 180)]);
         }];
     }
@@ -41,20 +35,19 @@
         [self presentViewController:alert animated:YES completion:nil];
         
         
-        view1.translatesAutoresizingMaskIntoConstraints = NO;
-        view2.translatesAutoresizingMaskIntoConstraints = NO;
+        view.translatesAutoresizingMaskIntoConstraints = NO;
         
-        NSDictionary *dict = NSDictionaryOfVariableBindings(view1, view2);
+        NSDictionary *dict = NSDictionaryOfVariableBindings(view);
         
-        for (NSString *vfl in @[@"H:|-10-[view1]-10-|", @"V:|-74-[view1]-10-|", @"H:[view2(180)]", @"V:[view2(180)]"]) {
+        for (NSString *vfl in @[@"H:[view(180)]", @"V:[view(180)]"]) {
             [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl options:NSLayoutFormatDirectionMask metrics:nil views:dict]];
         }
         
-        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:view1 attribute:NSLayoutAttributeCenterX
-                                                              relatedBy:NSLayoutRelationEqual toItem:view2
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeCenterX
+                                                              relatedBy:NSLayoutRelationEqual toItem:view
                                                               attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
-        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:view1 attribute:NSLayoutAttributeCenterY
-                                                              relatedBy:NSLayoutRelationEqual toItem:view2
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeCenterY
+                                                              relatedBy:NSLayoutRelationEqual toItem:view
                                                               attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     }
     else
@@ -62,8 +55,7 @@
         ////////////////////////////////////////////////////
         //              封装的VFL方法
         ////////////////////////////////////////////////////
-        view1.edge(UIEdgeInsetsMake(84, 20, 20, 20));
-        view2.alignmentCenter().fixedSize(180, 180);
+        view.alignmentCenter().fixedSize(180, 180);
     }
     
 }
