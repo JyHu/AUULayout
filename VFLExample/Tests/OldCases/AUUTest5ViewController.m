@@ -22,9 +22,12 @@
     UIView *view3 = [self generateViewWithTag:3];
     UIView *view4 = [self generateViewWithTag:4];
     
+    
+#if kUseVFLLayout
+    
+#else
+    
     NSArray *vfls = @[
-                      
-                      
                       
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                       H.interval(10).nextTo(view1.lengthEqual(view2)).interval(10).nextTo(view2).interval(20).end,
@@ -36,10 +39,11 @@
                       V.nextTo(view3).nextTo(view4.lengthEqual(@100)).endL,
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                       
-                      
                       ];
     
     NSLog(@"当前页面布局的vfl %@", vfls);
+    
+#endif
 }
 
 - (void)didReceiveMemoryWarning {

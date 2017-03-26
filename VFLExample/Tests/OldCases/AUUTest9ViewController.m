@@ -37,11 +37,18 @@
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     // 父视图的左边 --10-- label1(最小宽度为100，优先级100) --5-- label2(最小宽度100，优先级200) --10-- 父视图的右边
     
+#if kUseVFLLayout
+    
+#else
+    
     [H.interval(10).nextTo(label1.priority(100).lengthIs(100)).interval(5).nextTo(label2.priority(200).lengthIs(100)).interval(10) end];
     [H.interval(10).nextTo(label3.priority(200).lengthIs(100)).interval(5).nextTo(label4.priority(100).lengthIs(100)).interval(10) end];
     
     [V.interval(100).nextTo(label1).interval(100).nextTo(label3) endL];
     [V.interval(100).nextTo(label2).interval(100).nextTo(label4) endL];
+    
+#endif
+    
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     

@@ -11,8 +11,19 @@
 
 #import "UIView+Factory.h"
 #import "UILabel+Factory.h"
-#import "VFLFactory.h"
 #import "NSArray+Factory.h"
 #import "UIColor+Factory.h"
+
+#define kUseVFLLayout 1
+
+#if kUseVFLLayout
+
+#import "VFLLayout.h"
+
+#else
+
+//#import "VFLFactory.h"
+
+#endif
 
 #endif /* VFLExample_pch */

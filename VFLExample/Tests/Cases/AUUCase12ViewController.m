@@ -18,9 +18,16 @@
     UIView *container = [UIView generateView];
     [self.view addSubview:container];
     
+#if kUseVFLLayout
+    
+#else
+    
     container.edge(UIEdgeInsetsMake(74, 10, 10, 10));
     
     [self viewsWithContainer:container].absHoriLayout(100, 300, 20);
+    
+#endif
+    
 }
 
 - (NSArray *)viewsWithContainer:(UIView *)container

@@ -80,10 +80,22 @@
         ////////////////////////////////////////////////////
         
         
+#if kUseVFLLayout
+        
+        H.VFL[10][label1.VFL[priority(100, 100)]][5][label2.VFL[priority(200, 100)]][10].end();
+        H.VFL[10][label3.VFL[priority(200, 100)]][5][label4.VFL[priority(100, 100)]][10].end();
+        
+        V.VFL[100][label1][100][label3].endL();
+        V.VFL[100][label2][100][label4].endL();
+        
+#else
+        
         [H.interval(10).nextTo(label1.priority(100).lengthIs(100)).interval(5).nextTo(label2.priority(200).lengthIs(100)).interval(10) end];
         [H.interval(10).nextTo(label3.priority(200).lengthIs(100)).interval(5).nextTo(label4.priority(100).lengthIs(100)).interval(10) end];
         [V.interval(100).nextTo(label1).interval(100).nextTo(label3) endL];
         [V.interval(100).nextTo(label2).interval(100).nextTo(label4) endL];
+        
+#endif
     }
     
 }

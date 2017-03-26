@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AUUEdgeLayout.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
 		<key>VFLExample.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -14,9 +19,24 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>VFLLayout.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1CED4D131E869F3B00635F7D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1CED4D551E87CE0900635F7D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1CF7350A1E811680003C5FDE</key>
 		<dict>
 			<key>primary</key>

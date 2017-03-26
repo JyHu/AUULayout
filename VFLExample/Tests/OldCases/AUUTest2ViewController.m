@@ -23,6 +23,10 @@
     [self.view addSubview:view1];
     [self.view addSubview:view2];
     
+#if kUseVFLLayout
+    
+#else
+    
     NSArray *vfls = @[
                       
                       
@@ -38,6 +42,9 @@
                       ];
     
     NSLog(@"收集到vfl \n %@", vfls);
+    
+#endif
+    
 }
 
 - (void)didReceiveMemoryWarning {

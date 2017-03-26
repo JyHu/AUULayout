@@ -70,6 +70,21 @@
         //              封装的VFL方法
         ////////////////////////////////////////////////////
         
+#if kUseVFLLayout
+        
+        H.VFL[10][view1.VFL[100]].endL();
+        V.VFL[74][view1.VFL[100]].endL();
+        
+        H.VFL[view2.VFL[100]][10].end();
+        V.VFL[74][view2.VFL[100]].endL();
+        
+        H.VFL[view3.VFL[view1]][10].end();
+        V.VFL[view3.VFL[view1]][10].end();
+        
+        H.VFL[10][view4.VFL[view1]].endL();
+        V.VFL[view4.VFL[view1]][10].end();
+        
+#else
         
         [H.interval(10).nextTo(view1.lengthEqual(@100)) endL];
         [V.interval(74).nextTo(view1.lengthIs(100)) endL];
@@ -83,6 +98,8 @@
         [H.interval(10).nextTo(view4) endL];
         [V.nextTo(view4).interval(10) end];
         view4.fixedSize(100, 100);
+        
+#endif
     }
 }
 

@@ -26,6 +26,11 @@
     [view1 addSubview:view2];
     [view2 addSubview:view3];
     
+    
+#if kUseVFLLayout
+    
+#else
+    
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     view1.edge(UIEdgeInsetsMake(100, 20, 20, 20));
@@ -35,6 +40,8 @@
     view3.alignmentCenter().fixedSize(100, 100);
     
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+#endif
     
 }
 

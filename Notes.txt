@@ -1,0 +1,7 @@
+
+一开始写的VFLFactory这个库将VFL跟设置边界属性的方法糅合的部分过多，把VFL天生的“一句话设定”的优势给弄的过于复杂，于是就想着将其分割成两个库：
+VFLLayout VFL语法近似的写法，封装了原生的VFL，以各自的命名空间来作为语句的开始。目前 VFLExample/Tests/Cases  02 ~ 06 中做了测试的demo例子可以参考。
+AUUEdgeLayout 就是各个边界属性的相关设置的库，跟SDLayout、Masonry差不多的left、right等的写法。这个是刚拆分出来，还待优化。。。
+
+
+

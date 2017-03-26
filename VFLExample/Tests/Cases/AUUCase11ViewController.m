@@ -13,7 +13,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+#if kUseVFLLayout
+    
+#else
+    
     [self views].avgLayoutDEM(AUULayoutDirectionHorizontal, UIEdgeInsetsMake(74, 10, 10, 10), 20);
+    
+#endif
+    
 }
 
 - (NSArray *)views

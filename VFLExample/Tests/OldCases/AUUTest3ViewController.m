@@ -28,6 +28,10 @@
     [self.view addSubview:view3];
     [self.view addSubview:view4];
     
+#if kUseVFLLayout
+    
+#else
+    
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     // 父视图的左边 --20-- view1(宽度为100) -- view2(宽度为200)
     [H.interval(20).nextTo(view1.lengthEqual(@100)).interval(-20).nextTo(view2.lengthEqual(@200)) endL];
@@ -39,7 +43,7 @@
     [V.nextTo(view4.lengthEqual(@200)).interval(10) end];
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    
+#endif
     
 }
 

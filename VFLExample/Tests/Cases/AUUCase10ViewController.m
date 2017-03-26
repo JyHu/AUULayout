@@ -13,7 +13,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+#if kUseVFLLayout
+    
+#else
+    
     [self views].avgLayoutD(AUULayoutDirectionHorizontal);
+    
+#endif
 }
 
 - (NSArray *)views

@@ -31,9 +31,19 @@
     [reduceButton addTarget:self action:@selector(reduce) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:reduceButton];
     
+#if kUseVFLLayout
+    
+    H.VFL[100][addButton.VFL[reduceButton]][10][reduceButton][100].end();
+    V.VFL[74][addButton.VFL[44]].endL();
+    V.VFL[74][reduceButton.VFL[44]].endL();
+    
+#else
+    
     [H.interval(100).nextTo(addButton.lengthEqual(reduceButton)).interval(10).nextTo(reduceButton).interval(100) end];
     [V.interval(74).nextTo(addButton.lengthIs(44)) endL];
     [V.interval(74).nextTo(reduceButton.lengthIs(44)) endL];
+    
+#endif
     
 //              上面是设置button的，不是主要的，下面的才是
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -73,8 +83,17 @@
         //              封装的VFL方法
         ////////////////////////////////////////////////////
         
+#if kUseVFLLayout
+        
+        H.VFL[20][self.label.VFL[between(200, 300)]].endL();
+        V.VFL[addButton][20][self.label].endL();
+        
+#else
+        
         [H.interval(20).nextTo(self.label.between(200, 300)) endL];
         [V.nextTo(addButton).interval(30).nextTo(self.label) endL];
+        
+#endif
     }
 }
 

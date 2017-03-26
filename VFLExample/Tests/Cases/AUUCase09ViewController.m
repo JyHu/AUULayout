@@ -57,7 +57,12 @@
     else
     {
         
-#if 1       // 单个的散着写
+        
+#if kUseVFLLayout
+        
+#else
+        
+    #if 1       // 单个的散着写
         
         [H.interval(10).nextTo(view1.lengthIs(60)) endL];
         [V.interval(64).nextTo(view1.lengthIs(60)) endL];
@@ -77,10 +82,13 @@
         .widthEqual(view3.u_width.u_multiplier(1.2).u_constant(10))
         .heightEqual(view3.u_height.u_multiplier(0.6).u_constant(10));
         
-#else       // 多个级联着写
+    #else       // 多个级联着写
         
         [H.interval(10).nextTo(view1.rightEqual(view2.rightEqual(view3.rightEqual(view4.widthEqual(view3.widthEqual(view2.widthEqual(view1.u_width.u_multiplier(1.5)).u_width.u_multiplier(1.5)).u_width.u_multiplier(1.5)).u_left).u_left).u_left)) endL];
         [V.interval(74).nextTo(view1.bottomEqual(view2.bottomEqual(view3.bottomEqual(view4.heightEqual(view3.heightEqual(view2.heightEqual(view1.u_height.u_multiplier(1.5)).u_height.u_multiplier(1.5)).u_height.u_multiplier(1.5)).u_top).u_top).u_top)) endL];
+        
+    #endif
+        
 #endif
         
     }

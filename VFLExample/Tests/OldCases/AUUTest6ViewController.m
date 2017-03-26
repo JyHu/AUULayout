@@ -19,10 +19,13 @@
     
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
+#if kUseVFLLayout
+    
+#else
     
     [self viewsWithContainer:self.view needSub:YES].avgLayoutDE(AUULayoutDirectionHorizontal, UIEdgeInsetsMake(64, 20, 20, 20));
     
-    
+#endif
     
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
@@ -40,11 +43,15 @@
         
         if (need && i == 0) {
             
+#if kUseVFLLayout
+            
+#else
             
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             [self viewsWithContainer:view needSub:NO].avgLayoutDEM(AUULayoutDirectionVertical, UIEdgeInsetsMake(10, 10, 10, 10), 10);
 // VFL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            
+     
+#endif
             
         }
     }
