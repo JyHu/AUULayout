@@ -73,10 +73,10 @@
         
 #if kUseVFLLayout
         
-        H.VFL[10][view1][30][view2.VFL[100]][10].end();
-        V.VFL[74][view2][30][view3.VFL[100]][10].end();
-        H.VFL[10][view4.VFL[100]][30][view3][10].end();
-        V.VFL[74][view1.VFL[100]][30][view4][10].end();
+        H[10][view1][30][view2.VFL[100]][10].end();
+        V[74][view2][30][view3.VFL[100]][10].end();
+        H[10][view4.VFL[100]][30][view3][10].end();
+        V[74][view1.VFL[100]][30][view4][10].end();
 
         
 #else

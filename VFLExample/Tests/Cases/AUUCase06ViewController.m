@@ -33,9 +33,9 @@
     
 #if kUseVFLLayout
     
-    H.VFL[100][addButton.VFL[reduceButton]][10][reduceButton][100].end();
-    V.VFL[74][addButton.VFL[44]].endL();
-    V.VFL[74][reduceButton.VFL[44]].endL();
+    H[100][addButton.VFL[reduceButton]][10][reduceButton][100].end();
+    V[74][addButton.VFL[44]].endL();
+    V[74][reduceButton.VFL[44]].endL();
     
 #else
     
@@ -85,8 +85,8 @@
         
 #if kUseVFLLayout
         
-        H.VFL[20][self.label.VFL[between(200, 300)]].endL();
-        V.VFL[addButton][20][self.label].endL();
+        H[20][self.label.VFL[between(200, 300)]].endL();
+        V[addButton][20][self.label].endL();
         
 #else
         

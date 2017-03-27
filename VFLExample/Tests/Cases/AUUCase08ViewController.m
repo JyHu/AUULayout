@@ -64,8 +64,8 @@
         
 #if kUseVFLLayout
         
-        H.VFL[10][view1.VFL[60]][view2.VFL[80]][view3.VFL[100]][view4.VFL[120]].endL();
-        V.VFL[64][view1.VFL[60]][view2.VFL[80]][view3.VFL[100]][view4.VFL[120]].endL();
+        H[10][view1.VFL[60]][view2.VFL[80]][view3.VFL[100]][view4.VFL[120]].endL();
+        V[64][view1.VFL[60]][view2.VFL[80]][view3.VFL[100]][view4.VFL[120]].endL();
 
 //        H.VFL[10][view1.VFL.rightEqual(view2.VFL[80].rightEqual(view3.VFL[100].rightEqual(view4.VFL[120].left).left).left)].endL();
 //        V.VFL[64][view1.VFL.bottomEqual(view2.VFL[80].bottomEqual(view3.VFL[100].bottomEqual(view4.VFL[120].top).top).top)].endL();

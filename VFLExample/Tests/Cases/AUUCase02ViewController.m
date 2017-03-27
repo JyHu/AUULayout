@@ -41,8 +41,8 @@
         
 #if kUseVFLLayout
         
-        H.VFL[20][view1][20].end();
-        V.VFL[84][view1][20].end();
+        H[20][view1][20].end();
+        V[84][view1][20].end();
         
 #else
         
