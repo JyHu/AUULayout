@@ -42,6 +42,9 @@
 
 @end
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincomplete-implementation"
+
 @implementation AUUVFLLayoutConstrants
 
 - (NSMutableDictionary *)layoutKits {
@@ -67,6 +70,8 @@
 
 @end
 
+#pragma clang diagnostic pop
+
 @implementation AUUSubVFLConstraints
 
 NSString *priority(CGFloat width, CGFloat priority) {
@@ -87,9 +92,9 @@ NSString *lessThan(CGFloat length) {
 
 - (instancetype)objectForKeyedSubscript:(id)key {
     if ([key isKindOfClass:[NSNumber class]]) {
-        self.pri_VFLString = [NSString stringWithFormat:@"(%@)", key];
+        self.pri_VFLString = (NSMutableString *)[NSString stringWithFormat:@"(%@)", key];
     } else if ([key isKindOfClass:[UIView class]]) {
-        self.pri_VFLString = [NSString stringWithFormat:@"(%@)", [self cacheView:key]];
+        self.pri_VFLString = (NSMutableString *)[NSString stringWithFormat:@"(%@)", [self cacheView:key]];
     } else if ([key isKindOfClass:[NSString class]]) {
         BOOL isNormalLength = [key isLegalObjectWithPattern:@"^\\([\\d\\.]+\\)$"];
         BOOL isBetweenLength = [key isLegalObjectWithPattern:@"^\\([<>]=[\\d\\.]+,[<>]=[\\d\\.]+\\)$"];
@@ -134,7 +139,6 @@ NSString *lessThan(CGFloat length) {
         [self.pri_VFLString appendFormat:@"%@-%@-", (self.pri_VFLString && self.pri_VFLString.length == 2 ? @"|" : @""), key];
     } else {
         if ([key isKindOfClass:[UIView class]]) {
-            UIView *view = (UIView *)key;
             [self.pri_VFLString appendFormat:@"[%@]", [self cacheView:key]];
         } else if ([key isKindOfClass:[AUUSubVFLConstraints class]]) {
             AUUSubVFLConstraints *subConstrants = (AUUSubVFLConstraints *)key;

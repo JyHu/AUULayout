@@ -22,7 +22,7 @@
 		<key>VFLLayout.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -33,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>1CED4D551E87CE0900635F7D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1CED4D7D1E88DAC000635F7D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

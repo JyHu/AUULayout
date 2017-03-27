@@ -31,8 +31,8 @@ typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
 @interface AUUVFLConstraints : AUUVFLLayoutConstrants
 
 - (AUUVFLConstraints *)resetWithDirection:(AUUVFLLayoutDirection)direction;     // VFL语句的初始化方法，在宏定义中已经使用，外部不需要调用这个方法，由于使用了宏定义无法设置私有属性才放出这个方法。
-@property (copy, nonatomic) NSString * (^end)();    // 以父视图的右边或者底部结束VFL布局，比如 `H[10][view][10].end();` ，这时候不需要为view设置宽高属性
-@property (copy, nonatomic) NSString * (^endL)();   // 以设置的最后一个视图结束VFL布局，比如 `H[10][view.VFL[100]].endL();` 就是以view作为最后的结尾，这种情况需要为view设置宽高属性。
+@property (copy, nonatomic, readonly) NSString * (^end)();    // 以父视图的右边或者底部结束VFL布局，比如 `H[10][view][10].end();` ，这时候不需要为view设置宽高属性
+@property (copy, nonatomic, readonly) NSString * (^endL)();   // 以设置的最后一个视图结束VFL布局，比如 `H[10][view.VFL[100]].endL();` 就是以view作为最后的结尾，这种情况需要为view设置宽高属性。
 
 @end
 
@@ -62,7 +62,7 @@ NSString *lessThan(CGFloat length);
  */
 
 @interface UIView (AUUVFLLayout)
-@property (copy, nonatomic) NSArray *(^edge)(UIEdgeInsets insets);
-@property (copy, nonatomic) UIView *(^fixedSize)(CGFloat width, CGFloat height);
+@property (copy, nonatomic, readonly) NSArray *(^edge)(UIEdgeInsets insets);
+@property (copy, nonatomic, readonly) UIView *(^fixedSize)(CGFloat width, CGFloat height);
 @end
 
