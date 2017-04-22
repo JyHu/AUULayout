@@ -38,19 +38,8 @@
     }
     else
     {
-        
-#if kUseVFLLayout
-        
         H[20][view1][20].end();
         V[84][view1][20].end();
-        
-#else
-        
-        [H.interval(20).nextTo(view1).interval(20) end];
-        NSString *vfl = V.interval(84).nextTo(view1).interval(20).end;
-        NSLog(@"vfl : %@", vfl);
-        
-#endif
     }
     
     
@@ -80,14 +69,9 @@
         //              封装的VFL方法
         ////////////////////////////////////////////////////
         
-#if kUseVFLLayout
-        
-#else
-        
         NSArray *vfls = view2.edge(UIEdgeInsetsMake(40, 40, 40, 40));
         NSLog(@"vfls %@", vfls);
         
-#endif
     }
 
 }

@@ -71,22 +71,14 @@
         //              封装的VFL方法
         ////////////////////////////////////////////////////
         
-#if kUseVFLLayout
+        H[10][view1][30][view2[100]][10].end();
+        V[74][view2][30][view3[100]][10].end();
+        H[10][view4[100]][30][view3][10].end();
+        V[74][view1[100]][30][view4][10].end();
         
-        H[10][view1][30][view2.VFL[100]][10].end();
-        V[74][view2][30][view3.VFL[100]][10].end();
-        H[10][view4.VFL[100]][30][view3][10].end();
-        V[74][view1.VFL[100]][30][view4][10].end();
-
-        
-#else
-        
-        [H.interval(10).nextTo(view1).interval(30).nextTo(view2.lengthIs(100)).interval(10) end];
-        [V.interval(74).nextTo(view2).interval(30).nextTo(view3.lengthIs(100)).interval(10) end];
-        [H.interval(10).nextTo(view4.lengthIs(100)).interval(30).nextTo(view3).interval(10) end];
-        [V.interval(74).nextTo(view1.lengthIs(100)).interval(30).nextTo(view4).interval(10) end];
-     
-#endif
+        for (NSLayoutConstraint *layoutConstrant in view1.constraints) {
+            
+        }
     }
 }
 

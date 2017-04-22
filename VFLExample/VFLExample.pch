@@ -22,8 +22,6 @@
 
 #else
 
-//#import "VFLFactory.h"
-
 #endif
 
 #endif /* VFLExample_pch */

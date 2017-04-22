@@ -65,16 +65,6 @@
 		1CF735D21E8367D4003C5FDE /* AUUCase11ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735AE1E8367D4003C5FDE /* AUUCase11ViewController.m */; };
 		1CF735D31E8367D4003C5FDE /* AUUCase12ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735B01E8367D4003C5FDE /* AUUCase12ViewController.m */; };
 		1CF735D41E8367D4003C5FDE /* AUUCase13ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735B21E8367D4003C5FDE /* AUUCase13ViewController.m */; };
-		1CF735D51E8367D4003C5FDE /* AUUTest10ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735B51E8367D4003C5FDE /* AUUTest10ViewController.m */; };
-		1CF735D61E8367D4003C5FDE /* AUUTest1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735B71E8367D4003C5FDE /* AUUTest1ViewController.m */; };
-		1CF735D71E8367D4003C5FDE /* AUUTest2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735B91E8367D4003C5FDE /* AUUTest2ViewController.m */; };
-		1CF735D81E8367D4003C5FDE /* AUUTest3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735BB1E8367D4003C5FDE /* AUUTest3ViewController.m */; };
-		1CF735D91E8367D4003C5FDE /* AUUTest4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735BD1E8367D4003C5FDE /* AUUTest4ViewController.m */; };
-		1CF735DA1E8367D4003C5FDE /* AUUTest5ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735BF1E8367D4003C5FDE /* AUUTest5ViewController.m */; };
-		1CF735DB1E8367D4003C5FDE /* AUUTest6ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735C11E8367D4003C5FDE /* AUUTest6ViewController.m */; };
-		1CF735DC1E8367D4003C5FDE /* AUUTest7ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735C31E8367D4003C5FDE /* AUUTest7ViewController.m */; };
-		1CF735DD1E8367D4003C5FDE /* AUUTest8ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735C51E8367D4003C5FDE /* AUUTest8ViewController.m */; };
-		1CF735DE1E8367D4003C5FDE /* AUUTest9ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF735C71E8367D4003C5FDE /* AUUTest9ViewController.m */; };
 		1CF735FC1E83DD8B003C5FDE /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF735FB1E83DD8B003C5FDE /* Masonry.framework */; };
 		CBD218AE98C6354DF43AE884 /* Pods_VFLExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF23D5152FD60E5B5ACCF31 /* Pods_VFLExample.framework */; };
 /* End PBXBuildFile section */
@@ -196,26 +186,6 @@
 		1CF735B01E8367D4003C5FDE /* AUUCase12ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUCase12ViewController.m; sourceTree = "<group>"; };
 		1CF735B11E8367D4003C5FDE /* AUUCase13ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUCase13ViewController.h; sourceTree = "<group>"; };
 		1CF735B21E8367D4003C5FDE /* AUUCase13ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUCase13ViewController.m; sourceTree = "<group>"; };
-		1CF735B41E8367D4003C5FDE /* AUUTest10ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUTest10ViewController.h; sourceTree = "<group>"; };
-		1CF735B51E8367D4003C5FDE /* AUUTest10ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUTest10ViewController.m; sourceTree = "<group>"; };
-		1CF735B61E8367D4003C5FDE /* AUUTest1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUTest1ViewController.h; sourceTree = "<group>"; };
-		1CF735B71E8367D4003C5FDE /* AUUTest1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUTest1ViewController.m; sourceTree = "<group>"; };
-		1CF735B81E8367D4003C5FDE /* AUUTest2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUTest2ViewController.h; sourceTree = "<group>"; };
-		1CF735B91E8367D4003C5FDE /* AUUTest2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUTest2ViewController.m; sourceTree = "<group>"; };
-		1CF735BA1E8367D4003C5FDE /* AUUTest3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUTest3ViewController.h; sourceTree = "<group>"; };
-		1CF735BB1E8367D4003C5FDE /* AUUTest3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUTest3ViewController.m; sourceTree = "<group>"; };
-		1CF735BC1E8367D4003C5FDE /* AUUTest4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUTest4ViewController.h; sourceTree = "<group>"; };
-		1CF735BD1E8367D4003C5FDE /* AUUTest4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUTest4ViewController.m; sourceTree = "<group>"; };
-		1CF735BE1E8367D4003C5FDE /* AUUTest5ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUTest5ViewController.h; sourceTree = "<group>"; };
-		1CF735BF1E8367D4003C5FDE /* AUUTest5ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUTest5ViewController.m; sourceTree = "<group>"; };
-		1CF735C01E8367D4003C5FDE /* AUUTest6ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUTest6ViewController.h; sourceTree = "<group>"; };
-		1CF735C11E8367D4003C5FDE /* AUUTest6ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUTest6ViewController.m; sourceTree = "<group>"; };
-		1CF735C21E8367D4003C5FDE /* AUUTest7ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUTest7ViewController.h; sourceTree = "<group>"; };
-		1CF735C31E8367D4003C5FDE /* AUUTest7ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUTest7ViewController.m; sourceTree = "<group>"; };
-		1CF735C41E8367D4003C5FDE /* AUUTest8ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUTest8ViewController.h; sourceTree = "<group>"; };
-		1CF735C51E8367D4003C5FDE /* AUUTest8ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUTest8ViewController.m; sourceTree = "<group>"; };
-		1CF735C61E8367D4003C5FDE /* AUUTest9ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUTest9ViewController.h; sourceTree = "<group>"; };
-		1CF735C71E8367D4003C5FDE /* AUUTest9ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUTest9ViewController.m; sourceTree = "<group>"; };
 		1CF735FB1E83DD8B003C5FDE /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = "Pods/../build/Debug-iphoneos/Masonry/Masonry.framework"; sourceTree = "<group>"; };
 		237A7992AED78FA193822068 /* Pods-VFLExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VFLExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VFLExample/Pods-VFLExample.debug.xcconfig"; sourceTree = "<group>"; };
 		59149635369E77566B1AC9FA /* Pods-VFLExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VFLExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-VFLExample/Pods-VFLExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -397,7 +367,6 @@
 				1CF735981E8367D4003C5FDE /* AUUBaseViewController.h */,
 				1CF735991E8367D4003C5FDE /* AUUBaseViewController.m */,
 				1CF7359A1E8367D4003C5FDE /* Cases */,
-				1CF735B31E8367D4003C5FDE /* OldCases */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -431,33 +400,6 @@
 				1CF735B21E8367D4003C5FDE /* AUUCase13ViewController.m */,
 			);
 			path = Cases;
-			sourceTree = "<group>";
-		};
-		1CF735B31E8367D4003C5FDE /* OldCases */ = {
-			isa = PBXGroup;
-			children = (
-				1CF735B41E8367D4003C5FDE /* AUUTest10ViewController.h */,
-				1CF735B51E8367D4003C5FDE /* AUUTest10ViewController.m */,
-				1CF735B61E8367D4003C5FDE /* AUUTest1ViewController.h */,
-				1CF735B71E8367D4003C5FDE /* AUUTest1ViewController.m */,
-				1CF735B81E8367D4003C5FDE /* AUUTest2ViewController.h */,
-				1CF735B91E8367D4003C5FDE /* AUUTest2ViewController.m */,
-				1CF735BA1E8367D4003C5FDE /* AUUTest3ViewController.h */,
-				1CF735BB1E8367D4003C5FDE /* AUUTest3ViewController.m */,
-				1CF735BC1E8367D4003C5FDE /* AUUTest4ViewController.h */,
-				1CF735BD1E8367D4003C5FDE /* AUUTest4ViewController.m */,
-				1CF735BE1E8367D4003C5FDE /* AUUTest5ViewController.h */,
-				1CF735BF1E8367D4003C5FDE /* AUUTest5ViewController.m */,
-				1CF735C01E8367D4003C5FDE /* AUUTest6ViewController.h */,
-				1CF735C11E8367D4003C5FDE /* AUUTest6ViewController.m */,
-				1CF735C21E8367D4003C5FDE /* AUUTest7ViewController.h */,
-				1CF735C31E8367D4003C5FDE /* AUUTest7ViewController.m */,
-				1CF735C41E8367D4003C5FDE /* AUUTest8ViewController.h */,
-				1CF735C51E8367D4003C5FDE /* AUUTest8ViewController.m */,
-				1CF735C61E8367D4003C5FDE /* AUUTest9ViewController.h */,
-				1CF735C71E8367D4003C5FDE /* AUUTest9ViewController.m */,
-			);
-			path = OldCases;
 			sourceTree = "<group>";
 		};
 		86CDF935278C7429C258E8FB /* Frameworks */ = {
@@ -758,36 +700,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CF735D81E8367D4003C5FDE /* AUUTest3ViewController.m in Sources */,
 				1CF735961E8367C8003C5FDE /* ViewController.m in Sources */,
 				1CF735741E815BAA003C5FDE /* UIColor+Factory.m in Sources */,
 				1CF7354C1E811DFD003C5FDE /* UIView+Factory.m in Sources */,
-				1CF735D91E8367D4003C5FDE /* AUUTest4ViewController.m in Sources */,
 				1CF735D01E8367D4003C5FDE /* AUUCase09ViewController.m in Sources */,
-				1CF735DE1E8367D4003C5FDE /* AUUTest9ViewController.m in Sources */,
 				1CF735CC1E8367D4003C5FDE /* AUUCase05ViewController.m in Sources */,
 				1CF735D31E8367D4003C5FDE /* AUUCase12ViewController.m in Sources */,
 				1CF7354F1E811E0B003C5FDE /* UILabel+Factory.m in Sources */,
 				1CF735CF1E8367D4003C5FDE /* AUUCase08ViewController.m in Sources */,
-				1CF735DD1E8367D4003C5FDE /* AUUTest8ViewController.m in Sources */,
 				1CF735681E812B31003C5FDE /* NSArray+Factory.m in Sources */,
 				1CF735CD1E8367D4003C5FDE /* AUUCase06ViewController.m in Sources */,
-				1CF735DC1E8367D4003C5FDE /* AUUTest7ViewController.m in Sources */,
-				1CF735D51E8367D4003C5FDE /* AUUTest10ViewController.m in Sources */,
-				1CF735D71E8367D4003C5FDE /* AUUTest2ViewController.m in Sources */,
 				1CF735D41E8367D4003C5FDE /* AUUCase13ViewController.m in Sources */,
 				1CF7351F1E8116AA003C5FDE /* AppDelegate.m in Sources */,
-				1CF735DA1E8367D4003C5FDE /* AUUTest5ViewController.m in Sources */,
 				1CF735D21E8367D4003C5FDE /* AUUCase11ViewController.m in Sources */,
 				1CF735D11E8367D4003C5FDE /* AUUCase10ViewController.m in Sources */,
 				1CF7351C1E8116AA003C5FDE /* main.m in Sources */,
-				1CF735D61E8367D4003C5FDE /* AUUTest1ViewController.m in Sources */,
 				1CF735CB1E8367D4003C5FDE /* AUUCase04ViewController.m in Sources */,
 				1CF735CA1E8367D4003C5FDE /* AUUCase03ViewController.m in Sources */,
 				1CF735C91E8367D4003C5FDE /* AUUCase02ViewController.m in Sources */,
 				1CF735C81E8367D4003C5FDE /* AUUBaseViewController.m in Sources */,
 				1CF735CE1E8367D4003C5FDE /* AUUCase07ViewController.m in Sources */,
-				1CF735DB1E8367D4003C5FDE /* AUUTest6ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1333,6 +1265,7 @@
 				1CED4D891E88DAC000635F7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1CF735031E811667003C5FDE /* Build configuration list for PBXProject "VFLFactory" */ = {
 			isa = XCConfigurationList;

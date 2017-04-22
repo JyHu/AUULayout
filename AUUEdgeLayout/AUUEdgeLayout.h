@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "UIView+AUUEdgeSpace.h"
+
 //! Project version number for AUUEdgeLayout.
 FOUNDATION_EXPORT double AUUEdgeLayoutVersionNumber;
 

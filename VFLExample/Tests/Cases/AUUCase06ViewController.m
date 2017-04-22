@@ -34,8 +34,8 @@
 #if kUseVFLLayout
     
     H[100][addButton.VFL[reduceButton]][10][reduceButton][100].end();
-    V[74][addButton.VFL[44]].endL();
-    V[74][reduceButton.VFL[44]].endL();
+    V[74][addButton.VFL[44]].cut();
+    V[74][reduceButton.VFL[44]].cut();
     
 #else
     
@@ -83,17 +83,8 @@
         //              封装的VFL方法
         ////////////////////////////////////////////////////
         
-#if kUseVFLLayout
-        
-        H[20][self.label.VFL[between(200, 300)]].endL();
-        V[addButton][20][self.label].endL();
-        
-#else
-        
-        [H.interval(20).nextTo(self.label.between(200, 300)) endL];
-        [V.nextTo(addButton).interval(30).nextTo(self.label) endL];
-        
-#endif
+        H[20][self.label[between(200, 300)]].cut();
+        V[addButton][20][self.label].cut();
     }
 }
 

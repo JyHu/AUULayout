@@ -14,4 +14,6 @@
 
 @property (retain, nonatomic) AUUEdgeLayoutConstraints *U;
 
+@property (retain, nonatomic, readonly) void (^viewEdge)(UIView *top, UIView *left, UIView *bottom, UIView *right);
+
 @end

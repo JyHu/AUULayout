@@ -1,9 +1,9 @@
 //
 //  AUUVFLLayout.m
-//  VFLFactory
+//  Future
 //
-//  Created by JyHu on 2017/3/26.
-//
+//  Created by JyHu on 2017/3/31.
+//  Copyright © 2017年 JyHu. All rights reserved.
 //
 
 #import "AUUVFLLayout.h"
@@ -34,7 +34,7 @@
 
 /**
  缓存视图到字典中
-
+ 
  @param view 要缓存的视图
  @return 为视图生成的HashKey
  */
@@ -59,7 +59,7 @@
         // viewcontroller的view不可以设置这个属性，否则会出问题
         view.translatesAutoresizingMaskIntoConstraints = NO;
     }
-    NSString *key = [NSString stringWithFormat:@"com_auu_vfl_%@%@", NSStringFromClass([view class]), @([view hash])];
+    NSString *key = [NSString stringWithFormat:@"com_AUU_vfl_%@%@", NSStringFromClass([view class]), @([view hash])];
     [self.layoutKits setObject:view forKey:key];
     return key;
 }
@@ -96,12 +96,13 @@ NSString *lessThan(CGFloat length) {
     } else if ([key isKindOfClass:[UIView class]]) {
         self.pri_VFLString = (NSMutableString *)[NSString stringWithFormat:@"(%@)", [self cacheView:key]];
     } else if ([key isKindOfClass:[NSString class]]) {
-        BOOL isNormalLength = [key isLegalObjectWithPattern:@"^\\([\\d\\.]+\\)$"];
-        BOOL isBetweenLength = [key isLegalObjectWithPattern:@"^\\([<>]=[\\d\\.]+,[<>]=[\\d\\.]+\\)$"];
-        BOOL isPriorityLength = [key isLegalObjectWithPattern:@"^\\([\\d\\.]+@[\\d\\.]+\\)$"];
-        BOOL isGreaterLength = [key isLegalObjectWithPattern:@"^\\(>=[\\d\\.]+\\)$"];
-        BOOL isLessLength = [key isLegalObjectWithPattern:@"^\\(<=[\\d\\.]+\\)$"];
-        NSAssert2(isNormalLength || isBetweenLength || isPriorityLength || isGreaterLength || isLessLength, @"当前子VFL(%@)没有设置有效的宽高属性，相关的视图:%@", key, self.sponsorView);
+        BOOL isNormalLength = [key isLegalObjectWithPattern:@"^\\([\\d\\.]+\\)$"];  // (34.87)
+        BOOL isBetweenLength = [key isLegalObjectWithPattern:@"^\\([<>]=[\\d\\.]+,[<>]=[\\d\\.]+\\)$"]; // (>=34,<=98)
+        BOOL isPriorityLength = [key isLegalObjectWithPattern:@"^\\([\\d\\.]+@[\\d\\.]+\\)$"];  // (24@43)
+        BOOL isGreaterLength = [key isLegalObjectWithPattern:@"^\\(>=[\\d\\.]+\\)$"];   // (>=79)
+        BOOL isLessLength = [key isLegalObjectWithPattern:@"^\\(<=[\\d\\.]+\\)$"];  // (<=24)
+        NSAssert2(isNormalLength || isBetweenLength || isPriorityLength || isGreaterLength || isLessLength,
+                  @"当前子VFL(%@)没有设置有效的宽高属性，相关的视图:%@", key, self.sponsorView);
         self.pri_VFLString = key;
     }
     return self;
@@ -123,11 +124,11 @@ NSString *lessThan(CGFloat length) {
 - (NSString *(^)())end {
     return [^(){
         [self.pri_VFLString appendString:@"|"];
-        return self.endL();
+        return self.cut();
     } copy];;
 }
 
-- (NSString *(^)())endL {
+- (NSString *(^)())cut {
     return [^(){
         [self.sponsorView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:self.pri_VFLString options:NSLayoutFormatDirectionMask metrics:nil views:self.layoutKits]];
         return self.pri_VFLString;
@@ -161,7 +162,7 @@ NSString *lessThan(CGFloat length) {
 
 @implementation UIView (AUUVFLSpace)
 
-const char *__kSubVFLAssociatedKey = (void *)@"com.auu.vfl.__kSubVFLAssociatedKey";
+const char *__kSubVFLAssociatedKey = (void *)@"com.AUU.vfl.__kSubVFLAssociatedKey";
 
 - (void)setVFL:(AUUSubVFLConstraints *)VFL {
     objc_setAssociatedObject(self, __kSubVFLAssociatedKey, VFL, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -176,6 +177,14 @@ const char *__kSubVFLAssociatedKey = (void *)@"com.auu.vfl.__kSubVFLAssociatedKe
     VFLConstrants.sponsorView = self;
     return VFLConstrants;
 }
+#if kUseVFLSubscriptLayout
+- (id)objectForKeyedSubscript:(id)key {
+    return self.VFL[key];
+}
+- (id)objectAtIndexedSubscript:(NSUInteger)idx {
+    return self.VFL[idx];
+}
+#endif
 
 @end
 
@@ -190,8 +199,8 @@ const char *__kSubVFLAssociatedKey = (void *)@"com.auu.vfl.__kSubVFLAssociatedKe
 
 - (UIView *(^)(CGFloat, CGFloat))fixedSize {
     return [^(CGFloat width, CGFloat height){
-        H[self.VFL[@(width)]].endL();
-        V[self.VFL[@(height)]].endL();
+        H[self.VFL[@(width)]].cut();
+        V[self.VFL[@(height)]].cut();
         return self;
     } copy];
 }

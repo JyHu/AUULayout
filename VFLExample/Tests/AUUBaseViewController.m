@@ -25,6 +25,9 @@
     if ([object isKindOfClass:[NITitleCellObject class]]) {
         self.title = ((NITitleCellObject *)object).title;
     }
+    if (info) {
+        self.testCaseType = [info integerValue];
+    }
 }
 
 - (UIView *)generateViewWithTag:(NSUInteger)tag inView:(UIView *)container

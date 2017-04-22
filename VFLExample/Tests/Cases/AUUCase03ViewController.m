@@ -70,36 +70,17 @@
         //              封装的VFL方法
         ////////////////////////////////////////////////////
         
-#if kUseVFLLayout
+        H[10][view1[100]].cut();
+        V[74][view1[100]].cut();
         
-        H[10][view1.VFL[100]].endL();
-        V[74][view1.VFL[100]].endL();
+        H[view2[100]][10].end();
+        V[74][view2[100]].cut();
         
-        H[view2.VFL[100]][10].end();
-        V[74][view2.VFL[100]].endL();
+        H[view3[view1]][10].end();
+        V[view3[view1]][10].end();
         
-        H[view3.VFL[view1]][10].end();
-        V[view3.VFL[view1]][10].end();
-        
-        H[10][view4.VFL[view1]].endL();
-        V[view4.VFL[view1]][10].end();
-        
-#else
-        
-        [H.interval(10).nextTo(view1.lengthEqual(@100)) endL];
-        [V.interval(74).nextTo(view1.lengthIs(100)) endL];
-        
-        [H.nextTo(view2.lengthIs(100)).interval(10) end];
-        [V.interval(74).nextTo(view2.lengthIs(100)) endL];
-        
-        [H.nextTo(view3.lengthIs(100)).interval(10) end];
-        [V.nextTo(view3.lengthIs(100)).interval(10) end];
-        
-        [H.interval(10).nextTo(view4) endL];
-        [V.nextTo(view4).interval(10) end];
-        view4.fixedSize(100, 100);
-        
-#endif
+        H[10][view4[view1]].cut();
+        V[view4[view1]][10].end();
     }
 }
 
