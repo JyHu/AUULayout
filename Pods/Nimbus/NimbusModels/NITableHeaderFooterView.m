@@ -73,7 +73,7 @@
         self.textLabel.text = titleFooterObject.title;
         self.textLabel.font = [UIFont systemFontOfSize:15];
     }
-        
+    
     return YES;
 }
 
@@ -116,20 +116,12 @@
 {
     [self handleForTap];
     
-    if (self.pri_headerFooterDelegate) {
-        if (self.type == NITableViewHeaderFooterTypeHeader) {
-            for (id<NITableHeaderFooterDelegate> delegate in self.pri_headerFooterDelegate) {
-                if ([delegate respondsToSelector:@selector(tableView:didSelectSectionHeaderAtIndex:)]) {
-                    [delegate tableView:self.pri_tableView didSelectSectionHeaderAtIndex:self.pri_sectionIndex];
-                }
-            }
+    if (self.pri_delegate) {
+        if (self.type == NITableViewHeaderFooterTypeHeader && [self.pri_delegate respondsToSelector:@selector(tableView:didSelectSectionHeaderAtIndex:)]) {
+            [self.pri_delegate tableView:self.pri_tableView didSelectSectionHeaderAtIndex:self.pri_sectionIndex];
         }
-        else if (self.type == NITableViewHeaderFooterTypeFooter) {
-            for (id<NITableHeaderFooterDelegate> delegate in self.pri_headerFooterDelegate) {
-                if ([delegate respondsToSelector:@selector(tableView:didSelectSectionFooterAtIndex:)]) {
-                    [delegate tableView:self.pri_tableView didSelectSectionFooterAtIndex:self.pri_sectionIndex];
-                }
-            }
+        if (self.type == NITableViewHeaderFooterTypeFooter && [self.pri_delegate respondsToSelector:@selector(tableView:didSelectSectionFooterAtIndex:)]) {
+            [self.pri_delegate tableView:self.pri_tableView didSelectSectionFooterAtIndex:self.pri_sectionIndex];
         }
     }
 }
@@ -138,23 +130,15 @@
 
 - (void)transmitHeaderInfo:(id)userInfo
 {
-    if (self.pri_headerFooterDelegate) {
-        for (id<NITableHeaderFooterDelegate> delegate in self.pri_headerFooterDelegate) {
-            if ([delegate respondsToSelector:@selector(tableView:transmitUserInfo:atSectionHeaderWithIndex:)]) {
-                [delegate tableView:self.pri_tableView transmitUserInfo:userInfo atSectionHeaderWithIndex:self.pri_sectionIndex];
-            }
-        }
+    if (self.pri_delegate && [self.pri_delegate respondsToSelector:@selector(tableView:transmitUserInfo:atSectionHeaderWithIndex:)]) {
+        [self.pri_delegate tableView:self.pri_tableView transmitUserInfo:userInfo atSectionHeaderWithIndex:self.pri_sectionIndex];
     }
 }
 
 - (void)transmitFooterInfo:(id)userInfo
 {
-    if (self.pri_headerFooterDelegate) {
-        for (id<NITableHeaderFooterDelegate> delegate in self.pri_headerFooterDelegate) {
-            if ([delegate respondsToSelector:@selector(tableView:transmitUserInfo:atSectionFooterWithIndex:)]) {
-                [delegate tableView:self.pri_tableView transmitUserInfo:userInfo atSectionFooterWithIndex:self.pri_sectionIndex];
-            }
-        }
+    if (self.pri_delegate && [self.pri_delegate respondsToSelector:@selector(tableView:transmitUserInfo:atSectionFooterWithIndex:)]) {
+        [self.pri_delegate tableView:self.pri_tableView transmitUserInfo:userInfo atSectionFooterWithIndex:self.pri_sectionIndex];
     }
 }
 

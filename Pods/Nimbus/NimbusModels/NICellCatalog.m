@@ -169,7 +169,10 @@
 {
     if (self.pri_tableView) {
         NSIndexPath *indexPath = [self.pri_tableView indexPathForCell:self];
-        [self.pri_tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:animation];
+        if (indexPath && self.pri_tableView && indexPath.section < self.pri_tableView.numberOfSections
+            && indexPath.row < [self.pri_tableView numberOfRowsInSection:indexPath.section]) {
+            [self.pri_tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:animation];
+        }
     }
 }
 

@@ -1,8 +1,8 @@
 ### 1 简单的开始
 
-这个库主要使用`VFL`，辅助使用`NSLayoutConstraint`来实现的，写起来跟VFL的流程类似，只不过`VFL`是纯字符串的写法，而这里封装了后，对`VFL`的流程加强了一下，就可以使用面向对象的方式来写自动布局的方式。
+这个库主要使用`VFL`，写起来跟VFL的流程类似，只不过`VFL`是纯字符串的写法，而这里封装了后，对`VFL`的流程加强了一下，就可以使用面向对象的方式来写自动布局的方式。
 
-所有的单独的属性设置都必须以`V`、`H`开始，跟`VFL`里的写法一个样，表示同一纬度的布局开始，`V`表示纵向布局的开始，`H`表示横向布局的开始，对于封装的方法的话，那就另当别论了，根据具体的封装方式来进行调用。
+所有的单独的属性设置都必须以`V`、`H`开始，跟`VFL`里的写法一个样，表示同一维度的布局开始，`V`表示纵向布局的开始，`H`表示横向布局的开始，对于封装的方法的话，那就另当别论了，根据具体的封装方式来进行调用。
 
 ### 2 设置边距 
 
@@ -11,17 +11,17 @@
 其中需要注意的有两个方法，
 
 * `end` 以父视图的某一维度的边界结尾，比如右边或者底边。
-* `endL` 直接以最后一个控件结尾，适用于设置指定宽度或者宽度范围的情况。
+* `cut` 直接以最后一个控件结尾，适用于设置指定宽度或者宽度范围的情况。
 
-**再有一个就是设置视图的方法`nextTo`，用于设定在同一纬度上的视图。** 
+
 
 下面有两个例子
 
 - 单个的散列写法：
 
 ```objective-c
-[H.interval(20).nextTo(view1).interval(20) end];
-NSString *vfl = V.interval(84).nextTo(view1).interval(20).end;
+H[20][view1][20].end();
+NSString *vfl = V[84][view1][20].end();
 NSLog(@"vfl : %@", vfl);
 ```
 
@@ -47,13 +47,26 @@ NSLog(@"vfls %@", vfls);
 宽高的设定，跟VFL里一个样，如：
 
 ```
-[H.interval(10).nextTo(view1.lengthEqual(@100)) endL];
-[V.interval(74).nextTo(view1.lengthIs(100)) endL];
+H[10][view1[100]].cut();
+V[74][view1[100]].cut();
+
+H[view2[100]][10].end();
+V[74][view2[100]].cut();
+
+H[view3[view1]][10].end();
+V[view3[view1]][10].end();
+
+H[10][view4[view1]].cut();
+V[view4[view1]][10].end();
 ```
 
 ![](Pictures/c03.png)
 
-这里有两个方法，一个是`lengthEqual`接收一个对象，如果是一个数值对象的话，那么就设定这个宽高为这个固定的值，如果是一个视图对象的话，就设定这两个视图的宽或高相等。
+这里有设置宽度的方法，对于一个视图来说，可以直接设置宽高，比如 `view[20]`，如果之前的起始是`H`则表示的是宽度为20，如果之前的起始是`V`则表示的是高度为20。
+
+这里有个设置好的宏`kUseVFLSubscriptLayout`，如果你也对`UIView`做了类似的扩充的话，可以在你`import` `AUUVFLLayout.h`之前设置一下`define kUseVFLSubscriptLayout 0`，即可注销这里的扩充。
+
+在你取消了布局里的扩充以后，可以使用`UIView`的命名空间扩充来实现，如`view.VFL[20]`。
 
 一个封装好的方法：
 
@@ -66,27 +79,26 @@ view4.fixedSize(100, 100);
 主要指的是多个视图间的关联，可以像一条链子一样在同一纬度穿起来，如：
 
 ```objective-c
-[H.interval(10).nextTo(view1).interval(30).nextTo(view2.lengthIs(100)).interval(10) end];
-[V.interval(74).nextTo(view2).interval(30).nextTo(view3.lengthIs(100)).interval(10) end];
-[H.interval(10).nextTo(view4.lengthIs(100)).interval(30).nextTo(view3).interval(10) end];
-[V.interval(74).nextTo(view1.lengthIs(100)).interval(30).nextTo(view4).interval(10) end];
+H[10][view1][30][view2[100]][10].end();
+V[74][view2][30][view3[100]][10].end();
+H[10][view4[100]][30][view3][10].end();
+V[74][view1[100]][30][view4][10].end();
 ```
-
-级联视图间任然是以`interval`设置间距。
 
 ![](Pictures/c04.png)
 
 ### 5 设置优先级
 
-优先级是以`priority`方法设定的，表示的是可被压缩的优先级，这个优先级越高，就越先被压缩。
+优先级是以`priority`方法设定的，表示的是可被压缩的优先级，在`VFL`中这个优先级越高，就越先被压缩。
 
 在使用的时候必须配合的设置一个指定的宽度值，作为可被压缩到的最小的宽高，否则会报错。
 
 ```objective-c
-        [H.interval(10).nextTo(label1.priority(100).lengthIs(100)).interval(5).nextTo(label2.priority(200).lengthIs(100)).interval(10) end];
-[H.interval(10).nextTo(label3.priority(200).lengthIs(100)).interval(5).nextTo(label4.priority(100).lengthIs(100)).interval(10) end];
-[V.interval(100).nextTo(label1).interval(100).nextTo(label3) endL];
-[V.interval(100).nextTo(label2).interval(100).nextTo(label4) endL];
+H[10][label1[priority(100, 100)]][5][label2[priority(200, 100)]][10].end();
+H[10][label3[priority(200, 100)]][5][label4[priority(100, 100)]][10].end();
+
+V[100][label1][100][label3].cut();
+V[100][label2][100][label4].cut();
 ```
 
 ![](Pictures/c05.png)
@@ -96,104 +108,25 @@ view4.fixedSize(100, 100);
 使用`between`方法设置，主要的作用是设置宽高在一定的范围。
 
 ```
-[H.interval(20).nextTo(self.label.between(200, 300)) endL];
-[V.nextTo(addButton).interval(30).nextTo(self.label) endL];
+H[20][self.label[between(200, 300)]].cut();
+V[addButton][20][self.label].cut();
 ```
 
-* 小于最小值
+* 小于最小值时
 
 ![](Pictures/c06_01.png)
 
-* 大于最大值
+* 大于最大值时
 
 ![](Pictures/c06_02.png)
 
 比如这个例子里，当`label`里的值过短的时候，`label`的宽度默认的会是其最小的宽度值，当内容过多的时候，`label`的的宽度就会被拉伸，当拉伸到最大的宽度的时候，就开始压缩文字换行了。
 
-### 7 设置居中
-
-在父视图上居中。
+### 7 设置边界相对位置关系
 
 ```
-view1.edge(UIEdgeInsetsMake(84, 20, 20, 20));
-view2.alignmentCenter().fixedSize(180, 180);
-```
-
-![](Pictures/c07.png)
-
-### 8 设置边界相对位置关系
-
-主要是`UIView+AUUVFLEdge.h`里的方法，用于描述上下左右中心等的相对关系。
-
-* 简单的使用
-
-```
-[H.interval(10).nextTo(view1.lengthIs(60)).nextTo(view2.lengthIs(80)).nextTo(view3.lengthIs(100)).nextTo(view4.lengthIs(120)) endL];
-[V.interval(64).nextTo(view1.lengthIs(60)).nextTo(view2.lengthIs(80)).nextTo(view3.lengthIs(100)).nextTo(view4.lengthIs(120)) endL];
+H[10][view1[60]][view2[80]][view3[100]][view4[120]].cut();
+V[64][view1[60]][view2[80]][view3[100]][view4[120]].cut();
 ```
 
 ![](Pictures/c08_01.png)
-
-* 带比例的使用，复杂的写法
-
-```
-[H.interval(10).nextTo(view1.rightEqual(view2.rightEqual(view3.rightEqual(view4.widthEqual(view3.widthEqual(view2.widthEqual(view1.u_width.u_multiplier(1.5)).u_width.u_multiplier(1.5)).u_width.u_multiplier(1.5)).u_left).u_left).u_left)) endL];
-[V.interval(74).nextTo(view1.bottomEqual(view2.bottomEqual(view3.bottomEqual(view4.heightEqual(view3.heightEqual(view2.heightEqual(view1.u_height.u_multiplier(1.5)).u_height.u_multiplier(1.5)).u_height.u_multiplier(1.5)).u_top).u_top).u_top)) endL];
-```
-
-![](Pictures/c08_02.png)
-
-### 9 多个视图的平均布局
-
-这里就主要是封装的方法了，用于多个视图在父视图上进行平均的布局。
-
-生成测试视图的方法
-
-```
-- (NSArray *)views {
-    NSMutableArray *views = [[NSMutableArray alloc] init];
-    for (NSInteger i = 0; i < 3; i ++) {
-        UIView *view = [self generateViewWithTag:i inView:self.view];
-        [views addObject:view];
-    }
-    return views;
-}
-```
-
-* 简单的横向均匀布局
-
-```
-[self views].avgLayoutD(AUULayoutDirectionHorizontal);
-```
-
-![](Pictures/c09_01.png)
-
-* 带边界属性和间距的均匀布局
-
-```
-[self views].avgLayoutDEM(AUULayoutDirectionHorizontal, UIEdgeInsetsMake(74, 10, 10, 10), 20);
-```
-
-![](Pictures/c09_02.png)
-
-### 10 绝对均匀布局
-
-就是在多视图布局的维度指定个子控件的平均布局时的宽高。
-
-举个例子，假如是横向的均匀布局，那么在横向这一维度，宽度就是非空值，高度可空，如果高度不是有效的值比如`-1`的话，那么高度会在纵向填充满父视图
-
-* 指定宽高均匀布局
-
-```
-[self viewsWithContainer:container].absHoriLayout(100, 300, 20);
-```
-
-![](Pictures/c10_01.png)
-
-* 忽略次要属性均匀布局
-
-```
-[self viewsWithContainer:container].absHoriLayout(100, -1, 20);
-```
-
-![](Pictures/c10_02.png)

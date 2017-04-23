@@ -12,7 +12,6 @@
 		068EF598E554EC57038ACFB89CC2C47A /* View+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 77203307E49438F6BD4E297AEC69A677 /* View+MASAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06B8249AD94529B565936AF9A583C33F /* NIError.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8CF7BB400DD8DA753BBD59CBE461F3 /* NIError.m */; };
 		07DE0070D480902921E49EFBA32AB92C /* NIPaths.h in Headers */ = {isa = PBXBuildFile; fileRef = 68A66C987E50853007033B998D620763 /* NIPaths.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		082963BF1F446263C55570BAAB6A185E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616BEB51ECCAD129BDBCB7A956B56CC6 /* Foundation.framework */; };
 		091D17D5D8F832D28546A72B788CF0AE /* MASViewConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = AE53FBB11E43EE87C8755511E35914C8 /* MASViewConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C6089EA5FC7E1C9A1902D5F058C5686 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FB97B19E1F88FB0AE759DC349F0C938D /* NITableViewModel.m */; };
 		0D1C5E7B4F2C6287A60275629202E856 /* NIOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 4971FA1B6D917EBA292188E71FE6241D /* NIOperations.m */; };
@@ -35,7 +34,6 @@
 		3B13EBE521291B060536944E85D5A769 /* NIFoundationMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BB352B4588B64477B34836E9AA95899 /* NIFoundationMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F190C57B7642BDEE582997264C82899 /* NimbusModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F68516A742B16CD5113678AF8461F15 /* NimbusModels.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42517660DE661A938D80688E843C20EC /* NIRadioGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 40DE284D618EFC45FF7EC7B4728D391F /* NIRadioGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		434014FCF9830CD601A1C18D55532A84 /* Pods-VFLExample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ABF9DA08FA521AD159CE60270BDC58B /* Pods-VFLExample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		457ACF9150DCF9AF445B129CC9678FB6 /* Masonry-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E6172CAE5FE69BC2A9DF7618920DE61 /* Masonry-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4727DAA33EF4F88B590142DE86FB339E /* NINonEmptyCollectionTesting.h in Headers */ = {isa = PBXBuildFile; fileRef = FCD9B4B2ED0661ADE4A620D3FCF37ADF /* NINonEmptyCollectionTesting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		494FE22BC80ECE57F42C2313A50728EB /* NICellFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = B1AA1173080197DA7C75D4AD87CC41D0 /* NICellFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -62,6 +60,7 @@
 		6DD1695EFE69AAD6F37E873E4CFE7551 /* NIInMemoryCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C9158209D39AD2B05DA6CF2803A6AD0 /* NIInMemoryCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6F7434B207488170BA3F93C2A276576A /* NITableHeaderFooterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACF05BF4CB7DD9E8CCAEC6F22D4530D /* NITableHeaderFooterFactory.m */; };
 		705F175AF98404AFA99AB6EDE6C0D5D6 /* NimbusCore+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7450827446E91E2CBC9E739DA0835282 /* NimbusCore+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		734612F60698683684F094AA5E13066C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616BEB51ECCAD129BDBCB7A956B56CC6 /* Foundation.framework */; };
 		73BBDACC22CCA36A6DAAA167AD780BAF /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92CA1AD2ED128CED234027D753CA60 /* MASConstraintMaker.m */; };
 		73DFF646B560ACD170B5427862DCB0EE /* NICellBackgrounds.h in Headers */ = {isa = PBXBuildFile; fileRef = E8ADB93B07668FBEB903D174575AB7CF /* NICellBackgrounds.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		756DF24546C7D91459DCADC8F1C98660 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FB20252B825AFD1781318D356FBA61 /* MASViewConstraint.m */; };
@@ -75,8 +74,8 @@
 		88DE7BAB1F4999A5F4B617F44E5FD1D3 /* MASConstraintMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 613700917B37D1AE4EE6B88DAB79AFC8 /* MASConstraintMaker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8949DFD605DD8CC9E764B2EA075A9398 /* NIRadioGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E43EB85CA6A22C11E5CCCF8493C9ECC /* NIRadioGroupController.m */; };
 		8A6EEF68E7625AB66A3A8DED1594F88F /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9696A9A633700166863EB7871ADA60 /* ViewController+MASAdditions.m */; };
-		8AD494966BFF225163F29C7A74B6D0B4 /* Pods-VFLExample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D341E02BD2F44567503C35404949FF27 /* Pods-VFLExample-dummy.m */; };
 		8CD45B754192DE834B642975E85257AB /* MASCompositeConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = C0278806C6FF49A33982AA883C82BA6B /* MASCompositeConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8F145EBC93C084C3B4D1FCD6F9310861 /* Pods-LayoutExample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E3AA0D7DDAF8019B619A92693C35D82 /* Pods-LayoutExample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		95C84718DC54CED76AAAF604D58798A7 /* NIButtonUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5948397551D46A555FB760499A4A2141 /* NIButtonUtilities.m */; };
 		9C38E832D4ADE54C62A47E0ADF60E0B8 /* NIMutableTableViewModel+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D2A699BEC209164108DABA9E0EBC5681 /* NIMutableTableViewModel+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9C71B63A40F35495EBD3BFC112267A0B /* NICellCatalog.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AB3FC82B8628EC66CDF625623CD0D4C /* NICellCatalog.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -101,6 +100,7 @@
 		D77657C2DA52EDE4108789FB8865EE9E /* NIViewRecycler.m in Sources */ = {isa = PBXBuildFile; fileRef = 919BC921F13065DEC14335ABD235D5D9 /* NIViewRecycler.m */; };
 		D8B1525CB3DFCBD8E5032680530413D9 /* NSArray+MASShorthandAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = F91E69408FAD829AB82739181988A623 /* NSArray+MASShorthandAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D8D34A01C07DF7E9C118483AF43D399A /* NITableHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A85C2849559274E5A7BB3DD09FED5021 /* NITableHeaderFooterView.m */; };
+		D99D763B05C3FFE31C79CE6B3766F8F7 /* Pods-LayoutExample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B8DB66A13DB409C45893D77A01DA87 /* Pods-LayoutExample-dummy.m */; };
 		DCD0A4109F394F66519CDC563DC99F66 /* Nimbus-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 71E89C17DC667B41A7518B262D359C56 /* Nimbus-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E09B7678830E90249F46D9AF171E233E /* NISDKAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = C54D8A23B74E03D39EC81F5DA759040F /* NISDKAvailability.m */; };
 		E2B25134BE887B4A3000B2F832B5EC06 /* NIOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB539E451D058897EB11C022F04ACCD /* NIOperations.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -118,14 +118,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5D64B09D314896C0DFE7DBD469DC868C /* PBXContainerItemProxy */ = {
+		8840F4DDDB7B685F4A68D9AB63860D3F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C983B7B43946F3ADC23C580B973105AE;
 			remoteInfo = Nimbus;
 		};
-		61F00FFB8A1EFD6DB9CA23BF3E6642D3 /* PBXContainerItemProxy */ = {
+		B9F80FBF7227DF315B12D9D1FB5DE676 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -138,42 +138,41 @@
 		009B9F92B1773AF77802301837E5EC0D /* MASCompositeConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASCompositeConstraint.m; path = Masonry/MASCompositeConstraint.m; sourceTree = "<group>"; };
 		0370B6344E0D4EEB5C9EBC3BFE8C5B14 /* NIState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NIState.m; path = NimbusCore/NIState.m; sourceTree = "<group>"; };
 		041A971ABB366E06CECCF70987BAB386 /* NISDKAvailability.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NISDKAvailability.h; path = NimbusCore/NISDKAvailability.h; sourceTree = "<group>"; };
-		07CCCC00B16F501736892B57C85C5752 /* Pods-VFLExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VFLExample.release.xcconfig"; sourceTree = "<group>"; };
 		091F276A65FD4E0F422B1B8C2199B577 /* NICommonMetrics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NICommonMetrics.h; path = NimbusCore/NICommonMetrics.h; sourceTree = "<group>"; };
-		0A335A78AD896F4428B2625D9A7A09CF /* Pods-VFLExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VFLExample.debug.xcconfig"; sourceTree = "<group>"; };
 		0B251E5DD3D93E41D40D8856B6830D7B /* NIPreprocessorMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NIPreprocessorMacros.h; path = NimbusCore/NIPreprocessorMacros.h; sourceTree = "<group>"; };
 		0C9158209D39AD2B05DA6CF2803A6AD0 /* NIInMemoryCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NIInMemoryCache.h; path = NimbusCore/NIInMemoryCache.h; sourceTree = "<group>"; };
 		0C9696A9A633700166863EB7871ADA60 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "ViewController+MASAdditions.m"; path = "Masonry/ViewController+MASAdditions.m"; sourceTree = "<group>"; };
 		10AE2C5056943597683FC6F228C29F4B /* NISnapshotRotation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NISnapshotRotation.h; path = NimbusCore/NISnapshotRotation.h; sourceTree = "<group>"; };
 		12689E911D472DFE787D866727477133 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		132EA84A5C34D11DC9283AB04B30C660 /* MASConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASConstraint.h; path = Masonry/MASConstraint.h; sourceTree = "<group>"; };
-		17A35E8D00EE02E82C0E5F77003FDCBB /* Pods-VFLExample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-VFLExample-frameworks.sh"; sourceTree = "<group>"; };
+		18909F5CBB594193D743068114B63249 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Masonry.framework; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		19FF69A72B955C1E57EDA56A33CCC4CB /* NIMutableTableViewModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NIMutableTableViewModel.h; path = NimbusModels/NIMutableTableViewModel.h; sourceTree = "<group>"; };
 		1ADE887924E8D634D9AEC21C6EFE37D3 /* NIPaths.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NIPaths.m; path = NimbusCore/NIPaths.m; sourceTree = "<group>"; };
 		1F2876E5F56B61ED24B5A8D43710E32A /* NIViewRecycler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NIViewRecycler.h; path = NimbusCore/NIViewRecycler.h; sourceTree = "<group>"; };
 		1F68516A742B16CD5113678AF8461F15 /* NimbusModels.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NimbusModels.h; path = NimbusModels/NimbusModels.h; sourceTree = "<group>"; };
 		227EBEA576848D7466963952AA96E0E7 /* MASLayoutConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASLayoutConstraint.m; path = Masonry/MASLayoutConstraint.m; sourceTree = "<group>"; };
-		25E2DD42CA2F0E58D869B4C356D54456 /* Pods-VFLExample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-VFLExample-resources.sh"; sourceTree = "<group>"; };
 		2D9E2EF448F35821A6C68B053EB47644 /* NIRadioGroupController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NIRadioGroupController.h; path = NimbusModels/NIRadioGroupController.h; sourceTree = "<group>"; };
 		2E6172CAE5FE69BC2A9DF7618920DE61 /* Masonry-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Masonry-umbrella.h"; sourceTree = "<group>"; };
 		33C74E6F2B2CB70C174A8752AC5B300E /* NIFormCellCatalog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NIFormCellCatalog.h; path = NimbusModels/NIFormCellCatalog.h; sourceTree = "<group>"; };
 		3862624FA80C09C84DEC58BF4EDCC095 /* NITableViewModel+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NITableViewModel+Private.h"; path = "NimbusModels/NITableViewModel+Private.h"; sourceTree = "<group>"; };
 		3A238D282AE40822831B1D31046B12ED /* NIRadioGroup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NIRadioGroup.m; path = NimbusModels/NIRadioGroup.m; sourceTree = "<group>"; };
 		3AB3FC82B8628EC66CDF625623CD0D4C /* NICellCatalog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NICellCatalog.h; path = NimbusModels/NICellCatalog.h; sourceTree = "<group>"; };
-		3ABF9DA08FA521AD159CE60270BDC58B /* Pods-VFLExample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-VFLExample-umbrella.h"; sourceTree = "<group>"; };
 		3CAF31241D145561484B2540AD6D9F62 /* NINonEmptyCollectionTesting.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NINonEmptyCollectionTesting.m; path = NimbusCore/NINonEmptyCollectionTesting.m; sourceTree = "<group>"; };
+		3E3AA0D7DDAF8019B619A92693C35D82 /* Pods-LayoutExample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LayoutExample-umbrella.h"; sourceTree = "<group>"; };
 		3FC6E60BB7A6B90DD734C300FC133D5F /* NITableViewActions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NITableViewActions.h; path = NimbusModels/NITableViewActions.h; sourceTree = "<group>"; };
 		40DE284D618EFC45FF7EC7B4728D391F /* NIRadioGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NIRadioGroup.h; path = NimbusModels/NIRadioGroup.h; sourceTree = "<group>"; };
 		417F847275FD46EA8CF5F459C6BAD9B1 /* NIError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NIError.h; path = NimbusCore/NIError.h; sourceTree = "<group>"; };
 		42219D4B25EC3B5AE6498A6E888D9906 /* NICellFactory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NICellFactory.m; path = NimbusModels/NICellFactory.m; sourceTree = "<group>"; };
 		426C4001316D92F8B8695BBAC40B29AD /* NIFormCellCatalog.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NIFormCellCatalog.m; path = NimbusModels/NIFormCellCatalog.m; sourceTree = "<group>"; };
 		43F28DB824BC8184575C00419D0191C9 /* MASViewAttribute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewAttribute.h; path = Masonry/MASViewAttribute.h; sourceTree = "<group>"; };
+		492EE409D19A5F604C6F2F963ABDC881 /* Pods-LayoutExample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LayoutExample-acknowledgements.markdown"; sourceTree = "<group>"; };
 		4971FA1B6D917EBA292188E71FE6241D /* NIOperations.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NIOperations.m; path = NimbusCore/NIOperations.m; sourceTree = "<group>"; };
 		4A16F1FADBB6628348DEA4F5551B231C /* NINonRetainingCollections.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NINonRetainingCollections.m; path = NimbusCore/NINonRetainingCollections.m; sourceTree = "<group>"; };
 		4A6E00846A18BA30ED936E06BEF30483 /* NIActions+Subclassing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NIActions+Subclassing.h"; path = "NimbusCore/NIActions+Subclassing.h"; sourceTree = "<group>"; };
 		4ACF05BF4CB7DD9E8CCAEC6F22D4530D /* NITableHeaderFooterFactory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NITableHeaderFooterFactory.m; path = NimbusModels/NITableHeaderFooterFactory.m; sourceTree = "<group>"; };
 		4BAF12FCDDA3F25BEFAD74DC02AEF6D0 /* MASConstraint+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MASConstraint+Private.h"; path = "Masonry/MASConstraint+Private.h"; sourceTree = "<group>"; };
 		4C5D00575E557F0CFC469F5AA9817D49 /* MASLayoutConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASLayoutConstraint.h; path = Masonry/MASLayoutConstraint.h; sourceTree = "<group>"; };
+		4C9348E4CDB6AD1AB0D8FC4C3B7ED891 /* Pods-LayoutExample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-LayoutExample.modulemap"; sourceTree = "<group>"; };
 		50FA16800C23A3817DB7B676EA24DC31 /* NICellBackgrounds.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NICellBackgrounds.m; path = NimbusModels/NICellBackgrounds.m; sourceTree = "<group>"; };
 		55290D9FFB47A8C253F3222FF77B6DC1 /* NINetworkActivity.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NINetworkActivity.h; path = NimbusCore/NINetworkActivity.h; sourceTree = "<group>"; };
 		55723BF5029D53E0D37CCF99184E16BF /* NISnapshotRotation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NISnapshotRotation.m; path = NimbusCore/NISnapshotRotation.m; sourceTree = "<group>"; };
@@ -193,36 +192,39 @@
 		709EB8FD5E72FFA0B87AA54AF937DD97 /* NIFoundationMethods.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NIFoundationMethods.m; path = NimbusCore/NIFoundationMethods.m; sourceTree = "<group>"; };
 		715734E003779D25F1E95E07236C134C /* Nimbus.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Nimbus.xcconfig; sourceTree = "<group>"; };
 		71E89C17DC667B41A7518B262D359C56 /* Nimbus-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimbus-umbrella.h"; sourceTree = "<group>"; };
-		7266828C2FECD7A2E8FFF40470084891 /* Pods_VFLExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_VFLExample.framework; path = "Pods-VFLExample.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7450827446E91E2CBC9E739DA0835282 /* NimbusCore+Additions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NimbusCore+Additions.h"; path = "NimbusCore/NimbusCore+Additions.h"; sourceTree = "<group>"; };
 		748925E91BC00DD4C650828595A5EC88 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSLayoutConstraint+MASDebugAdditions.m"; path = "Masonry/NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
-		75333EB33280D3AAFE5145D85788E6E9 /* Nimbus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Nimbus.framework; path = Nimbus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77203307E49438F6BD4E297AEC69A677 /* View+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASAdditions.h"; path = "Masonry/View+MASAdditions.h"; sourceTree = "<group>"; };
 		7BB352B4588B64477B34836E9AA95899 /* NIFoundationMethods.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NIFoundationMethods.h; path = NimbusCore/NIFoundationMethods.h; sourceTree = "<group>"; };
 		7BB89152AE6419B77651C82365B5273F /* NINonRetainingCollections.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NINonRetainingCollections.h; path = NimbusCore/NINonRetainingCollections.h; sourceTree = "<group>"; };
-		7BC615D172A274494478C850E607AB6C /* Pods-VFLExample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-VFLExample-acknowledgements.markdown"; sourceTree = "<group>"; };
 		7D2A69EF13B447DBB6FFDA10D1AF425B /* NIState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NIState.h; path = NimbusCore/NIState.h; sourceTree = "<group>"; };
 		7EC994CDC2D681BA26389F78A7E4B325 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		8076925543BB82D6FAF76B513C462992 /* Pods-LayoutExample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LayoutExample-frameworks.sh"; sourceTree = "<group>"; };
 		81CC338E1E4ED9D560668F906ADC1C6C /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASShorthandAdditions.h"; path = "Masonry/View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		83EC15A26EEF3C2C43F71D25262AFB66 /* NITableHeaderFooterFactory+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NITableHeaderFooterFactory+Private.h"; path = "NimbusModels/NITableHeaderFooterFactory+Private.h"; sourceTree = "<group>"; };
+		85ADC5F63C90E9E65682C1DE17553206 /* Pods_LayoutExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_LayoutExample.framework; path = "Pods-LayoutExample.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89270701B84C7AD431DD4BEEEBE89AFC /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ViewController+MASAdditions.h"; path = "Masonry/ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		8A25C3C94D961CF0B23E3FFFD0A0BD9F /* NIActions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NIActions.m; path = NimbusCore/NIActions.m; sourceTree = "<group>"; };
+		9145E710D10A05A8392667BC52005EF9 /* Pods-LayoutExample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LayoutExample-acknowledgements.plist"; sourceTree = "<group>"; };
 		919BC921F13065DEC14335ABD235D5D9 /* NIViewRecycler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NIViewRecycler.m; path = NimbusCore/NIViewRecycler.m; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		992512639582D7C0705EC3CF838D1BF3 /* Nimbus.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Nimbus.modulemap; sourceTree = "<group>"; };
 		9E43EB85CA6A22C11E5CCCF8493C9ECC /* NIRadioGroupController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NIRadioGroupController.m; path = NimbusModels/NIRadioGroupController.m; sourceTree = "<group>"; };
+		A10974BE8F8FE4EAED189B1814D371A1 /* Nimbus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Nimbus.framework; path = Nimbus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2DEF4BC990EF5E350FCA9C88071F17E /* MASUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASUtilities.h; path = Masonry/MASUtilities.h; sourceTree = "<group>"; };
 		A443354AD74C64F8FF4121EDBEEF6301 /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+MASDebugAdditions.h"; path = "Masonry/NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
 		A66E2C11DF3D353C0C3E740C0A0992F6 /* NICellFactory+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NICellFactory+Private.h"; path = "NimbusModels/NICellFactory+Private.h"; sourceTree = "<group>"; };
 		A6767574B018F3C25AF89B7C1FE370D8 /* NICommonMetrics.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NICommonMetrics.m; path = NimbusCore/NICommonMetrics.m; sourceTree = "<group>"; };
-		A80B0606D76644F7AF40563F0C5EEFE6 /* Pods-VFLExample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-VFLExample.modulemap"; sourceTree = "<group>"; };
 		A85C2849559274E5A7BB3DD09FED5021 /* NITableHeaderFooterView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NITableHeaderFooterView.m; path = NimbusModels/NITableHeaderFooterView.m; sourceTree = "<group>"; };
 		AB2A93BD02A7B6090CCEAD4ED2E7ECBE /* NITableHeaderFooterFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NITableHeaderFooterFactory.h; path = NimbusModels/NITableHeaderFooterFactory.h; sourceTree = "<group>"; };
 		AC4417B5AEA249ACA8E539545B0D3642 /* View+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "View+MASAdditions.m"; path = "Masonry/View+MASAdditions.m"; sourceTree = "<group>"; };
 		ACE86344109DDD73308BA497FBC42B0E /* NIDebuggingTools.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NIDebuggingTools.m; path = NimbusCore/NIDebuggingTools.m; sourceTree = "<group>"; };
+		AD45E68BBC6ABECF5B080F396AFBDD8E /* Pods-LayoutExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LayoutExample.release.xcconfig"; sourceTree = "<group>"; };
+		AE20DB566E61C78B7ABF088F00434E63 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE53FBB11E43EE87C8755511E35914C8 /* MASViewConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewConstraint.h; path = Masonry/MASViewConstraint.h; sourceTree = "<group>"; };
 		AFB2F12020C4C69482F6DE51A5F5130F /* NITableHeaderFooterView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NITableHeaderFooterView.h; path = NimbusModels/NITableHeaderFooterView.h; sourceTree = "<group>"; };
 		B1AA1173080197DA7C75D4AD87CC41D0 /* NICellFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NICellFactory.h; path = NimbusModels/NICellFactory.h; sourceTree = "<group>"; };
+		B754AABEC95FF2AB7A2E49040297F0C9 /* Pods-LayoutExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LayoutExample.debug.xcconfig"; sourceTree = "<group>"; };
 		B9A1332B75B91D53A5E0B0863380E2AE /* Masonry-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Masonry-dummy.m"; sourceTree = "<group>"; };
 		BD98629CBCE3E05315DC876555D7F6CD /* NIDebuggingTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NIDebuggingTools.h; path = NimbusCore/NIDebuggingTools.h; sourceTree = "<group>"; };
 		C0278806C6FF49A33982AA883C82BA6B /* MASCompositeConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASCompositeConstraint.h; path = Masonry/MASCompositeConstraint.h; sourceTree = "<group>"; };
@@ -230,19 +232,16 @@
 		C3A026402AE4DB09AB6A3A2103603D0E /* NIDeviceOrientation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NIDeviceOrientation.h; path = NimbusCore/NIDeviceOrientation.h; sourceTree = "<group>"; };
 		C417C08D09C363DC07EF55E45C3B1525 /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+MASAdditions.m"; path = "Masonry/NSArray+MASAdditions.m"; sourceTree = "<group>"; };
 		C54D8A23B74E03D39EC81F5DA759040F /* NISDKAvailability.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NISDKAvailability.m; path = NimbusCore/NISDKAvailability.m; sourceTree = "<group>"; };
-		C59727A1CF785AF865FE4341957F1EE3 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Masonry.framework; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C65C295098BE50E109324C9C5FEFEA85 /* NITableHeaderFooterView+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NITableHeaderFooterView+Private.h"; path = "NimbusModels/NITableHeaderFooterView+Private.h"; sourceTree = "<group>"; };
 		C790EEEBE52142322C244F1E1DF86F2D /* Masonry-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Masonry-prefix.pch"; sourceTree = "<group>"; };
 		C800559C93AB798944147D476D89D80B /* NICellCatalog.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NICellCatalog.m; path = NimbusModels/NICellCatalog.m; sourceTree = "<group>"; };
 		C9B9AC68EFC09BDF7F0875D8B7CA169D /* NIActions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NIActions.h; path = NimbusCore/NIActions.h; sourceTree = "<group>"; };
 		CEB1E5D70C9FA8004B9CA12B1A6195F7 /* MASViewAttribute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewAttribute.m; path = Masonry/MASViewAttribute.m; sourceTree = "<group>"; };
-		D032DFD4D00AB9D595345595C1F80726 /* Pods-VFLExample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-VFLExample-acknowledgements.plist"; sourceTree = "<group>"; };
 		D20D86D0086F6089A039A48B060283FC /* Masonry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Masonry.h; path = Masonry/Masonry.h; sourceTree = "<group>"; };
 		D23AEAA636DEB34AC11BD282E5004CC2 /* UIResponder+NimbusCore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIResponder+NimbusCore.m"; path = "NimbusCore/UIResponder+NimbusCore.m"; sourceTree = "<group>"; };
 		D2A699BEC209164108DABA9E0EBC5681 /* NIMutableTableViewModel+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NIMutableTableViewModel+Private.h"; path = "NimbusModels/NIMutableTableViewModel+Private.h"; sourceTree = "<group>"; };
-		D341E02BD2F44567503C35404949FF27 /* Pods-VFLExample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-VFLExample-dummy.m"; sourceTree = "<group>"; };
-		D41FBE85C1CF971C54ECE07A2D5D771D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5D4E60799C93D8442027DAF64C6FA9C /* UIResponder+NimbusCore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIResponder+NimbusCore.h"; path = "NimbusCore/UIResponder+NimbusCore.h"; sourceTree = "<group>"; };
+		D6B8DB66A13DB409C45893D77A01DA87 /* Pods-LayoutExample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LayoutExample-dummy.m"; sourceTree = "<group>"; };
 		D6CE1443EA99D03BB1261522A543F2B7 /* NIImageUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NIImageUtilities.m; path = NimbusCore/NIImageUtilities.m; sourceTree = "<group>"; };
 		D83DF070597DDFC50FA805CA129D0FF8 /* NINetworkActivity.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NINetworkActivity.m; path = NimbusCore/NINetworkActivity.m; sourceTree = "<group>"; };
 		DF133B6775C445D450BDE902AD185542 /* NIMutableTableViewModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NIMutableTableViewModel.m; path = NimbusModels/NIMutableTableViewModel.m; sourceTree = "<group>"; };
@@ -255,6 +254,7 @@
 		EF38096E72E01A5FE4F3FF077C1F4FF1 /* NIButtonUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NIButtonUtilities.h; path = NimbusCore/NIButtonUtilities.h; sourceTree = "<group>"; };
 		EFDDFE0FFAF61CB0B21B102A598B5C33 /* NIInMemoryCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NIInMemoryCache.m; path = NimbusCore/NIInMemoryCache.m; sourceTree = "<group>"; };
 		F295849EB01DBE63141F4CF827A3E70F /* Masonry.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Masonry.xcconfig; sourceTree = "<group>"; };
+		F54A7C0E7162D2AB9EBAA8E717158C9D /* Pods-LayoutExample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LayoutExample-resources.sh"; sourceTree = "<group>"; };
 		F915E85D4BB9FF2C3DC0DF0557E8A641 /* MASConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraint.m; path = Masonry/MASConstraint.m; sourceTree = "<group>"; };
 		F91E69408FAD829AB82739181988A623 /* NSArray+MASShorthandAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASShorthandAdditions.h"; path = "Masonry/NSArray+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		F9E9587CDA7761B62BDF17746F2D0FD9 /* Masonry.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Masonry.modulemap; sourceTree = "<group>"; };
@@ -264,11 +264,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1A9BC2C023680094DC60D6CF9D3B50E7 /* Frameworks */ = {
+		62F748FC6BF90D85AA16FC1888F3D9CC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				082963BF1F446263C55570BAAB6A185E /* Foundation.framework in Frameworks */,
+				734612F60698683684F094AA5E13066C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,14 +358,6 @@
 			path = "../Target Support Files/Nimbus";
 			sourceTree = "<group>";
 		};
-		255016276405868117B502014212F5DA /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				E64CD1DF0332EB69756DA1745298F494 /* Pods-VFLExample */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
 		27692E7E784040DE41B640370A831865 /* Nimbus */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,6 +389,16 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Masonry";
+			sourceTree = "<group>";
+		};
+		68B5A38343EEC9C98F93A6C93501A1A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18909F5CBB594193D743068114B63249 /* Masonry.framework */,
+				A10974BE8F8FE4EAED189B1814D371A1 /* Nimbus.framework */,
+				85ADC5F63C90E9E65682C1DE17553206 /* Pods_LayoutExample.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		771C650B95D87518DC7830CD85D322B5 /* Masonry */ = {
@@ -439,19 +441,17 @@
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
 				B92B7062DE1E9DDD8FC4F5EF6E64D395 /* Pods */,
-				848E010CDBCC7EA51D254574D3C43FA9 /* Products */,
-				255016276405868117B502014212F5DA /* Targets Support Files */,
+				68B5A38343EEC9C98F93A6C93501A1A1 /* Products */,
+				88BC768AB55E37F4F212DE0A3FA21698 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		848E010CDBCC7EA51D254574D3C43FA9 /* Products */ = {
+		88BC768AB55E37F4F212DE0A3FA21698 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				C59727A1CF785AF865FE4341957F1EE3 /* Masonry.framework */,
-				75333EB33280D3AAFE5145D85788E6E9 /* Nimbus.framework */,
-				7266828C2FECD7A2E8FFF40470084891 /* Pods_VFLExample.framework */,
+				E027D84861F237DE6E838AE1E545B86A /* Pods-LayoutExample */,
 			);
-			name = Products;
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		B92B7062DE1E9DDD8FC4F5EF6E64D395 /* Pods */ = {
@@ -463,22 +463,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		E64CD1DF0332EB69756DA1745298F494 /* Pods-VFLExample */ = {
+		E027D84861F237DE6E838AE1E545B86A /* Pods-LayoutExample */ = {
 			isa = PBXGroup;
 			children = (
-				D41FBE85C1CF971C54ECE07A2D5D771D /* Info.plist */,
-				A80B0606D76644F7AF40563F0C5EEFE6 /* Pods-VFLExample.modulemap */,
-				7BC615D172A274494478C850E607AB6C /* Pods-VFLExample-acknowledgements.markdown */,
-				D032DFD4D00AB9D595345595C1F80726 /* Pods-VFLExample-acknowledgements.plist */,
-				D341E02BD2F44567503C35404949FF27 /* Pods-VFLExample-dummy.m */,
-				17A35E8D00EE02E82C0E5F77003FDCBB /* Pods-VFLExample-frameworks.sh */,
-				25E2DD42CA2F0E58D869B4C356D54456 /* Pods-VFLExample-resources.sh */,
-				3ABF9DA08FA521AD159CE60270BDC58B /* Pods-VFLExample-umbrella.h */,
-				0A335A78AD896F4428B2625D9A7A09CF /* Pods-VFLExample.debug.xcconfig */,
-				07CCCC00B16F501736892B57C85C5752 /* Pods-VFLExample.release.xcconfig */,
+				AE20DB566E61C78B7ABF088F00434E63 /* Info.plist */,
+				4C9348E4CDB6AD1AB0D8FC4C3B7ED891 /* Pods-LayoutExample.modulemap */,
+				492EE409D19A5F604C6F2F963ABDC881 /* Pods-LayoutExample-acknowledgements.markdown */,
+				9145E710D10A05A8392667BC52005EF9 /* Pods-LayoutExample-acknowledgements.plist */,
+				D6B8DB66A13DB409C45893D77A01DA87 /* Pods-LayoutExample-dummy.m */,
+				8076925543BB82D6FAF76B513C462992 /* Pods-LayoutExample-frameworks.sh */,
+				F54A7C0E7162D2AB9EBAA8E717158C9D /* Pods-LayoutExample-resources.sh */,
+				3E3AA0D7DDAF8019B619A92693C35D82 /* Pods-LayoutExample-umbrella.h */,
+				B754AABEC95FF2AB7A2E49040297F0C9 /* Pods-LayoutExample.debug.xcconfig */,
+				AD45E68BBC6ABECF5B080F396AFBDD8E /* Pods-LayoutExample.release.xcconfig */,
 			);
-			name = "Pods-VFLExample";
-			path = "Target Support Files/Pods-VFLExample";
+			name = "Pods-LayoutExample";
+			path = "Target Support Files/Pods-LayoutExample";
 			sourceTree = "<group>";
 		};
 		E6EE98446B568159EE277B68FD442AF0 /* iOS */ = {
@@ -528,6 +528,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		4C94F7D75CA25C0B059A6B05A715E114 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F145EBC93C084C3B4D1FCD6F9310861 /* Pods-LayoutExample-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		874B50E8013A0ABA1D08408BFB4AAB19 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -578,14 +586,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		944326FBD92545134744D592214E04BF /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				434014FCF9830CD601A1C18D55532A84 /* Pods-VFLExample-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F3E9930C736C01D12F5733EFD1F0A948 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -612,23 +612,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		43ACD094F1F2C052F619E9CE6DB0E97E /* Pods-VFLExample */ = {
+		6DC615D63E190BA4403E5F4A567F79A1 /* Pods-LayoutExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2AA1111669964AE9C048DC1472A31E12 /* Build configuration list for PBXNativeTarget "Pods-VFLExample" */;
+			buildConfigurationList = 4174CF630649C07A2A9A047D695D1464 /* Build configuration list for PBXNativeTarget "Pods-LayoutExample" */;
 			buildPhases = (
-				454D767DA41EA0004F77963A0EE8B3EF /* Sources */,
-				1A9BC2C023680094DC60D6CF9D3B50E7 /* Frameworks */,
-				944326FBD92545134744D592214E04BF /* Headers */,
+				81870933CE16832CD502776AB9109A38 /* Sources */,
+				62F748FC6BF90D85AA16FC1888F3D9CC /* Frameworks */,
+				4C94F7D75CA25C0B059A6B05A715E114 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				366807316A0523BB0632E505229FD2F7 /* PBXTargetDependency */,
-				D6D34DAB196113AE2BF108BED17B9AB1 /* PBXTargetDependency */,
+				C55FA96BAC20A1CE311834F0FF71EC60 /* PBXTargetDependency */,
+				CA57EC3120633DF4645078884465132F /* PBXTargetDependency */,
 			);
-			name = "Pods-VFLExample";
-			productName = "Pods-VFLExample";
-			productReference = 7266828C2FECD7A2E8FFF40470084891 /* Pods_VFLExample.framework */;
+			name = "Pods-LayoutExample";
+			productName = "Pods-LayoutExample";
+			productReference = 85ADC5F63C90E9E65682C1DE17553206 /* Pods_LayoutExample.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C983B7B43946F3ADC23C580B973105AE /* Nimbus */ = {
@@ -645,7 +645,7 @@
 			);
 			name = Nimbus;
 			productName = Nimbus;
-			productReference = 75333EB33280D3AAFE5145D85788E6E9 /* Nimbus.framework */;
+			productReference = A10974BE8F8FE4EAED189B1814D371A1 /* Nimbus.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D52144DE9D7255DE912490FF5A806573 /* Masonry */ = {
@@ -662,7 +662,7 @@
 			);
 			name = Masonry;
 			productName = Masonry;
-			productReference = C59727A1CF785AF865FE4341957F1EE3 /* Masonry.framework */;
+			productReference = 18909F5CBB594193D743068114B63249 /* Masonry.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -682,13 +682,13 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 848E010CDBCC7EA51D254574D3C43FA9 /* Products */;
+			productRefGroup = 68B5A38343EEC9C98F93A6C93501A1A1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				D52144DE9D7255DE912490FF5A806573 /* Masonry */,
 				C983B7B43946F3ADC23C580B973105AE /* Nimbus */,
-				43ACD094F1F2C052F619E9CE6DB0E97E /* Pods-VFLExample */,
+				6DC615D63E190BA4403E5F4A567F79A1 /* Pods-LayoutExample */,
 			);
 		};
 /* End PBXProject section */
@@ -751,28 +751,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		454D767DA41EA0004F77963A0EE8B3EF /* Sources */ = {
+		81870933CE16832CD502776AB9109A38 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8AD494966BFF225163F29C7A74B6D0B4 /* Pods-VFLExample-dummy.m in Sources */,
+				D99D763B05C3FFE31C79CE6B3766F8F7 /* Pods-LayoutExample-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		366807316A0523BB0632E505229FD2F7 /* PBXTargetDependency */ = {
+		C55FA96BAC20A1CE311834F0FF71EC60 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Masonry;
 			target = D52144DE9D7255DE912490FF5A806573 /* Masonry */;
-			targetProxy = 61F00FFB8A1EFD6DB9CA23BF3E6642D3 /* PBXContainerItemProxy */;
+			targetProxy = B9F80FBF7227DF315B12D9D1FB5DE676 /* PBXContainerItemProxy */;
 		};
-		D6D34DAB196113AE2BF108BED17B9AB1 /* PBXTargetDependency */ = {
+		CA57EC3120633DF4645078884465132F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Nimbus;
 			target = C983B7B43946F3ADC23C580B973105AE /* Nimbus */;
-			targetProxy = 5D64B09D314896C0DFE7DBD469DC868C /* PBXContainerItemProxy */;
+			targetProxy = 8840F4DDDB7B685F4A68D9AB63860D3F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -954,41 +954,6 @@
 			};
 			name = Release;
 		};
-		C370398EABC68EC5352F09ADA4F0F1A1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07CCCC00B16F501736892B57C85C5752 /* Pods-VFLExample.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-VFLExample/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-VFLExample/Pods-VFLExample.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_VFLExample;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		DDBED416AF7EF4E0711DC078BAC8DC3E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F295849EB01DBE63141F4CF827A3E70F /* Masonry.xcconfig */;
@@ -1020,9 +985,9 @@
 			};
 			name = Debug;
 		};
-		F0FAFFB595D3236909AB07BDF852468C /* Debug */ = {
+		F4792A6BD521A57276B00860F10D49B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A335A78AD896F4428B2625D9A7A09CF /* Pods-VFLExample.debug.xcconfig */;
+			baseConfigurationReference = B754AABEC95FF2AB7A2E49040297F0C9 /* Pods-LayoutExample.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1035,18 +1000,18 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-VFLExample/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-LayoutExample/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-VFLExample/Pods-VFLExample.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-LayoutExample/Pods-LayoutExample.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_VFLExample;
+				PRODUCT_NAME = Pods_LayoutExample;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1054,6 +1019,41 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		FCFDAB56CD090B99678906B3A7530D54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD45E68BBC6ABECF5B080F396AFBDD8E /* Pods-LayoutExample.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-LayoutExample/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LayoutExample/Pods-LayoutExample.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_LayoutExample;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -1067,20 +1067,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2AA1111669964AE9C048DC1472A31E12 /* Build configuration list for PBXNativeTarget "Pods-VFLExample" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F0FAFFB595D3236909AB07BDF852468C /* Debug */,
-				C370398EABC68EC5352F09ADA4F0F1A1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				015A368F878AC3E2CEAE21DDE8026304 /* Debug */,
 				44CDBB6D11DE06DB64D6268622BDC47E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4174CF630649C07A2A9A047D695D1464 /* Build configuration list for PBXNativeTarget "Pods-LayoutExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4792A6BD521A57276B00860F10D49B5 /* Debug */,
+				FCFDAB56CD090B99678906B3A7530D54 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

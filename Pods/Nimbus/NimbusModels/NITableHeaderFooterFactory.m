@@ -10,7 +10,7 @@
 #import "NITableHeaderFooterFactory+Private.h"
 #import "NITableHeaderFooterView+Private.h"
 
-
+#import "NICellFactory.h"
 
 
 /*
@@ -276,9 +276,6 @@
         return nil;
     }
     
-    Class objectClass = [object class];
-//    Class headerFooterClass = [self.obje]
-    
     return nil;
 }
 
@@ -333,6 +330,11 @@
     }
     
     return headerFooterView;
+}
+
+- (UITableViewCell *)tableViewModel:(NITableViewModel *)tableViewModel cellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath withObject:(id)object
+{
+    return [NICellFactory tableViewModel:tableViewModel cellForTableView:tableView atIndexPath:indexPath withObject:object];
 }
 
 @end

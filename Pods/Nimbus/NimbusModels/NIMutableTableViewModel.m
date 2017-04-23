@@ -160,8 +160,8 @@
         {
             id fObject = [fSection.rows objectAtIndex:fIndexPath.row];
             
-            [tSection.mutableRows insertObject:fObject atIndex:tIndexPath.row];
             [fSection.mutableRows removeObjectAtIndex:fIndexPath.row];
+            [tSection.mutableRows insertObject:fObject atIndex:tIndexPath.row];
             
             return YES;
         }
