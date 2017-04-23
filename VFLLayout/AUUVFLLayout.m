@@ -177,6 +177,7 @@ const char *__kSubVFLAssociatedKey = (void *)@"com.AUU.vfl.__kSubVFLAssociatedKe
     VFLConstrants.sponsorView = self;
     return VFLConstrants;
 }
+
 #if kUseVFLSubscriptLayout
 - (id)objectForKeyedSubscript:(id)key {
     return self.VFL[key];
@@ -189,14 +190,14 @@ const char *__kSubVFLAssociatedKey = (void *)@"com.AUU.vfl.__kSubVFLAssociatedKe
 @end
 
 @implementation UIView (AUUVFLLayout)
-
+// 设置视图在父视图上距离上下左右的位置
 - (NSArray *(^)(UIEdgeInsets))edge {
     return [^(UIEdgeInsets insets){
         return @[H[@(insets.left)][self][@(insets.right)].end(),
                  V[@(insets.top)][self][@(insets.bottom)].end()];
     } copy];
 }
-
+// 设置为指定的大小
 - (UIView *(^)(CGFloat, CGFloat))fixedSize {
     return [^(CGFloat width, CGFloat height){
         H[self.VFL[@(width)]].cut();

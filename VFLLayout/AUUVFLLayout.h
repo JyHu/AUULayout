@@ -20,6 +20,9 @@ typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
 #define V ([[[AUUVFLConstraints alloc] init] resetWithDirection:AUUVFLLayoutDirectionVertical])
 
 @interface AUUVFLLayoutConstrants : NSObject
+/*
+ 扩充的下标法
+ */
 - (instancetype)objectAtIndexedSubscript:(NSUInteger)idx;
 - (instancetype)objectForKeyedSubscript:(id)key;
 @end
@@ -36,7 +39,7 @@ typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
 // 以父视图的右边或者底部结束VFL布局，比如 `H[10][view][10].end();` ，这时候不需要为view设置宽高属性
 @property (copy, nonatomic, readonly) NSString * (^end)();
 
-// 以设置的最后一个视图结束VFL布局，比如 `H[10][view.VFL[100]].endL();` 就是以view作为最后的结尾，这种情况需要为view设置宽高属性。
+// 以设置的最后一个视图结束VFL布局，比如 `H[10][view[100]].cut();` 就是以view作为最后的结尾，这种情况需要为view设置宽高属性。
 @property (copy, nonatomic, readonly) NSString * (^cut)();
 
 @end
@@ -71,6 +74,9 @@ NSString *lessThan(CGFloat length);                         // 设置最大的�
 #define kUseVFLSubscriptLayout 1
 #endif
 #if kUseVFLSubscriptLayout
+/*
+ 对UIView扩充的下标法
+ */
 - (id)objectAtIndexedSubscript:(NSUInteger)idx;
 - (id)objectForKeyedSubscript:(id)key;
 #endif
@@ -86,16 +92,9 @@ NSString *lessThan(CGFloat length);                         // 设置最大的�
  */
 
 @interface UIView (AUUVFLLayout)
-
 // 设置视图在父视图上距离上下左右的位置
 @property (copy, nonatomic, readonly) NSArray *(^edge)(UIEdgeInsets insets);
-
 // 设置为指定的大小
 @property (copy, nonatomic, readonly) UIView *(^fixedSize)(CGFloat width, CGFloat height);
 @end
-
-@interface NSArray (AUUVFLLayout)
-
-@end
-
 
