@@ -14,13 +14,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Nimbus:
-    :commit: 756676e22bff1ebfe2bd07dfa448f0c365b9caaa
+    :commit: 2dcf550c02855aac8594850985f45cc5af34eb0f
     :git: https://github.com/JyHu/nimbus_thin.git
 
 SPEC CHECKSUMS:
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   Nimbus: 29f15a364a8416d3bcbd0bc6f9f31b7ba41e0c1e
 
-PODFILE CHECKSUM: bd3a5136b69d85ae291d41114f56fb0401d7ecb0
+PODFILE CHECKSUM: fe2e9a2c1efd79c12c9ae4f45e6179740242dd0d
 
 COCOAPODS: 1.2.0

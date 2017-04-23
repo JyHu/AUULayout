@@ -8,27 +8,21 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>Nimbus.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
-		<key>Pods-VFLExample.xcscheme</key>
+		<key>Pods-LayoutExample.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>43ACD094F1F2C052F619E9CE6DB0E97E</key>
+		<key>6DC615D63E190BA4403E5F4A567F79A1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

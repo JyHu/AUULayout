@@ -216,7 +216,7 @@
     if (sub_length > 0) {
         tempSection.rows = [self _uncompressListDatas:[subObjects subarrayWithRange:NSMakeRange(sub_fromIndex, sub_length)]];
     }
-
+    
     return tempSection;
 }
 
@@ -388,7 +388,7 @@
 
 // 获取某一个section的cell的个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+    
     if ((NSUInteger)section < self.sections.count) {
         return [[[self.sections objectAtIndex:section] rows] count];
     } else {
@@ -405,18 +405,20 @@
     
 #if NS_BLOCKS_AVAILABLE
     if (nil != self.createCellBlock) {
-        cell = self.createCellBlock(tableView, indexPath, object);
+        cell = (NITextCell *)self.createCellBlock(tableView, indexPath, object);
     }
 #endif
     
     if (nil == cell) {
-        cell = [self.delegate tableViewModel:self
+        cell = (NITextCell *)[self.delegate tableViewModel:self
                             cellForTableView:tableView
                                  atIndexPath:indexPath
                                   withObject:object];
     }
-    cell.pri_tableView = tableView;
-    cell.pri_delegate = self.delegate;
+    if ([cell isKindOfClass:[NITextCell class]]) {
+        cell.pri_tableView = tableView;
+        cell.pri_delegate = (id <NITextCellDelegate>)self.delegate;
+    }
     return cell;
 }
 

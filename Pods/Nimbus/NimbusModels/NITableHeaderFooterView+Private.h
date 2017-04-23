@@ -27,6 +27,6 @@
 
 @property (assign, nonatomic) NSUInteger pri_sectionIndex;
 
-@property (weak, nonatomic) NSSet *pri_headerFooterDelegate;
+@property (weak, nonatomic) id pri_delegate;
 
 @end

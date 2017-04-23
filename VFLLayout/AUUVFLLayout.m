@@ -1,6 +1,6 @@
 //
 //  AUUVFLLayout.m
-//  Future
+//  AUULayout
 //
 //  Created by JyHu on 2017/3/31.
 //  Copyright © 2017年 JyHu. All rights reserved.
@@ -147,7 +147,7 @@ NSString *lessThan(CGFloat length) {
             [self.pri_VFLString appendFormat:@"[%@%@]", [self cacheView:subConstrants.sponsorView], subConstrants.pri_VFLString];
         }
     }
-    
+
     return self;
 }
 
