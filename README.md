@@ -18,6 +18,24 @@
 4. 增加`UIView`的命名空间的兼容性，可以不用其命名空间即可使用
 5. 重新设置实现方式
 
+## 几个使用错误
+
+* `[App] if we're in the real pre-commit handler we can't actually add any new fences due `
+
+这个问题是在APP运行的时候出现的，添加一个属性即可，即 `OS_ACTIVITY_MODE : disable` ：
+
+![](ReadMeImage/commit_handler_error.png)
+
+* `image not found`
+
+这个问题是无法使用自己的`Framework`，添加进去以后运行不起来，可以打开工程文件的`Build Phases`，然后添加一个项目：
+
+![](ReadMeImage/add_copy.png)
+
+然后下面会出现一个`Copy Fiels`，在`Destination`项选择`Frameworks`，然后添加进自己出现问题的`Framework`，然后即可完美运行。
+
+![](ReadMeImage/sign_on_copy.png)
+
 ## 期望
 
 能做到跟`VFL`原生接近的简洁写法体验。
