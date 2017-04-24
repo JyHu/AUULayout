@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
     An auto layout framework using VFL and NSLayoutConstraint
                    DESC
 
-  s.homepage     = "https://github.com/JyHu/VFLLayout"
+  s.homepage     = "https://github.com/JyHu/AUULayout"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/JyHu/VFLLayout.git", :tag => "0.2.0" }
+  s.source       = { :git => "https://github.com/JyHu/AUULayout.git", :tag => "0.2.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

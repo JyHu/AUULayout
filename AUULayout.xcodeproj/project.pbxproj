@@ -31,6 +31,8 @@
 		1C1400491EAD9C32003654D1 /* AUUCase08ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1400481EAD9C32003654D1 /* AUUCase08ViewController.m */; };
 		1CE0595A1EADFE0400589AED /* AUUWebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE059591EADFE0400589AED /* AUUWebPageViewController.m */; };
 		1CE0595E1EADFF2C00589AED /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE0595D1EADFF2C00589AED /* WebKit.framework */; };
+		1CE059611EAE1AAB00589AED /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1CE0595F1EAE1AAB00589AED /* LICENSE */; };
+		1CE059621EAE1AAB00589AED /* VFLLayout.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 1CE059601EAE1AAB00589AED /* VFLLayout.podspec */; };
 		3CE926DD8B51BD84CE9DBE5F /* Pods_LayoutExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF517BF1BBF9A7C9724DEBDE /* Pods_LayoutExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +89,8 @@
 		1CE059581EADFE0400589AED /* AUUWebPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUWebPageViewController.h; sourceTree = "<group>"; };
 		1CE059591EADFE0400589AED /* AUUWebPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUWebPageViewController.m; sourceTree = "<group>"; };
 		1CE0595D1EADFF2C00589AED /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
+		1CE0595F1EAE1AAB00589AED /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1CE059601EAE1AAB00589AED /* VFLLayout.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VFLLayout.podspec; sourceTree = "<group>"; };
 		409B586BDD38BF66EA7BF96B /* Pods-LayoutExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LayoutExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LayoutExample/Pods-LayoutExample.debug.xcconfig"; sourceTree = "<group>"; };
 		6C029BCCD79E05DEA1BA7D6C /* Pods-LayoutExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LayoutExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-LayoutExample/Pods-LayoutExample.release.xcconfig"; sourceTree = "<group>"; };
 		FF517BF1BBF9A7C9724DEBDE /* Pods_LayoutExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LayoutExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +122,8 @@
 		1C04A2761EABBBEB00D4DB46 = {
 			isa = PBXGroup;
 			children = (
+				1CE0595F1EAE1AAB00589AED /* LICENSE */,
+				1CE059601EAE1AAB00589AED /* VFLLayout.podspec */,
 				1C04A2841EABBC1000D4DB46 /* VFLLayout */,
 				1C04A2941EABBCA300D4DB46 /* LayoutExample */,
 				1C04A2831EABBC1000D4DB46 /* Products */,
@@ -333,6 +339,8 @@
 			files = (
 				1C04A2A51EABBCA300D4DB46 /* LaunchScreen.storyboard in Resources */,
 				1C04A2A21EABBCA300D4DB46 /* Assets.xcassets in Resources */,
+				1CE059621EAE1AAB00589AED /* VFLLayout.podspec in Resources */,
+				1CE059611EAE1AAB00589AED /* LICENSE in Resources */,
 				1C04A2A01EABBCA300D4DB46 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
