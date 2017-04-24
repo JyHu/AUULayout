@@ -20,6 +20,8 @@ typedef NS_ENUM(NSUInteger, AUUTestCaseType) {
 
 - (UIView *)generateViewWithTag:(NSUInteger)tag;
 
+@property (retain, nonatomic) id transitionInfo;
+
 @property (assign, nonatomic) AUUTestCaseType testCaseType;
 
 @end

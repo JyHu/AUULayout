@@ -27,6 +27,7 @@
     if ([object isKindOfClass:[NITitleCellObject class]]) {
         self.title = ((NITitleCellObject *)object).title;
     }
+    self.transitionInfo = info;
     self.testCaseType = controller.caseType;
 }
 

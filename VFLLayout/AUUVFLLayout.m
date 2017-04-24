@@ -10,11 +10,23 @@
 #import <objc/runtime.h>
 
 @implementation NSString (__AUUPrivate)
-// 判断是否满足这个正则表达式
+
+/**
+ 判断是否满足这个正则表达式
+
+ @param pattern 正则表达式
+ @return 是否满足条件
+ */
 - (BOOL)isLegalStringWithPattern:(NSString *)pattern {
     return [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern] evaluateWithObject:self];
 }
-// 判断是否满足其中的某个正则表达式
+
+/**
+ 判断是否满足其中的某个正则表达式
+
+ @param patterns 正则表达式列表
+ @return 是否满足条件
+ */
 - (BOOL)isLegalStringWithPatterns:(NSArray *)patterns {
     for (NSString *pattern in patterns) {
         if ([self isLegalStringWithPattern:pattern]) {
@@ -23,7 +35,13 @@
     }
     return NO;
 }
-// 判断是否满足所有这些正则表达式
+
+/**
+ 判断是否满足所有这些正则表达式
+
+ @param patterns 正则表达式列表
+ @return 是否满足条件
+ */
 - (BOOL)isLegalStringAllMatchPatterns:(NSArray *)patterns {
     for (NSString *pattern in patterns) {
         if (![self isLegalStringWithPattern:pattern]) {
@@ -32,10 +50,44 @@
     }
     return YES;
 }
-// 使用正则匹配来查找字符串中有多少个匹配的内容
+/**
+ 使用正则匹配来查找字符串中有多少个匹配的内容
+
+ @param pattern 用来匹配的正则表达式
+ @return 匹配到的个数
+ */
 - (NSUInteger)numberOfMatchesWithPattern:(NSString *)pattern {
     NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
     return [reg matchesInString:self options:NSMatchingReportCompletion range:NSMakeRange(0, self.length)].count;
+}
+@end
+
+@interface NSArray (__AUUPrivate)
+@end
+@implementation NSArray (__AUUPrivate)
+
+/**
+ 操作数组中的所有元素，并重新返回一个数组
+
+ @param map 数据转换的block
+ @param cls 要判断的数据类型，如果为nil，则所有的数据类型都可进行操作
+ @return 转换后的数组
+ */
+- (NSArray *)map:(id (^)(id obj, NSUInteger index))map checkClass:(Class)cls
+{
+    NSMutableArray *results = [[NSMutableArray alloc] init];
+    if (self && self.count > 0) {
+        for (NSUInteger i = 0; i < self.count; i ++) {
+            id cur = self[i];
+            if (!cls || (cls && [cur isKindOfClass:cls])) {
+                id temp = map(cur, i);
+                if (temp) {
+                    [results addObject:temp];
+                }
+            }
+        }
+    }
+    return results;
 }
 @end
 
@@ -81,6 +133,12 @@
     return _layoutKits;
 }
 
+/**
+ 缓存视图到字典
+
+ @param view 要缓存的视图
+ @return 为这个视图生成的唯一的key
+ */
 - (NSString *)cacheView:(UIView *)view {
     if (view.superview && [view.superview isKindOfClass:[UIView class]]) {
         // viewcontroller的view不可以设置这个属性，否则会出问题
@@ -206,15 +264,11 @@ NSString *lessThan(CGFloat length) {
 
 const char *__kSubVFLAssociatedKey = (void *)@"com.AUU.vfl.__kSubVFLAssociatedKey";
 
-- (void)setVFL:(AUUSubVFLConstraints *)VFL {
-    objc_setAssociatedObject(self, __kSubVFLAssociatedKey, VFL, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 - (AUUSubVFLConstraints *)VFL {
     AUUSubVFLConstraints *VFLConstrants = objc_getAssociatedObject(self, __kSubVFLAssociatedKey);
     if (!VFLConstrants) {
         VFLConstrants = [[AUUSubVFLConstraints alloc] init];
-        self.VFL = VFLConstrants;
+        objc_setAssociatedObject(self, __kSubVFLAssociatedKey, VFLConstrants, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     VFLConstrants.sponsorView = self;
     return VFLConstrants;
@@ -250,6 +304,66 @@ const char *__kSubVFLAssociatedKey = (void *)@"com.AUU.vfl.__kSubVFLAssociatedKe
 
 @end
 
+@interface AUUGroupVFLConstrants ()
+/**
+ 要批量操作的对象数组
+ */
+@property (retain, nonatomic) NSArray *layoutObjects;
+@end
+@implementation AUUGroupVFLConstrants
 
+- (instancetype)objectForKeyedSubscript:(id)key {
+    if (self.layoutObjects) {
+        if ([key isKindOfClass:[NSArray class]]) {
+            // 如果是数组，则需要一个个的对应着去设定
+            if ([key count] > 0) {
+                self.layoutObjects = [self.layoutObjects map:^id(id obj, NSUInteger index) {
+                    return [[self.layoutObjects objectAtIndex:index] objectForKeyedSubscript:(index < [key count] ? key[index] : [key lastObject])];
+                } checkClass:nil];
+            }
+        } else if ([key isKindOfClass:[AUUGroupVFLConstrants class]]) {
+            // 如果是 AUUGroupVFLConstrants 类型，则说明是子vfl中的批量设定，需要返回设定的结果列表，然后一一匹配
+            return self[((AUUGroupVFLConstrants *)key).layoutObjects];
+        } else {
+            // 如果是其他类型的话，比如字符串、数值对象、视图等，需要遍历着去操作
+            self.layoutObjects = [self.layoutObjects map:^id(AUUVFLLayoutConstrants *obj, NSUInteger index) {
+                return obj[key];
+            } checkClass:nil];
+        }
+    }
+    return self;
+}
 
+- (NSArray *(^)())end {
+    return [^(void){
+        return [self.layoutObjects map:^id(AUUVFLConstraints *obj, NSUInteger index) {
+            // 调用 AUUVFLConstraints 的end属性一个个的去结束vfl语句并设定
+            return obj.end();
+        } checkClass:[AUUVFLConstraints class]];
+    } copy];
+}
 
+- (NSArray *(^)())cut {
+    return [^(void){
+        return [self.layoutObjects map:^id(AUUVFLConstraints *obj, NSUInteger index) {
+            // 调用 AUUVFLConstraints 的cut属性一个个的去结束vfl语句并设定
+            return obj.cut();
+        } checkClass:[AUUVFLConstraints class]];
+    } copy];
+}
+
+@end
+
+@implementation NSArray (AUUVFLSpace)
+const char *__kGroupVFLAssociatedKey = (void *)@"com.AUU.__kGroupVFLAssociatedKey";
+- (AUUGroupVFLConstrants *)VFL {
+    AUUGroupVFLConstrants *groupConstrants = objc_getAssociatedObject(self, __kGroupVFLAssociatedKey);
+    if (!groupConstrants) {
+        groupConstrants = [[AUUGroupVFLConstrants alloc] init];
+        objc_setAssociatedObject(self, __kGroupVFLAssociatedKey, groupConstrants, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    groupConstrants.layoutObjects = self;
+    return groupConstrants;
+}
+
+@end

@@ -19,8 +19,13 @@
     UIView *view4 = [self generateViewWithTag:4 inView:self.view];
     
     if (self.testCaseType == AUUTestCaseTypePackVFL) {
-        H[10][view1[60]][view2[80]][view3[100]][view4[120]].cut();
-        V[64][view1[60]][view2[80]][view3[100]][view4[120]].cut();
+#if 1
+        // 利用对数组做的封装的写法
+        @[H,V].VFL[@[@10, @64]][view1[60]][view2[70]][view3[80]][view4[90]].cut();
+#else
+        H[10][view1[60]][view2[70]][view3[80]][view4[90]].cut();
+        V[64][view1[60]][view2[70]][view3[80]][view4[90]].cut();
+#endif
     }
     else if (self.testCaseType == AUUTestCaseTypeMasonry)
     {

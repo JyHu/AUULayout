@@ -22,6 +22,13 @@ typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
 @interface AUUVFLLayout : NSObject
 @end
 
+
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#pragma mark - 为布局扩展下标法的基类
+#pragma mark -
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 @interface AUUVFLLayoutConstrants : NSObject
 /*
  扩充的下标法
@@ -29,6 +36,11 @@ typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
 - (instancetype)objectAtIndexedSubscript:(NSUInteger)idx;
 - (instancetype)objectForKeyedSubscript:(id)key;
 @end
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#pragma mark - 对主VFL语句设置属性的类
+#pragma mark -
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 /*
  外部VFL的命名空间，用于VFL相关属性的设置、管理
@@ -47,11 +59,15 @@ typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
 
 @end
 
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#pragma mark - 对子视图设置VFL布局的类，及对UIView扩充的一些方法
+#pragma mark -
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 /*
  用于View相关的命名空间，设置子视图的宽高、优先级属性
  */
-
-
 @interface AUUSubVFLConstraints : AUUVFLLayoutConstrants
 NSString *priority(CGFloat length, CGFloat priority);       // 优先级属性的生成
 NSString *between(CGFloat minLength, CGFloat maxLength);    // 宽高区间范围的生成
@@ -85,10 +101,9 @@ NSString *lessThan(CGFloat length);                         // 视图间距、�
 #endif
 
 // 如果禁止掉kUseVFLSubscriptLayout后，所有VFL语句中(封装的方法除外)，对view视图的处理都必须以接入此属性开始，比如 `H[view.VFL[100]].end();`，设置view的宽度为100。
-@property (retain, nonatomic) AUUSubVFLConstraints *VFL;
+@property (retain, nonatomic, readonly) AUUSubVFLConstraints *VFL;
 
 @end
-
 
 /*
  对UIView的一些通用方法做的封装
@@ -101,3 +116,20 @@ NSString *lessThan(CGFloat length);                         // 视图间距、�
 @property (copy, nonatomic, readonly) NSArray *(^fixedSize)(CGFloat width, CGFloat height);
 @end
 
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#pragma mark - 对批量属性操作的类及辅助方法
+#pragma mark -
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+@interface AUUGroupVFLConstrants : AUUVFLLayoutConstrants
+@property (copy, nonatomic, readonly) NSArray * (^end)();   // 结束语句，会返回一个vfl语句的数组
+@property (copy, nonatomic, readonly) NSArray * (^cut)();   // 结束语句，会返回一个vfl语句的数组
+@end
+
+/*
+ 可操作的数组元素有 AUUVFLLayoutConstrants及其子类、UIView及其子类
+ */
+@interface NSArray (AUUVFLSpace)
+// 对数组扩充命名空间，因为数组本身就实现了下标法，所以为了避免调用冲突，就为其增加了一个命名空间，所有对于批量属性操作数组都必须调用这个属性
+@property (retain, nonatomic, readonly) AUUGroupVFLConstrants *VFL;
+@end

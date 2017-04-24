@@ -19,6 +19,9 @@
     UIView *view4 = [self generateViewWithTag:4 inView:self.view];
     
     if (self.testCaseType == AUUTestCaseTypePackVFL) {
+        
+#if 0
+        // 方法1，每个视图单独设置
         H[10][view1[100]].cut();
         V[74][view1[100]].cut();
         
@@ -30,6 +33,39 @@
         
         H[10][view4[view1]].cut();
         V[view4[view1]][10].end();
+        
+#elif 0
+       // 方法2，对1、3视图合并写法
+        @[H,V].VFL[@[@10,@74]][view1[100]].cut();
+        
+        H[view2[100]][10].end();
+        V[74][view2[100]].cut();
+        
+        @[H,V].VFL[view3[view1]][10].end();
+        
+        H[10][view4[view1]].cut();
+        V[view4[view1]][10].end();
+        
+#elif 0
+        
+        // 方法3，对每行每列的视图做合并
+        H[10][view1[100]][greaterThan(100)][view2[100]][10].end();
+        H[10][view4[100]][greaterThan(100)][view3[100]][10].end();
+        
+        V[74][view1[100]][greaterThan(100)][view4[100]][10].end();
+        V[74][view2[100]][greaterThan(100)][view3[100]][10].end();
+        
+#elif 0
+        // 方法4，对横竖分别合并
+        @[H,H].VFL[10][@[view1,view4][100]][greaterThan(100)][@[view2,view3][100]][10].end();
+        @[V,V].VFL[74][@[view1,view2][100]][greaterThan(100)][@[view4,view3][100]][10].end();
+       
+#else
+        
+        // 方法5，使用数组按顺序对应的方式排列
+        @[H,H,V,V].VFL[@[@10, @10, @74, @74]][@[view1, view4,view1,view2].VFL[100]][greaterThan(100)][@[view2,view3,view4,view3].VFL[100]][10].end();
+        
+#endif
     }
     else if (self.testCaseType == AUUTestCaseTypeMasonry)
     {
