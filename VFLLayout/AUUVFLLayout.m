@@ -13,7 +13,7 @@
 
 /**
  判断是否满足这个正则表达式
-
+ 
  @param pattern 正则表达式
  @return 是否满足条件
  */
@@ -23,7 +23,7 @@
 
 /**
  判断是否满足其中的某个正则表达式
-
+ 
  @param patterns 正则表达式列表
  @return 是否满足条件
  */
@@ -38,7 +38,7 @@
 
 /**
  判断是否满足所有这些正则表达式
-
+ 
  @param patterns 正则表达式列表
  @return 是否满足条件
  */
@@ -52,7 +52,7 @@
 }
 /**
  使用正则匹配来查找字符串中有多少个匹配的内容
-
+ 
  @param pattern 用来匹配的正则表达式
  @return 匹配到的个数
  */
@@ -68,7 +68,7 @@
 
 /**
  操作数组中的所有元素，并重新返回一个数组
-
+ 
  @param map 数据转换的block
  @param cls 要判断的数据类型，如果为nil，则所有的数据类型都可进行操作
  @return 转换后的数组
@@ -135,7 +135,7 @@
 
 /**
  缓存视图到字典
-
+ 
  @param view 要缓存的视图
  @return 为这个视图生成的唯一的key
  */
@@ -184,12 +184,15 @@ NSString *lessThan(CGFloat length) {
         self.pri_VFLString = (NSMutableString *)[NSString stringWithFormat:@"(%@)", [self cacheView:key]];
     } else if ([key isKindOfClass:[NSString class]] && [key numberOfMatchesWithPattern:@"\\."] <= 1) {
         // 设置宽高的属性
-        BOOL isLeagalSubVFL = [key isLegalStringWithPatterns:@[@"^\\([\\d\\.]+\\)$",              // (34.87)
-                                                         @"^\\([<>]=[\\d\\.]+,[<>]=[\\d\\.]+\\)$",  // (>=34,<=98)
-                                                         @"^\\([\\d\\.]+@[\\d\\.]+\\)$",    // (24@43)
-                                                         @"^\\(>=[\\d\\.]+\\)$",            // (>=79)
-                                                         @"^\\(<=[\\d\\.]+\\)$"]];          // (<=24)
-        NSAssert2(isLeagalSubVFL, @"当前子VFL(%@)没有设置有效的宽高属性，相关的视图:%@", key, self.sponsorView);
+        if (![key isLegalStringWithPatterns:@[@"^\\([\\d\\.]+\\)$",                     // (34.87)
+                                              @"^\\([<>]=[\\d\\.]+,[<>]=[\\d\\.]+\\)$",  // (>=34,<=98)
+                                              @"^\\([\\d\\.]+@[\\d\\.]+\\)$",            // (24@43)
+                                              @"^\\(>=[\\d\\.]+\\)$",                    // (>=79)
+                                              @"^\\(<=[\\d\\.]+\\)$"]]) {                // (<=24)
+#ifdef DEBUG
+            NSLog(@"当前子VFL(%@)没有设置有效的宽高属性，相关的视图:%@", key, self.sponsorView);
+#endif
+        }
         self.pri_VFLString = key;
     }
     return self;
@@ -233,20 +236,20 @@ NSString *lessThan(CGFloat length) {
         ([key isKindOfClass:[NSString class]] && [key numberOfMatchesWithPattern:@"\\."] <= 1 &&
          [key isLegalStringWithPatterns:@[@"^\\([0-9][0-9\\.]*\\)$", @"^\\(>=[0-9][0-9\\.]*\\)$", @"^\\(<=[0-9][0-9\\.]*\\)$"]])) {
             // 设置两个视图的间距
-        [self.pri_VFLString appendFormat:@"%@-%@-", (self.pri_VFLString && self.pri_VFLString.length == 2 ? @"|" : @""), key];
-    } else {
-        if ([key isKindOfClass:[UIView class]]) {
-            // 设置相邻的视图
-            [self.pri_VFLString appendFormat:@"[%@]", [self cacheView:key]];
-        } else if ([key isKindOfClass:[AUUSubVFLConstraints class]]) {
-            // 设置相邻视图，和相邻视图其宽高属性的子VFL语句
-            AUUSubVFLConstraints *subConstrants = (AUUSubVFLConstraints *)key;
-            [self.layoutKits addEntriesFromDictionary:subConstrants.layoutKits];
-            [self.pri_VFLString appendFormat:@"[%@%@]", [self cacheView:subConstrants.sponsorView], subConstrants.pri_VFLString];
+            [self.pri_VFLString appendFormat:@"%@-%@-", (self.pri_VFLString && self.pri_VFLString.length == 2 ? @"|" : @""), key];
+        } else {
+            if ([key isKindOfClass:[UIView class]]) {
+                // 设置相邻的视图
+                [self.pri_VFLString appendFormat:@"[%@]", [self cacheView:key]];
+            } else if ([key isKindOfClass:[AUUSubVFLConstraints class]]) {
+                // 设置相邻视图，和相邻视图其宽高属性的子VFL语句
+                AUUSubVFLConstraints *subConstrants = (AUUSubVFLConstraints *)key;
+                [self.layoutKits addEntriesFromDictionary:subConstrants.layoutKits];
+                [self.pri_VFLString appendFormat:@"[%@%@]", [self cacheView:subConstrants.sponsorView], subConstrants.pri_VFLString];
+            }
+            
         }
-        
-    }
-
+    
     return self;
 }
 

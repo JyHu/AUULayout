@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "VFLLayout"
   s.version      = "0.2.0"
-  s.summary      = "An auto layout framework using VFL and NSLayoutConstraint"
+  s.summary      = "An auto layout framework using VFL."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -64,8 +64,7 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  # s.platform     = :ios
-  # s.platform     = :ios, "8.0"
+  s.platform     = :ios, "7.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
