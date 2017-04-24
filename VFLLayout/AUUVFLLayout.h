@@ -9,15 +9,18 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
-    AUUVFLLayoutDirectionUnknow,
-    AUUVFLLayoutDirectionHorizontal,
-    AUUVFLLayoutDirectionVertical
+    AUUVFLLayoutDirectionUnknow,        // 未知
+    AUUVFLLayoutDirectionHorizontal,    // 横向
+    AUUVFLLayoutDirectionVertical,      // 纵向
 };
 
 // VFL横向布局的开始，必须(封装的一些方法除外)以其开头
 #define H ([[[AUUVFLConstraints alloc] init] resetWithDirection:AUUVFLLayoutDirectionHorizontal])
 // VFL纵向布局的开始，必须(封装的一些方法除外)以其开头
 #define V ([[[AUUVFLConstraints alloc] init] resetWithDirection:AUUVFLLayoutDirectionVertical])
+
+@interface AUUVFLLayout : NSObject
+@end
 
 @interface AUUVFLLayoutConstrants : NSObject
 /*
@@ -52,8 +55,8 @@ typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
 @interface AUUSubVFLConstraints : AUUVFLLayoutConstrants
 NSString *priority(CGFloat length, CGFloat priority);       // 优先级属性的生成
 NSString *between(CGFloat minLength, CGFloat maxLength);    // 宽高区间范围的生成
-NSString *greaterThan(CGFloat length);                      // 最低宽高的生成
-NSString *lessThan(CGFloat length);                         // 设置最大的宽高
+NSString *greaterThan(CGFloat length);                      // 视图间距、宽高的最小值
+NSString *lessThan(CGFloat length);                         // 视图间距、宽高的最大值
 @end
 
 
@@ -95,6 +98,6 @@ NSString *lessThan(CGFloat length);                         // 设置最大的�
 // 设置视图在父视图上距离上下左右的位置
 @property (copy, nonatomic, readonly) NSArray *(^edge)(UIEdgeInsets insets);
 // 设置为指定的大小
-@property (copy, nonatomic, readonly) UIView *(^fixedSize)(CGFloat width, CGFloat height);
+@property (copy, nonatomic, readonly) NSArray *(^fixedSize)(CGFloat width, CGFloat height);
 @end
 

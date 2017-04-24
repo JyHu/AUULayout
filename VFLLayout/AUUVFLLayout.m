@@ -10,9 +10,36 @@
 #import <objc/runtime.h>
 
 @implementation NSString (__AUUPrivate)
-- (BOOL)isLegalObjectWithPattern:(NSString *)pattern {
+// 判断是否满足这个正则表达式
+- (BOOL)isLegalStringWithPattern:(NSString *)pattern {
     return [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern] evaluateWithObject:self];
 }
+// 判断是否满足其中的某个正则表达式
+- (BOOL)isLegalStringWithPatterns:(NSArray *)patterns {
+    for (NSString *pattern in patterns) {
+        if ([self isLegalStringWithPattern:pattern]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+// 判断是否满足所有这些正则表达式
+- (BOOL)isLegalStringAllMatchPatterns:(NSArray *)patterns {
+    for (NSString *pattern in patterns) {
+        if (![self isLegalStringWithPattern:pattern]) {
+            return NO;
+        }
+    }
+    return YES;
+}
+// 使用正则匹配来查找字符串中有多少个匹配的内容
+- (NSUInteger)numberOfMatchesWithPattern:(NSString *)pattern {
+    NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
+    return [reg matchesInString:self options:NSMatchingReportCompletion range:NSMakeRange(0, self.length)].count;
+}
+@end
+
+@implementation AUUVFLLayout
 @end
 
 @interface AUUVFLLayoutConstrants()
@@ -92,17 +119,19 @@ NSString *lessThan(CGFloat length) {
 
 - (instancetype)objectForKeyedSubscript:(id)key {
     if ([key isKindOfClass:[NSNumber class]]) {
+        // 设置宽高属性为具体的值
         self.pri_VFLString = (NSMutableString *)[NSString stringWithFormat:@"(%@)", key];
     } else if ([key isKindOfClass:[UIView class]]) {
+        // 设置与某视图宽高相等
         self.pri_VFLString = (NSMutableString *)[NSString stringWithFormat:@"(%@)", [self cacheView:key]];
-    } else if ([key isKindOfClass:[NSString class]]) {
-        BOOL isNormalLength = [key isLegalObjectWithPattern:@"^\\([\\d\\.]+\\)$"];  // (34.87)
-        BOOL isBetweenLength = [key isLegalObjectWithPattern:@"^\\([<>]=[\\d\\.]+,[<>]=[\\d\\.]+\\)$"]; // (>=34,<=98)
-        BOOL isPriorityLength = [key isLegalObjectWithPattern:@"^\\([\\d\\.]+@[\\d\\.]+\\)$"];  // (24@43)
-        BOOL isGreaterLength = [key isLegalObjectWithPattern:@"^\\(>=[\\d\\.]+\\)$"];   // (>=79)
-        BOOL isLessLength = [key isLegalObjectWithPattern:@"^\\(<=[\\d\\.]+\\)$"];  // (<=24)
-        NSAssert2(isNormalLength || isBetweenLength || isPriorityLength || isGreaterLength || isLessLength,
-                  @"当前子VFL(%@)没有设置有效的宽高属性，相关的视图:%@", key, self.sponsorView);
+    } else if ([key isKindOfClass:[NSString class]] && [key numberOfMatchesWithPattern:@"\\."] <= 1) {
+        // 设置宽高的属性
+        BOOL isLeagalSubVFL = [key isLegalStringWithPatterns:@[@"^\\([\\d\\.]+\\)$",              // (34.87)
+                                                         @"^\\([<>]=[\\d\\.]+,[<>]=[\\d\\.]+\\)$",  // (>=34,<=98)
+                                                         @"^\\([\\d\\.]+@[\\d\\.]+\\)$",    // (24@43)
+                                                         @"^\\(>=[\\d\\.]+\\)$",            // (>=79)
+                                                         @"^\\(<=[\\d\\.]+\\)$"]];          // (<=24)
+        NSAssert2(isLeagalSubVFL, @"当前子VFL(%@)没有设置有效的宽高属性，相关的视图:%@", key, self.sponsorView);
         self.pri_VFLString = key;
     }
     return self;
@@ -113,6 +142,7 @@ NSString *lessThan(CGFloat length) {
 @implementation AUUVFLConstraints
 
 - (AUUVFLConstraints *)resetWithDirection:(AUUVFLLayoutDirection)direction {
+    // vfl的开始
     if (direction == AUUVFLLayoutDirectionHorizontal) {
         self.pri_VFLString = [@"H:" mutableCopy];
     } else {
@@ -123,6 +153,7 @@ NSString *lessThan(CGFloat length) {
 
 - (NSString *(^)())end {
     return [^(){
+        // 以父视图的末尾结束当前的vfl语句
         [self.pri_VFLString appendString:@"|"];
         return self.cut();
     } copy];;
@@ -130,22 +161,32 @@ NSString *lessThan(CGFloat length) {
 
 - (NSString *(^)())cut {
     return [^(){
+        // 结束VFL语句，并设置到具体的视图上
         [self.sponsorView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:self.pri_VFLString options:NSLayoutFormatDirectionMask metrics:nil views:self.layoutKits]];
+#ifdef DEBUG
+        NSLog(@"VFL %@", self.pri_VFLString);
+#endif
         return self.pri_VFLString;
     } copy];
 }
 
 - (instancetype)objectForKeyedSubscript:(id)key {
-    if ([key isKindOfClass:[NSNumber class]]) {
+    if ([key isKindOfClass:[NSNumber class]] ||
+        ([key isKindOfClass:[NSString class]] && [key numberOfMatchesWithPattern:@"\\."] <= 1 &&
+         [key isLegalStringWithPatterns:@[@"^\\([0-9][0-9\\.]*\\)$", @"^\\(>=[0-9][0-9\\.]*\\)$", @"^\\(<=[0-9][0-9\\.]*\\)$"]])) {
+            // 设置两个视图的间距
         [self.pri_VFLString appendFormat:@"%@-%@-", (self.pri_VFLString && self.pri_VFLString.length == 2 ? @"|" : @""), key];
     } else {
         if ([key isKindOfClass:[UIView class]]) {
+            // 设置相邻的视图
             [self.pri_VFLString appendFormat:@"[%@]", [self cacheView:key]];
         } else if ([key isKindOfClass:[AUUSubVFLConstraints class]]) {
+            // 设置相邻视图，和相邻视图其宽高属性的子VFL语句
             AUUSubVFLConstraints *subConstrants = (AUUSubVFLConstraints *)key;
             [self.layoutKits addEntriesFromDictionary:subConstrants.layoutKits];
             [self.pri_VFLString appendFormat:@"[%@%@]", [self cacheView:subConstrants.sponsorView], subConstrants.pri_VFLString];
         }
+        
     }
 
     return self;
@@ -153,6 +194,7 @@ NSString *lessThan(CGFloat length) {
 
 - (NSString *)cacheView:(UIView *)view {
     if (view.superview && [view.superview isKindOfClass:[UIView class]]) {
+        // 当前VFL语句操作的父视图
         self.sponsorView = view.superview;
     }
     return [super cacheView:view];
@@ -179,6 +221,7 @@ const char *__kSubVFLAssociatedKey = (void *)@"com.AUU.vfl.__kSubVFLAssociatedKe
 }
 
 #if kUseVFLSubscriptLayout
+// 将`UIView`的下标法做的操作转到其命名空间下实现
 - (id)objectForKeyedSubscript:(id)key {
     return self.VFL[key];
 }
@@ -198,11 +241,10 @@ const char *__kSubVFLAssociatedKey = (void *)@"com.AUU.vfl.__kSubVFLAssociatedKe
     } copy];
 }
 // 设置为指定的大小
-- (UIView *(^)(CGFloat, CGFloat))fixedSize {
+- (NSArray *(^)(CGFloat, CGFloat))fixedSize {
     return [^(CGFloat width, CGFloat height){
-        H[self.VFL[@(width)]].cut();
-        V[self.VFL[@(height)]].cut();
-        return self;
+        return @[H[self.VFL[@(width)]].cut(),
+                 V[self.VFL[@(height)]].cut()];
     } copy];
 }
 

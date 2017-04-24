@@ -38,7 +38,7 @@
     };
     
     NSArray *objects = @[
-                         @"VFL资料",
+                         @"资料",
                          [self.tableActions attachToObject:[NITitleCellObject objectWithTitle:@"Visual Format Language -- Apple"]
                                                   tapBlock:^BOOL(id object, id target, NSIndexPath *indexPath) {
                                                       return [self showWebPageWithURLString:@"https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853-CH7-SW1"];
@@ -51,6 +51,9 @@
                                                   tapBlock:^BOOL(id object, id target, NSIndexPath *indexPath) {
                                                       return [self showWebPageWithURLString:@"http://blog.csdn.net/ws1836300/article/details/52957056"];
                                                   }],
+                         [self.tableActions attachToObject:[NITitleCellObject objectWithTitle:@"AUUVFLLayout的说明文档"] tapBlock:^BOOL(id object, id target, NSIndexPath *indexPath) {
+                             return [self showWebPageWithURLString:@"https://github.com/JyHu/AUULayout/blob/master/Using/Using_v01.md"];
+                         }],
                          @"Setting",
                          [self.tableActions attachToObject:[NISubtitleCellObject objectWithTitle:@"设置测试自动布局的方式" subtitle:nil]
                                                   tapBlock:^BOOL(NISubtitleCellObject *object, id target, NSIndexPath *indexPath) {
@@ -66,7 +69,8 @@
                          PushAction(@"04-相对位置", @"AUUCase04ViewController"),
                          PushAction(@"05-设置优先级", @"AUUCase05ViewController"),
                          PushAction(@"06-设置宽高范围", @"AUUCase06ViewController"),
-                         PushAction(@"07-设置边界相对位置关系", @"AUUCase07ViewController")
+                         PushAction(@"07-设置边界相对位置关系", @"AUUCase07ViewController"),
+                         PushAction(@"08-设置距离的最大最小值", @"AUUCase08ViewController"),
                          ];
     
     self.tableModel = [[NITableViewModel alloc] initWithSectionedArray:objects delegate:(id)[NICellFactory class]];

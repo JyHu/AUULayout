@@ -28,6 +28,7 @@
 		1C04A2C91EACD6C500D4DB46 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C04A2C71EACD6C500D4DB46 /* Masonry.framework */; };
 		1C04A2CA1EACD6C500D4DB46 /* Nimbus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C04A2C81EACD6C500D4DB46 /* Nimbus.framework */; };
 		1C14003E1EACFBDE003654D1 /* VFLLayout.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1C04A2821EABBC1000D4DB46 /* VFLLayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1C1400491EAD9C32003654D1 /* AUUCase08ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1400481EAD9C32003654D1 /* AUUCase08ViewController.m */; };
 		3CE926DD8B51BD84CE9DBE5F /* Pods_LayoutExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF517BF1BBF9A7C9724DEBDE /* Pods_LayoutExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,8 @@
 		1C04A2C41EACA02300D4DB46 /* AUUCase07ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUCase07ViewController.m; sourceTree = "<group>"; };
 		1C04A2C71EACD6C500D4DB46 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AUULayout-dkuyuezsgdeuvkgpwgibcryxtjzo/Build/Products/Debug-iphonesimulator/Masonry/Masonry.framework"; sourceTree = "<group>"; };
 		1C04A2C81EACD6C500D4DB46 /* Nimbus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimbus.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AUULayout-dkuyuezsgdeuvkgpwgibcryxtjzo/Build/Products/Debug-iphonesimulator/Nimbus/Nimbus.framework"; sourceTree = "<group>"; };
+		1C1400471EAD9C32003654D1 /* AUUCase08ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUCase08ViewController.h; sourceTree = "<group>"; };
+		1C1400481EAD9C32003654D1 /* AUUCase08ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUCase08ViewController.m; sourceTree = "<group>"; };
 		409B586BDD38BF66EA7BF96B /* Pods-LayoutExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LayoutExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LayoutExample/Pods-LayoutExample.debug.xcconfig"; sourceTree = "<group>"; };
 		6C029BCCD79E05DEA1BA7D6C /* Pods-LayoutExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LayoutExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-LayoutExample/Pods-LayoutExample.release.xcconfig"; sourceTree = "<group>"; };
 		FF517BF1BBF9A7C9724DEBDE /* Pods_LayoutExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LayoutExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,7 +170,6 @@
 			isa = PBXGroup;
 			children = (
 				1C04A2AC1EABBF8000D4DB46 /* Cases */,
-				1C04A2AD1EABBF8000D4DB46 /* Factory */,
 				1C04A2AE1EABBFB700D4DB46 /* AUUBaseCaseViewController.h */,
 				1C04A2AF1EABBFB700D4DB46 /* AUUBaseCaseViewController.m */,
 				1C04A2B11EAC9EB900D4DB46 /* NSObject+Factory.h */,
@@ -191,15 +193,10 @@
 				1C04A2C11EAC9FF300D4DB46 /* AUUCase06ViewController.m */,
 				1C04A2C31EACA02300D4DB46 /* AUUCase07ViewController.h */,
 				1C04A2C41EACA02300D4DB46 /* AUUCase07ViewController.m */,
+				1C1400471EAD9C32003654D1 /* AUUCase08ViewController.h */,
+				1C1400481EAD9C32003654D1 /* AUUCase08ViewController.m */,
 			);
 			path = Cases;
-			sourceTree = "<group>";
-		};
-		1C04A2AD1EABBF8000D4DB46 /* Factory */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Factory;
 			sourceTree = "<group>";
 		};
 		2C431B303F90269C3C7E14B2 /* Pods */ = {
@@ -396,6 +393,7 @@
 			files = (
 				1C04A2BF1EAC9FD300D4DB46 /* AUUCase05ViewController.m in Sources */,
 				1C04A29D1EABBCA300D4DB46 /* ViewController.m in Sources */,
+				1C1400491EAD9C32003654D1 /* AUUCase08ViewController.m in Sources */,
 				1C04A2B31EAC9EB900D4DB46 /* NSObject+Factory.m in Sources */,
 				1C04A2C51EACA02300D4DB46 /* AUUCase07ViewController.m in Sources */,
 				1C04A29A1EABBCA300D4DB46 /* AppDelegate.m in Sources */,
