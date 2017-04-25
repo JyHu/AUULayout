@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+
+
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//  Useage Documentation 使用说明
+//  https://github.com/JyHu/AUULayout/blob/master/README.md
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
     AUUVFLLayoutDirectionUnknow,        // 未知
     AUUVFLLayoutDirectionHorizontal,    // 横向
