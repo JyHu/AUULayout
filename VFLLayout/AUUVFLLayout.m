@@ -9,6 +9,12 @@
 #import "AUUVFLLayout.h"
 #import <objc/runtime.h>
 
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#pragma mark - 辅助的帮助方法
+#pragma mark -
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 @implementation NSString (__AUUPrivate)
 
 /**
@@ -94,6 +100,11 @@
 @implementation AUUVFLLayout
 @end
 
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#pragma mark - 为布局扩展下标法的基类
+#pragma mark -
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 @interface AUUVFLLayoutConstrants()
 
 /**
@@ -157,48 +168,10 @@
 
 #pragma clang diagnostic pop
 
-@implementation AUUSubVFLConstraints
-
-NSString *priority(CGFloat width, CGFloat priority) {
-    return [NSString stringWithFormat:@"(%@@%@)", @(width), @(priority)];
-}
-
-NSString *between(CGFloat minLength, CGFloat maxLength) {
-    return [NSString stringWithFormat:@"(>=%@,<=%@)", @(minLength), @(maxLength)];
-}
-
-NSString *greaterThan(CGFloat length) {
-    return [NSString stringWithFormat:@"(>=%@)", @(length)];
-}
-
-NSString *lessThan(CGFloat length) {
-    return [NSString stringWithFormat:@"(<=%@)", @(length)];
-}
-
-- (instancetype)objectForKeyedSubscript:(id)key {
-    if ([key isKindOfClass:[NSNumber class]]) {
-        // 设置宽高属性为具体的值
-        self.pri_VFLString = (NSMutableString *)[NSString stringWithFormat:@"(%@)", key];
-    } else if ([key isKindOfClass:[UIView class]]) {
-        // 设置与某视图宽高相等
-        self.pri_VFLString = (NSMutableString *)[NSString stringWithFormat:@"(%@)", [self cacheView:key]];
-    } else if ([key isKindOfClass:[NSString class]] && [key numberOfMatchesWithPattern:@"\\."] <= 1) {
-        // 设置宽高的属性
-        if (![key isLegalStringWithPatterns:@[@"^\\([\\d\\.]+\\)$",                     // (34.87)
-                                              @"^\\([<>]=[\\d\\.]+,[<>]=[\\d\\.]+\\)$",  // (>=34,<=98)
-                                              @"^\\([\\d\\.]+@[\\d\\.]+\\)$",            // (24@43)
-                                              @"^\\(>=[\\d\\.]+\\)$",                    // (>=79)
-                                              @"^\\(<=[\\d\\.]+\\)$"]]) {                // (<=24)
-#ifdef DEBUG
-            NSLog(@"当前子VFL(%@)没有设置有效的宽高属性，相关的视图:%@", key, self.sponsorView);
-#endif
-        }
-        self.pri_VFLString = key;
-    }
-    return self;
-}
-
-@end
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#pragma mark - 对主VFL语句设置属性的类
+#pragma mark -
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 @implementation AUUVFLConstraints
 
@@ -247,9 +220,7 @@ NSString *lessThan(CGFloat length) {
                 [self.layoutKits addEntriesFromDictionary:subConstrants.layoutKits];
                 [self.pri_VFLString appendFormat:@"[%@%@]", [self cacheView:subConstrants.sponsorView], subConstrants.pri_VFLString];
             }
-            
         }
-    
     return self;
 }
 
@@ -259,6 +230,54 @@ NSString *lessThan(CGFloat length) {
         self.sponsorView = view.superview;
     }
     return [super cacheView:view];
+}
+
+@end
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#pragma mark - 对子视图设置VFL布局的类，及对UIView扩充的一些方法
+#pragma mark -
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+@implementation AUUSubVFLConstraints
+
+NSString *priority(CGFloat width, CGFloat priority) {
+    return [NSString stringWithFormat:@"(%@@%@)", @(width), @(priority)];
+}
+
+NSString *between(CGFloat minLength, CGFloat maxLength) {
+    return [NSString stringWithFormat:@"(>=%@,<=%@)", @(minLength), @(maxLength)];
+}
+
+NSString *greaterThan(CGFloat length) {
+    return [NSString stringWithFormat:@"(>=%@)", @(length)];
+}
+
+NSString *lessThan(CGFloat length) {
+    return [NSString stringWithFormat:@"(<=%@)", @(length)];
+}
+
+- (instancetype)objectForKeyedSubscript:(id)key {
+    if ([key isKindOfClass:[NSNumber class]]) {
+        // 设置宽高属性为具体的值
+        self.pri_VFLString = (NSMutableString *)[NSString stringWithFormat:@"(%@)", key];
+    } else if ([key isKindOfClass:[UIView class]]) {
+        // 设置与某视图宽高相等
+        self.pri_VFLString = (NSMutableString *)[NSString stringWithFormat:@"(%@)", [self cacheView:key]];
+    } else if ([key isKindOfClass:[NSString class]] && [key numberOfMatchesWithPattern:@"\\."] <= 1) {
+        // 设置宽高的属性
+        if (![key isLegalStringWithPatterns:@[@"^\\([\\d\\.]+\\)$",                     // (34.87)
+                                              @"^\\([<>]=[\\d\\.]+,[<>]=[\\d\\.]+\\)$",  // (>=34,<=98)
+                                              @"^\\([\\d\\.]+@[\\d\\.]+\\)$",            // (24@43)
+                                              @"^\\(>=[\\d\\.]+\\)$",                    // (>=79)
+                                              @"^\\(<=[\\d\\.]+\\)$"]]) {                // (<=24)
+#ifdef DEBUG
+            NSLog(@"当前子VFL(%@)没有设置有效的宽高属性，相关的视图:%@", key, self.sponsorView);
+#endif
+        }
+        self.pri_VFLString = key;
+    }
+    return self;
 }
 
 @end
@@ -306,6 +325,11 @@ const char *__kSubVFLAssociatedKey = (void *)@"com.AUU.vfl.__kSubVFLAssociatedKe
 }
 
 @end
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#pragma mark - 对批量属性操作的类及辅助方法
+#pragma mark -
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 @interface AUUGroupVFLConstrants ()
 /**
