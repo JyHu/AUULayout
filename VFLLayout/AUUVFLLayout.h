@@ -27,6 +27,10 @@ typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
 #define H ([[[AUUVFLConstraints alloc] init] resetWithDirection:AUUVFLLayoutDirectionHorizontal])
 // VFL纵向布局的开始，必须(封装的一些方法除外)以其开头
 #define V ([[[AUUVFLConstraints alloc] init] resetWithDirection:AUUVFLLayoutDirectionVertical])
+// 批量的横向布局的开始
+#define HA (@[H].VFL)
+// 批量的纵向布局的开始
+#define VA (@[V].VFL)
 
 @interface AUUVFLLayout : NSObject
 @end

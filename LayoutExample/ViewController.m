@@ -47,7 +47,7 @@
                          @"资料",
                          WebInfoAction(@"Visual Format Language -- Apple",
                                        @"https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853-CH7-SW1"),
-                         WebInfoAction(@"VFL学习资料", @"http://www.auu.space/2016/06/02/Visual-Formate-Language-VFL"),
+                         WebInfoAction(@"VFL学习资料", @"http://www.auu.space/?p=103"),
                          WebInfoAction(@"一个转屏时出现的错误", @"http://blog.csdn.net/ws1836300/article/details/52957056"),
                          WebInfoAction(@"AUUVFLLayout的说明文档", @"https://github.com/JyHu/AUULayout/blob/master/Using/Using_v01.md"),
                          @"关于居中布局",

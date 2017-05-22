@@ -24,6 +24,7 @@
         V[84][view1][20].end();
         
         view2.edge(UIEdgeInsetsMake(40, 40, 40, 40));
+        //        H[0][view2][0].end();
     }
     else if (self.testCaseType == AUUTestCaseTypeMasonry)
     {

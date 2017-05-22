@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-#pragma mark - 辅助的帮助方法
+#pragma mark - 辅助方法
 #pragma mark -
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -97,6 +97,14 @@
 }
 @end
 
+@interface UIView (__AUUPrivate)
+
+#ifdef DEBUG
+- (id)recursiveDescription;
+#endif
+
+@end
+
 @implementation AUUVFLLayout
 @end
 
@@ -105,7 +113,7 @@
 #pragma mark -
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-@interface AUUVFLLayoutConstrants()
+@interface AUUVFLLayoutConstrants() <NSCopying>
 
 /**
  VFL语句中相关的视图，在主VFL中表示的是容器视图，在子VFL中表示的是当前要设置宽高属性的视图
@@ -120,7 +128,7 @@
 /**
  VFL语句中保存视图的字典
  */
-@property (retain, nonatomic) NSMutableDictionary *layoutKits;
+@property (retain, nonatomic) NSMutableDictionary <NSString *, UIView *> *layoutKits;
 
 /**
  缓存视图到字典中
@@ -137,7 +145,7 @@
 
 @implementation AUUVFLLayoutConstrants
 
-- (NSMutableDictionary *)layoutKits {
+- (NSMutableDictionary<NSString *,UIView *> *)layoutKits {
     if (!_layoutKits) {
         _layoutKits = [[NSMutableDictionary alloc] init];
     }
@@ -162,6 +170,15 @@
 
 - (instancetype)objectAtIndexedSubscript:(NSUInteger)idx {
     return self[@(idx)];
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    AUUVFLLayoutConstrants *layoutConstrants = [[[self class] allocWithZone:zone] init];
+    layoutConstrants.sponsorView = self.sponsorView;
+    layoutConstrants.pri_VFLString = [self.pri_VFLString mutableCopy];
+    layoutConstrants.layoutKits = [self.layoutKits mutableCopy];
+    return layoutConstrants;
 }
 
 @end
@@ -197,7 +214,29 @@
     return [^(){
         // 结束VFL语句，并设置到具体的视图上
         [self.sponsorView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:self.pri_VFLString options:NSLayoutFormatDirectionMask metrics:nil views:self.layoutKits]];
+        
 #ifdef DEBUG
+        BOOL hasAmbiguousLayout = NO;
+        for (UIView *view in [self.layoutKits allValues]) {
+            if (view.hasAmbiguousLayout) {
+                hasAmbiguousLayout = YES;
+                NSArray *horizontalAmbiguousLayouts = [view constraintsAffectingLayoutForAxis:UILayoutConstraintAxisHorizontal];
+                NSArray *verticalAmbiguousLayouts = [view constraintsAffectingLayoutForAxis:UILayoutConstraintAxisVertical];
+                NSLog(@"horizontalAmbiguousLayouts : %@", horizontalAmbiguousLayouts);
+                NSLog(@"verticalAmbiguousLayouts : %@", verticalAmbiguousLayouts);
+            }
+        }
+        if (hasAmbiguousLayout && [self.sponsorView respondsToSelector:@selector(recursiveDescription)]) {
+            NSLog(@"\n"
+                  "|--------------------------------------------------------------------------------------------|\n"
+                  "|--------------------------------------------------------------------------------------------|\n"
+                  "|                                                                                            |\n"
+                  "|                           %@\n"
+                  "|                                                                                            |\n"
+                  "%@\n\n\n"
+                  ,self.sponsorView, [self.sponsorView recursiveDescription]);
+        }
+        
         NSLog(@"VFL %@", self.pri_VFLString);
 #endif
         return self.pri_VFLString;
@@ -229,6 +268,7 @@
         // 当前VFL语句操作的父视图
         self.sponsorView = view.superview;
     }
+    NSAssert1(view.nextResponder, @"当前视图[%@]没有被添加到需要的父视图上，无法进行自动布局", view);
     return [super cacheView:view];
 }
 
@@ -271,9 +311,7 @@ NSString *lessThan(CGFloat length) {
                                               @"^\\([\\d\\.]+@[\\d\\.]+\\)$",            // (24@43)
                                               @"^\\(>=[\\d\\.]+\\)$",                    // (>=79)
                                               @"^\\(<=[\\d\\.]+\\)$"]]) {                // (<=24)
-#ifdef DEBUG
-            NSLog(@"当前子VFL(%@)没有设置有效的宽高属性，相关的视图:%@", key, self.sponsorView);
-#endif
+            NSAssert2(1, @"当前子VFL(%@)没有设置有效的宽高属性，相关的视图:%@", key, self.sponsorView);
         }
         self.pri_VFLString = key;
     }
@@ -340,13 +378,23 @@ const char *__kSubVFLAssociatedKey = (void *)@"com.AUU.vfl.__kSubVFLAssociatedKe
 @implementation AUUGroupVFLConstrants
 
 - (instancetype)objectForKeyedSubscript:(id)key {
-    if (self.layoutObjects) {
+    if (!self.layoutObjects || self.layoutObjects.count == 0) {
+        self.layoutObjects = [key isKindOfClass:[NSArray class]] ? key : @[key];
+    } else {
         if ([key isKindOfClass:[NSArray class]]) {
             // 如果是数组，则需要一个个的对应着去设定
             if ([key count] > 0) {
-                self.layoutObjects = [self.layoutObjects map:^id(id obj, NSUInteger index) {
-                    return [[self.layoutObjects objectAtIndex:index] objectForKeyedSubscript:(index < [key count] ? key[index] : [key lastObject])];
-                } checkClass:nil];
+                if ([key count] > self.layoutObjects.count) {
+                    // 先暂存一份最后的一个值，避免在block内拼接的时候取了上一个已被拼接的数据
+                    id lastObject = [[self.layoutObjects lastObject] copy];
+                    self.layoutObjects = [key map:^id(id obj, NSUInteger index) {
+                        return [(index < self.layoutObjects.count ? self.layoutObjects[index] : lastObject) objectForKeyedSubscript:key[index]];
+                    } checkClass:nil];
+                } else {
+                    self.layoutObjects = [self.layoutObjects map:^id(id obj, NSUInteger index) {
+                        return [[self.layoutObjects objectAtIndex:index] objectForKeyedSubscript:(index < [key count] ? key[index] : [key lastObject])];
+                    } checkClass:nil];
+                }
             }
         } else if ([key isKindOfClass:[AUUGroupVFLConstrants class]]) {
             // 如果是 AUUGroupVFLConstrants 类型，则说明是子vfl中的批量设定，需要返回设定的结果列表，然后一一匹配
