@@ -29,6 +29,9 @@
 		1C04A2CA1EACD6C500D4DB46 /* Nimbus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C04A2C81EACD6C500D4DB46 /* Nimbus.framework */; };
 		1C14003E1EACFBDE003654D1 /* VFLLayout.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1C04A2821EABBC1000D4DB46 /* VFLLayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1C1400491EAD9C32003654D1 /* AUUCase08ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1400481EAD9C32003654D1 /* AUUCase08ViewController.m */; };
+		1C6108C41ED320B900852AAA /* AUUVFLLayout+AUUAssist.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C6108C21ED320B900852AAA /* AUUVFLLayout+AUUAssist.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C6108C51ED320B900852AAA /* AUUVFLLayout+AUUAssist.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6108C31ED320B900852AAA /* AUUVFLLayout+AUUAssist.m */; };
+		1C6108C91ED3210600852AAA /* AUUEdge02ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6108C81ED3210600852AAA /* AUUEdge02ViewController.m */; };
 		1CE0595A1EADFE0400589AED /* AUUWebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE059591EADFE0400589AED /* AUUWebPageViewController.m */; };
 		1CE0595E1EADFF2C00589AED /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE0595D1EADFF2C00589AED /* WebKit.framework */; };
 		3CE926DD8B51BD84CE9DBE5F /* Pods_LayoutExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF517BF1BBF9A7C9724DEBDE /* Pods_LayoutExample.framework */; };
@@ -84,6 +87,10 @@
 		1C04A2C81EACD6C500D4DB46 /* Nimbus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimbus.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AUULayout-dkuyuezsgdeuvkgpwgibcryxtjzo/Build/Products/Debug-iphonesimulator/Nimbus/Nimbus.framework"; sourceTree = "<group>"; };
 		1C1400471EAD9C32003654D1 /* AUUCase08ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUCase08ViewController.h; sourceTree = "<group>"; };
 		1C1400481EAD9C32003654D1 /* AUUCase08ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUCase08ViewController.m; sourceTree = "<group>"; };
+		1C6108C21ED320B900852AAA /* AUUVFLLayout+AUUAssist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AUUVFLLayout+AUUAssist.h"; sourceTree = "<group>"; };
+		1C6108C31ED320B900852AAA /* AUUVFLLayout+AUUAssist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AUUVFLLayout+AUUAssist.m"; sourceTree = "<group>"; };
+		1C6108C71ED3210600852AAA /* AUUEdge02ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUEdge02ViewController.h; sourceTree = "<group>"; };
+		1C6108C81ED3210600852AAA /* AUUEdge02ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUEdge02ViewController.m; sourceTree = "<group>"; };
 		1CE059581EADFE0400589AED /* AUUWebPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUWebPageViewController.h; sourceTree = "<group>"; };
 		1CE059591EADFE0400589AED /* AUUWebPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUWebPageViewController.m; sourceTree = "<group>"; };
 		1CE0595D1EADFF2C00589AED /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -147,6 +154,8 @@
 				1C04A2851EABBC1000D4DB46 /* VFLLayout.h */,
 				1C04A28B1EABBC4900D4DB46 /* AUUVFLLayout.h */,
 				1C04A28C1EABBC4900D4DB46 /* AUUVFLLayout.m */,
+				1C6108C21ED320B900852AAA /* AUUVFLLayout+AUUAssist.h */,
+				1C6108C31ED320B900852AAA /* AUUVFLLayout+AUUAssist.m */,
 				1C04A2861EABBC1000D4DB46 /* Info.plist */,
 			);
 			path = VFLLayout;
@@ -181,6 +190,7 @@
 		1C04A2AB1EABBF8000D4DB46 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				1C6108C61ED320F400852AAA /* Edge */,
 				1C04A2AC1EABBF8000D4DB46 /* Cases */,
 				1C04A2AE1EABBFB700D4DB46 /* AUUBaseCaseViewController.h */,
 				1C04A2AF1EABBFB700D4DB46 /* AUUBaseCaseViewController.m */,
@@ -213,6 +223,15 @@
 			path = Cases;
 			sourceTree = "<group>";
 		};
+		1C6108C61ED320F400852AAA /* Edge */ = {
+			isa = PBXGroup;
+			children = (
+				1C6108C71ED3210600852AAA /* AUUEdge02ViewController.h */,
+				1C6108C81ED3210600852AAA /* AUUEdge02ViewController.m */,
+			);
+			path = Edge;
+			sourceTree = "<group>";
+		};
 		2C431B303F90269C3C7E14B2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C04A2871EABBC1000D4DB46 /* VFLLayout.h in Headers */,
+				1C6108C41ED320B900852AAA /* AUUVFLLayout+AUUAssist.h in Headers */,
 				1C04A28D1EABBC4900D4DB46 /* AUUVFLLayout.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C04A28E1EABBC4900D4DB46 /* AUUVFLLayout.m in Sources */,
+				1C6108C51ED320B900852AAA /* AUUVFLLayout+AUUAssist.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +438,7 @@
 				1C04A2B91EAC9F8900D4DB46 /* AUUCase03ViewController.m in Sources */,
 				1C04A2971EABBCA300D4DB46 /* main.m in Sources */,
 				1C04A2B61EAC9F3000D4DB46 /* AUUCase02ViewController.m in Sources */,
+				1C6108C91ED3210600852AAA /* AUUEdge02ViewController.m in Sources */,
 				1C04A2BC1EAC9FAF00D4DB46 /* AUUCase04ViewController.m in Sources */,
 				1C04A2B01EABBFB700D4DB46 /* AUUBaseCaseViewController.m in Sources */,
 			);

@@ -10,6 +10,7 @@
 
 
 #import "AUUVFLLayout.h"
+#import "AUUVFLLayout+AUUAssist.h"
 
 
 //! Project version number for VFLLayout.

@@ -47,7 +47,7 @@
                          @"资料",
                          WebInfoAction(@"Visual Format Language -- Apple",
                                        @"https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853-CH7-SW1"),
-                         WebInfoAction(@"VFL学习资料", @"http://www.auu.space/?p=103"),
+                         WebInfoAction(@"VFL学习资料", @"http://www.auu.space/2016/06/02/Visual-Formate-Language-VFL"),
                          WebInfoAction(@"一个转屏时出现的错误", @"http://blog.csdn.net/ws1836300/article/details/52957056"),
                          WebInfoAction(@"AUUVFLLayout的说明文档", @"https://github.com/JyHu/AUULayout/blob/master/Using/Using_v01.md"),
                          @"关于居中布局",
@@ -66,6 +66,8 @@
                          PushAction(@"07-设置边界相对位置关系", @"AUUCase07ViewController"),
                          PushAction(@"08-设置距离的最大最小值", @"AUUCase08ViewController"),
                          WebInfoAction(@"09-属性的批量操作", @"https://github.com/JyHu/AUULayout/blob/master/Using/Using_v01.md/#9-属性的批量操作"),
+                         @"Edge",
+                         PushAction(@"02-初始", @"AUUEdge02ViewController"),
                          ];
     
     self.tableModel = [[NITableViewModel alloc] initWithSectionedArray:objects delegate:(id)[NICellFactory class]];
