@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-@interface AUUVFLLayoutConstrants : NSObject
+@interface AUUVFLLayoutConstrants : AUUVFLLayout
 /*
  扩充的下标法
  */

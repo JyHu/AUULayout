@@ -213,19 +213,35 @@
 - (NSString *(^)())cut {
     return [^(){
         // 结束VFL语句，并设置到具体的视图上
-        [self.sponsorView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:self.pri_VFLString options:NSLayoutFormatDirectionMask metrics:nil views:self.layoutKits]];
-        
+        NSArray *currentInstalledConstrants = [NSLayoutConstraint constraintsWithVisualFormat:self.pri_VFLString options:NSLayoutFormatDirectionMask metrics:nil views:self.layoutKits];
 #ifdef DEBUG
+        
         BOOL hasAmbiguousLayout = NO;
-        for (UIView *view in [self.layoutKits allValues]) {
-            if (view.hasAmbiguousLayout) {
-                hasAmbiguousLayout = YES;
-                NSArray *horizontalAmbiguousLayouts = [view constraintsAffectingLayoutForAxis:UILayoutConstraintAxisHorizontal];
-                NSArray *verticalAmbiguousLayouts = [view constraintsAffectingLayoutForAxis:UILayoutConstraintAxisVertical];
-                NSLog(@"horizontalAmbiguousLayouts : %@", horizontalAmbiguousLayouts);
-                NSLog(@"verticalAmbiguousLayouts : %@", verticalAmbiguousLayouts);
+
+        for (UIView *view in self.layoutKits.allValues) {
+            /*
+             还有逻辑问题
+             */
+            for (NSLayoutConstraint *oldLayoutConstrant in view.superview.constraints) {
+                for (NSLayoutConstraint *newLayoutConstrant in currentInstalledConstrants) {
+                    if ([oldLayoutConstrant.firstItem isEqual:newLayoutConstrant.firstItem] &&
+                        oldLayoutConstrant.firstAttribute == newLayoutConstrant.firstAttribute &&
+                        oldLayoutConstrant.active) {
+                        NSLog(@"\nOLD : %@\nNEW : %@", oldLayoutConstrant, newLayoutConstrant);
+                        hasAmbiguousLayout = YES;
+                        oldLayoutConstrant.active = NO;
+                    }
+                    if (oldLayoutConstrant.secondItem && newLayoutConstrant.secondItem && oldLayoutConstrant.active &&
+                        oldLayoutConstrant.secondAttribute == newLayoutConstrant.secondAttribute &&
+                        [oldLayoutConstrant.secondItem isEqual:newLayoutConstrant.secondItem]) {
+                        NSLog(@"\nOLD : %@\nNEW : %@", oldLayoutConstrant, newLayoutConstrant);
+                        hasAmbiguousLayout = YES;
+                        oldLayoutConstrant.active = NO;
+                    }
+                }
             }
         }
+        
         if (hasAmbiguousLayout && [self.sponsorView respondsToSelector:@selector(recursiveDescription)]) {
             NSLog(@"\n"
                   "|--------------------------------------------------------------------------------------------|\n"
@@ -239,6 +255,8 @@
         
         NSLog(@"VFL %@", self.pri_VFLString);
 #endif
+        
+        [self.sponsorView addConstraints:currentInstalledConstrants];
         return self.pri_VFLString;
     } copy];
 }

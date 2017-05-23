@@ -16,18 +16,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self ambiguousLayouts];
     
-//    UIView *v1 = [UIView generateView];
-//    UIView *v2 = [UIView generateView];
-//    
-//    [self.view addSubview:v1];
-//    [self.view addSubview:v2];
-//    
-//    @[H,V].VFL[64][v1[100]].cut();
-//    
-//    v2.auu_layout.leftEqual(v1).topEqual(v1.auu_bottom).rightEqual(v1).heightEqual(v1);
+//    [self ambiguousLayouts];
+    
+    UIView *v1 = [UIView generateView];
+    UIView *v2 = [UIView generateView];
+    
+    [self.view addSubview:v1];
+    [self.view addSubview:v2];
+    
+    v1.auu_layout.leftEqual(self.view.auu_left.offset(10)).topEqual(self.view.auu_top.offset(74)).sizeEqual(CGSizeMake(100, 100));
+    v2.auu_layout.leftEqual(v1).topEqual(v1.auu_bottom).rightEqual(v1).heightEqual(v1);
+    
+//    self.view.repetitionLayoutConstrantsReporter = ^BOOL(UIView *correlationView, NSLayoutConstraint *repetitionLayoutConstrant) {
+//        NSLog(@"%@", correlationView);
+//        return NO;
+//    };
+
+    [UIView setNeedAutoCoverRepetitionLayoutConstrants:NO];
+    
+    v1.auu_layout.width.equal(@50);
 }
 
 - (void)ambiguousLayouts

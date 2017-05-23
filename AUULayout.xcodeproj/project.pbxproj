@@ -32,6 +32,8 @@
 		1C6108C41ED320B900852AAA /* AUUVFLLayout+AUUAssist.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C6108C21ED320B900852AAA /* AUUVFLLayout+AUUAssist.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C6108C51ED320B900852AAA /* AUUVFLLayout+AUUAssist.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6108C31ED320B900852AAA /* AUUVFLLayout+AUUAssist.m */; };
 		1C6108C91ED3210600852AAA /* AUUEdge02ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6108C81ED3210600852AAA /* AUUEdge02ViewController.m */; };
+		1C6108D01ED3D4C400852AAA /* _AUUGlobalDataStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C6108CE1ED3D4C400852AAA /* _AUUGlobalDataStorage.h */; };
+		1C6108D11ED3D4C400852AAA /* _AUUGlobalDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6108CF1ED3D4C400852AAA /* _AUUGlobalDataStorage.m */; };
 		1CE0595A1EADFE0400589AED /* AUUWebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE059591EADFE0400589AED /* AUUWebPageViewController.m */; };
 		1CE0595E1EADFF2C00589AED /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE0595D1EADFF2C00589AED /* WebKit.framework */; };
 		3CE926DD8B51BD84CE9DBE5F /* Pods_LayoutExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF517BF1BBF9A7C9724DEBDE /* Pods_LayoutExample.framework */; };
@@ -91,6 +93,8 @@
 		1C6108C31ED320B900852AAA /* AUUVFLLayout+AUUAssist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AUUVFLLayout+AUUAssist.m"; sourceTree = "<group>"; };
 		1C6108C71ED3210600852AAA /* AUUEdge02ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUEdge02ViewController.h; sourceTree = "<group>"; };
 		1C6108C81ED3210600852AAA /* AUUEdge02ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUEdge02ViewController.m; sourceTree = "<group>"; };
+		1C6108CE1ED3D4C400852AAA /* _AUUGlobalDataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AUUGlobalDataStorage.h; sourceTree = "<group>"; };
+		1C6108CF1ED3D4C400852AAA /* _AUUGlobalDataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AUUGlobalDataStorage.m; sourceTree = "<group>"; };
 		1CE059581EADFE0400589AED /* AUUWebPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUWebPageViewController.h; sourceTree = "<group>"; };
 		1CE059591EADFE0400589AED /* AUUWebPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUWebPageViewController.m; sourceTree = "<group>"; };
 		1CE0595D1EADFF2C00589AED /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -156,6 +160,8 @@
 				1C04A28C1EABBC4900D4DB46 /* AUUVFLLayout.m */,
 				1C6108C21ED320B900852AAA /* AUUVFLLayout+AUUAssist.h */,
 				1C6108C31ED320B900852AAA /* AUUVFLLayout+AUUAssist.m */,
+				1C6108CE1ED3D4C400852AAA /* _AUUGlobalDataStorage.h */,
+				1C6108CF1ED3D4C400852AAA /* _AUUGlobalDataStorage.m */,
 				1C04A2861EABBC1000D4DB46 /* Info.plist */,
 			);
 			path = VFLLayout;
@@ -262,6 +268,7 @@
 				1C04A2871EABBC1000D4DB46 /* VFLLayout.h in Headers */,
 				1C6108C41ED320B900852AAA /* AUUVFLLayout+AUUAssist.h in Headers */,
 				1C04A28D1EABBC4900D4DB46 /* AUUVFLLayout.h in Headers */,
+				1C6108D01ED3D4C400852AAA /* _AUUGlobalDataStorage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +425,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C6108D11ED3D4C400852AAA /* _AUUGlobalDataStorage.m in Sources */,
 				1C04A28E1EABBC4900D4DB46 /* AUUVFLLayout.m in Sources */,
 				1C6108C51ED320B900852AAA /* AUUVFLLayout+AUUAssist.m in Sources */,
 			);

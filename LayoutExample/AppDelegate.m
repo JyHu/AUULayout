@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +18,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [UIView setErrorLayoutConstrantsReporter:^(NSLayoutConstraint *oldLayoutConstrant, NSLayoutConstraint *newLayoutConstrant, NSLayoutAttribute layoutAttribute) {
+        ((UIView *)oldLayoutConstrant.firstItem).backgroundColor = [UIColor redColor];
+        ((UIView *)oldLayoutConstrant.secondItem).backgroundColor = [UIColor redColor];
+        ((UIView *)newLayoutConstrant.firstItem).backgroundColor = [UIColor greenColor];
+        ((UIView *)newLayoutConstrant.firstItem).backgroundColor = [UIColor greenColor];
+    }];
+    
+    
     return YES;
 }
 
