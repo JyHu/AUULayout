@@ -58,10 +58,7 @@
 #elif 1
         // 方法4，对横竖分别合并
         HA[10][@[view1,view4].VFL[100]][greaterThan(100)][@[view2,view3].VFL[100]][10].end();
-        //        @[V,V].VFL[74][@[view1,view2][100]][greaterThan(100)][@[view4,view3][100]][10].end();
-        
         VA[74][@[view1,view2].VFL[100]][greaterThan(100)][@[view4,view3].VFL[100]][10].end();
-        
 #else
         
         // 方法5，使用数组按顺序对应的方式排列

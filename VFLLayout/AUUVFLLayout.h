@@ -97,15 +97,15 @@ NSString *lessThan(CGFloat length);                         // 视图间距、�
 
 /*
  如果外部文件有内容跟这里的方法有冲突的话，可以在引用当前文件之前一行代码的地方加入一下宏定义即可
- #define kUseVFLSubscriptLayout 0
+ #define kUIViewUseVFLSubscriptLayout 0
  然后就会禁止掉当前VFL布局方法里的下标法。
  此时可以使用 .VFL 空间名去做VFL布局
  */
 
-#ifndef kUseVFLSubscriptLayout
-#define kUseVFLSubscriptLayout 1
+#ifndef kUIViewUseVFLSubscriptLayout
+#define kUIViewUseVFLSubscriptLayout 1
 #endif
-#if kUseVFLSubscriptLayout
+#if kUIViewUseVFLSubscriptLayout
 /*
  对UIView扩充的下标法
  */

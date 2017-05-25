@@ -1,24 +1,35 @@
 //
-//  AUUVFLLayout+AUUAssist.m
+//  AUUEdgeLayout.m
 //  AUULayout
 //
-//  Created by JyHu on 2017/5/21.
+//  Created by JyHu on 2017/5/25.
 //
 //
 
-#import "AUUVFLLayout+AUUAssist.h"
-#import "_AUUGlobalDataStorage.h"
+#import "AUUEdgeLayout.h"
 #import <objc/runtime.h>
+#import "_AUULayoutAssistant.h"
+#import "AUULayoutAssistant.h"
 
-@implementation AUUEdgeLayout
 
-@end
-
-@interface AUUPassivelyParam ()
+@interface AUUEdgeLayout ()
 
 @property (weak, nonatomic) UIView *pri_bindingView;
 
 @property (assign, nonatomic) NSLayoutAttribute pri_layoutAttribute;
+
+@end
+
+@implementation AUUEdgeLayout
+
+- (UIView *)bindingView
+{
+    return self.pri_bindingView;
+}
+
+@end
+
+@interface AUUPassivelyParam ()
 
 @property (assign, nonatomic) CGFloat pri_multiple;
 
@@ -63,15 +74,6 @@
 
 @end
 
-@interface AUUSponsorParam ()
-
-@property (weak, nonatomic) UIView *pri_bindingView;
-
-@property (assign, nonatomic) NSLayoutAttribute pri_latestLayoutAttribute;
-
-
-@end
-
 @implementation AUUSponsorParam
 
 + (instancetype)edgeLayoutWithBindingView:(UIView *)view
@@ -81,52 +83,70 @@
     return edgeLayout;
 }
 
-- (AUUEdgeLayout *)top
+- (AUUSponsorParam *)cacheSponsorAttribute:(NSLayoutAttribute)attribute
 {
-    self.pri_latestLayoutAttribute = NSLayoutAttributeTop;
+    self.pri_layoutAttribute = attribute;
     return self;
 }
 
-- (AUUEdgeLayout *)left
+- (AUUSponsorParam *)top
 {
-    self.pri_latestLayoutAttribute = NSLayoutAttributeLeft;
-    return self;
+    return [self cacheSponsorAttribute:NSLayoutAttributeTop];
 }
 
-- (AUUEdgeLayout *)bottom
+- (AUUSponsorParam *)left
 {
-    self.pri_latestLayoutAttribute = NSLayoutAttributeBottom;
-    return self;
+    return [self cacheSponsorAttribute:NSLayoutAttributeLeft];
 }
 
-- (AUUEdgeLayout *)right
+- (AUUSponsorParam *)bottom
 {
-    self.pri_latestLayoutAttribute = NSLayoutAttributeRight;
-    return self;
+    return [self cacheSponsorAttribute:NSLayoutAttributeBottom];
 }
 
-- (AUUEdgeLayout *)centerX
+- (AUUSponsorParam *)right
 {
-    self.pri_latestLayoutAttribute = NSLayoutAttributeCenterX;
-    return self;
+    return [self cacheSponsorAttribute:NSLayoutAttributeRight];
 }
 
-- (AUUEdgeLayout *)centerY
+- (AUUSponsorParam *)centerX
 {
-    self.pri_latestLayoutAttribute = NSLayoutAttributeCenterY;
-    return self;
+    return [self cacheSponsorAttribute:NSLayoutAttributeCenterX];
 }
 
-- (AUUEdgeLayout *)width
+- (AUUSponsorParam *)centerY
 {
-    self.pri_latestLayoutAttribute = NSLayoutAttributeWidth;
-    return self;
+    return [self cacheSponsorAttribute:NSLayoutAttributeCenterY];
 }
 
-- (AUUEdgeLayout *)height
+- (AUUSponsorParam *)leading
 {
-    self.pri_latestLayoutAttribute = NSLayoutAttributeHeight;
-    return self;
+    return [self cacheSponsorAttribute:NSLayoutAttributeLeading];
+}
+
+- (AUUSponsorParam *)trailing
+{
+    return [self cacheSponsorAttribute:NSLayoutAttributeTrailing];
+}
+
+- (AUUSponsorParam *)width
+{
+    return [self cacheSponsorAttribute:NSLayoutAttributeWidth];
+}
+
+- (AUUSponsorParam *)height
+{
+    return [self cacheSponsorAttribute:NSLayoutAttributeHeight];
+}
+
+- (AUUSponsorParam *)lastBaseLine
+{
+    return [self cacheSponsorAttribute:NSLayoutAttributeLastBaseline];
+}
+
+- (AUUSponsorParam *)firstBaseLine
+{
+    return [self cacheSponsorAttribute:NSLayoutAttributeFirstBaseline];
 }
 
 - (AUUSponsorParam *(^)(id))equal
@@ -152,20 +172,22 @@
 
 - (AUUEdgeLayout *)layoutConstrantWithRelation:(NSLayoutRelation)relation releatedItem:(id)item
 {
+    NSAssert1(self.pri_bindingView.superview, @"当前视图[%@]还没有添加到父视图上，请在添加约束前添加到你需要的父视图上", self.pri_bindingView);
+    
     self.pri_bindingView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    NSLayoutConstraint *layoutConstrant;
+    NSLayoutConstraint *layoutConstrant = nil;
     
     if ([item isKindOfClass:[UIView class]]) {
-        layoutConstrant = [NSLayoutConstraint constraintWithItem:self.pri_bindingView attribute:self.pri_latestLayoutAttribute
-                                                       relatedBy:relation toItem:item attribute:self.pri_latestLayoutAttribute multiplier:1 constant:0];
+        layoutConstrant = [NSLayoutConstraint constraintWithItem:self.pri_bindingView attribute:self.pri_layoutAttribute
+                                                       relatedBy:relation toItem:item attribute:self.pri_layoutAttribute multiplier:1 constant:0];
     } else if ([item isKindOfClass:[NSNumber class]]) {
-        layoutConstrant = [NSLayoutConstraint constraintWithItem:self.pri_bindingView attribute:self.pri_latestLayoutAttribute
+        layoutConstrant = [NSLayoutConstraint constraintWithItem:self.pri_bindingView attribute:self.pri_layoutAttribute
                                                        relatedBy:relation toItem:nil attribute:NSLayoutAttributeNotAnAttribute
                                                       multiplier:1 constant:[item doubleValue]];
     } else if ([item isKindOfClass:[AUUPassivelyParam class]]) {
         AUUPassivelyParam *param = (AUUPassivelyParam *)item;
-        layoutConstrant = [NSLayoutConstraint constraintWithItem:self.pri_bindingView attribute:self.pri_latestLayoutAttribute
+        layoutConstrant = [NSLayoutConstraint constraintWithItem:self.pri_bindingView attribute:self.pri_layoutAttribute
                                                        relatedBy:relation toItem:param.pri_bindingView attribute:param.pri_layoutAttribute
                                                       multiplier:param.pri_multiple constant:param.pri_offset];
     } else {
@@ -173,38 +195,20 @@
     }
     
     if (layoutConstrant) {
-        /*
-         暂时的设计
-         
-         这样的判断还是有逻辑问题
-         */
         for (NSLayoutConstraint *oldLayoutConstrant in self.pri_bindingView.superview.constraints) {
-            if ([oldLayoutConstrant.firstItem isEqual:self.pri_bindingView] &&
-                oldLayoutConstrant.firstAttribute == layoutConstrant.firstAttribute &&
-                oldLayoutConstrant.active) {
+            // 如果两个约束类似的话，就报错
+            if ([oldLayoutConstrant similarTo:layoutConstrant] && oldLayoutConstrant.active) {
+                
+                [self.pri_bindingView hierarchyLog];
                 
                 if (self.pri_bindingView.superview.repetitionLayoutConstrantsReporter) {
                     oldLayoutConstrant.active = self.pri_bindingView.superview.repetitionLayoutConstrantsReporter(self.pri_bindingView, oldLayoutConstrant);
-                } else if ([_AUUGlobalDataStorage sharedStorage].needAutoCoverRepetitionLayoutConstrants) {
+                } else if ([AUUGlobalDataStorage sharedStorage].needAutoCoverRepetitionLayoutConstrants) {
                     oldLayoutConstrant.active = NO;
                 }
                 
-                if ([_AUUGlobalDataStorage sharedStorage].errorLayoutConstrantsReporter) {
-                    [_AUUGlobalDataStorage sharedStorage].errorLayoutConstrantsReporter(oldLayoutConstrant, layoutConstrant, layoutConstrant.firstAttribute);
-                }
-            }
-            if (layoutConstrant.secondItem && oldLayoutConstrant.active &&
-                [oldLayoutConstrant.secondItem isEqual:layoutConstrant.secondItem] &&
-                oldLayoutConstrant.secondAttribute == layoutConstrant.secondAttribute) {
-                
-                if (self.pri_bindingView.superview.repetitionLayoutConstrantsReporter) {
-                    oldLayoutConstrant.active = self.pri_bindingView.superview.repetitionLayoutConstrantsReporter(self.pri_bindingView, oldLayoutConstrant);
-                } else if ([_AUUGlobalDataStorage sharedStorage].needAutoCoverRepetitionLayoutConstrants) {
-                    oldLayoutConstrant.active = NO;
-                }
-                
-                if ([_AUUGlobalDataStorage sharedStorage].errorLayoutConstrantsReporter) {
-                    [_AUUGlobalDataStorage sharedStorage].errorLayoutConstrantsReporter(oldLayoutConstrant, layoutConstrant, layoutConstrant.secondAttribute);
+                if ([AUUGlobalDataStorage sharedStorage].errorLayoutConstrantsReporter) {
+                    [AUUGlobalDataStorage sharedStorage].errorLayoutConstrantsReporter(oldLayoutConstrant, layoutConstrant);
                 }
             }
         }
@@ -213,11 +217,6 @@
     }
     
     return self;
-}
-
-- (UIView *)bindingView
-{
-    return self.pri_bindingView;
 }
 
 @end
@@ -249,6 +248,20 @@
 {
     return [^(id element){
         return self.right.equal(element);
+    } copy];
+}
+
+- (AUUSponsorParam *(^)(id))leadingEqual
+{
+    return [^(id element){
+        return self.leading.equal(element);
+    } copy];
+}
+
+- (AUUSponsorParam *(^)(id))trailingEqual
+{
+    return [^(id element){
+        return self.trailing.equal(element);
     } copy];
 }
 
@@ -297,23 +310,30 @@
 - (AUUSponsorParam *(^)(UIEdgeInsets))edgeEqual
 {
     return [^(UIEdgeInsets insets) {
-        return self.topEqual(@(insets.top)).leftEqual(@(insets.left)).bottomEqual(@(insets.bottom)).rightEqual(@(insets.right));
+        return  self.topEqual(@(insets.top))
+                    .leftEqual(@(insets.left))
+                    .bottomEqual(@(insets.bottom))
+                    .rightEqual(@(insets.right));
+    } copy];
+}
+
+- (AUUSponsorParam *(^)(id))lastBaseLineEqual
+{
+    return [^(id element){
+        return self.lastBaseLine.equal(element);
+    } copy];
+}
+
+- (AUUSponsorParam *(^)(id))firstBaseLineEqual
+{
+    return [^(id element){
+        return self.firstBaseLine.equal(element);
     } copy];
 }
 
 @end
 
 @implementation UIView (AUUAssist)
-
-+ (void)setNeedAutoCoverRepetitionLayoutConstrants:(BOOL)autoCover
-{
-    [_AUUGlobalDataStorage sharedStorage].needAutoCoverRepetitionLayoutConstrants = autoCover;
-}
-
-+ (void)setErrorLayoutConstrantsReporter:(void (^)(NSLayoutConstraint *, NSLayoutConstraint *, NSLayoutAttribute))reporter
-{
-    [_AUUGlobalDataStorage sharedStorage].errorLayoutConstrantsReporter = reporter;
-}
 
 - (AUUSponsorParam *)auu_layout
 {
@@ -350,6 +370,16 @@
     return [AUUPassivelyParam paramWithView:self layoutAttribute:NSLayoutAttributeCenterY];
 }
 
+- (AUUPassivelyParam *)auu_leading
+{
+    return [AUUPassivelyParam paramWithView:self layoutAttribute:NSLayoutAttributeLeading];
+}
+
+- (AUUPassivelyParam *)auu_trailing
+{
+    return [AUUPassivelyParam paramWithView:self layoutAttribute:NSLayoutAttributeTrailing];
+}
+
 - (AUUPassivelyParam *)auu_width
 {
     return [AUUPassivelyParam paramWithView:self layoutAttribute:NSLayoutAttributeWidth];
@@ -360,38 +390,14 @@
     return [AUUPassivelyParam paramWithView:self layoutAttribute:NSLayoutAttributeHeight];
 }
 
-const char *__repetitionLayoutConstrantsReporterAssociatedKey = (void *)@"com.auu.__repetitionLayoutConstrantsReporterAssociatedKey";
-
-- (void)setRepetitionLayoutConstrantsReporter:(BOOL (^)(UIView *, NSLayoutConstraint *))repetitionLayoutConstrantsReporter
+- (AUUPassivelyParam *)auu_lastBaseLine
 {
-    objc_setAssociatedObject(self, __repetitionLayoutConstrantsReporterAssociatedKey, repetitionLayoutConstrantsReporter, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    return [AUUPassivelyParam paramWithView:self layoutAttribute:NSLayoutAttributeLastBaseline];
 }
 
-- (BOOL (^)(UIView *, NSLayoutConstraint *))repetitionLayoutConstrantsReporter
+- (AUUPassivelyParam *)auu_firstBaseLine
 {
-    return objc_getAssociatedObject(self, __repetitionLayoutConstrantsReporterAssociatedKey);
-}
-
-- (void)removeAllConstrants
-{
-    for (NSLayoutConstraint *layoutConstrant in self.constraints) {
-        layoutConstrant.active = NO;
-    }
-    
-    [self removeConstraints:self.constraints];
-}
-
-- (UIView *)rootResponderView
-{
-    UIResponder *rootResponder = self;
-    while (rootResponder.nextResponder) {
-        rootResponder = rootResponder.nextResponder;
-        if ([rootResponder isKindOfClass:[UIViewController class]]) {
-            break;
-        }
-    }
-    
-    return rootResponder ? ([rootResponder isKindOfClass:[UIViewController class]] ? [(UIViewController *)rootResponder view] : (UIView *)rootResponder) : nil;
+    return [AUUPassivelyParam paramWithView:self layoutAttribute:NSLayoutAttributeFirstBaseline];
 }
 
 @end

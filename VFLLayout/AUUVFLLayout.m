@@ -8,102 +8,8 @@
 
 #import "AUUVFLLayout.h"
 #import <objc/runtime.h>
-
-// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-#pragma mark - 辅助方法
-#pragma mark -
-// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-@implementation NSString (__AUUPrivate)
-
-/**
- 判断是否满足这个正则表达式
- 
- @param pattern 正则表达式
- @return 是否满足条件
- */
-- (BOOL)isLegalStringWithPattern:(NSString *)pattern {
-    return [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern] evaluateWithObject:self];
-}
-
-/**
- 判断是否满足其中的某个正则表达式
- 
- @param patterns 正则表达式列表
- @return 是否满足条件
- */
-- (BOOL)isLegalStringWithPatterns:(NSArray *)patterns {
-    for (NSString *pattern in patterns) {
-        if ([self isLegalStringWithPattern:pattern]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
-/**
- 判断是否满足所有这些正则表达式
- 
- @param patterns 正则表达式列表
- @return 是否满足条件
- */
-- (BOOL)isLegalStringAllMatchPatterns:(NSArray *)patterns {
-    for (NSString *pattern in patterns) {
-        if (![self isLegalStringWithPattern:pattern]) {
-            return NO;
-        }
-    }
-    return YES;
-}
-/**
- 使用正则匹配来查找字符串中有多少个匹配的内容
- 
- @param pattern 用来匹配的正则表达式
- @return 匹配到的个数
- */
-- (NSUInteger)numberOfMatchesWithPattern:(NSString *)pattern {
-    NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
-    return [reg matchesInString:self options:NSMatchingReportCompletion range:NSMakeRange(0, self.length)].count;
-}
-@end
-
-@interface NSArray (__AUUPrivate)
-@end
-@implementation NSArray (__AUUPrivate)
-
-/**
- 操作数组中的所有元素，并重新返回一个数组
- 
- @param map 数据转换的block
- @param cls 要判断的数据类型，如果为nil，则所有的数据类型都可进行操作
- @return 转换后的数组
- */
-- (NSArray *)map:(id (^)(id obj, NSUInteger index))map checkClass:(Class)cls
-{
-    NSMutableArray *results = [[NSMutableArray alloc] init];
-    if (self && self.count > 0) {
-        for (NSUInteger i = 0; i < self.count; i ++) {
-            id cur = self[i];
-            if (!cls || (cls && [cur isKindOfClass:cls])) {
-                id temp = map(cur, i);
-                if (temp) {
-                    [results addObject:temp];
-                }
-            }
-        }
-    }
-    return results;
-}
-@end
-
-@interface UIView (__AUUPrivate)
-
-#ifdef DEBUG
-- (id)recursiveDescription;
-#endif
-
-@end
+#import "AUULayoutAssistant.h"
+#import "_AUULayoutAssistant.h"
 
 @implementation AUUVFLLayout
 @end
@@ -118,7 +24,7 @@
 /**
  VFL语句中相关的视图，在主VFL中表示的是容器视图，在子VFL中表示的是当前要设置宽高属性的视图
  */
-@property (weak, nonatomic) UIView *sponsorView;
+@property (weak, nonatomic) UIView *pri_sponsorView;
 
 /**
  VFL语句，在主VFL中表示的是当前的完整的VFL语句，在子VFL中表示的是当前要设置的视图的宽高属性
@@ -175,7 +81,7 @@
 - (id)copyWithZone:(NSZone *)zone
 {
     AUUVFLLayoutConstrants *layoutConstrants = [[[self class] allocWithZone:zone] init];
-    layoutConstrants.sponsorView = self.sponsorView;
+    layoutConstrants.pri_sponsorView = self.pri_sponsorView;
     layoutConstrants.pri_VFLString = [self.pri_VFLString mutableCopy];
     layoutConstrants.layoutKits = [self.layoutKits mutableCopy];
     return layoutConstrants;
@@ -215,48 +121,36 @@
         // 结束VFL语句，并设置到具体的视图上
         NSArray *currentInstalledConstrants = [NSLayoutConstraint constraintsWithVisualFormat:self.pri_VFLString options:NSLayoutFormatDirectionMask metrics:nil views:self.layoutKits];
 #ifdef DEBUG
-        
         BOOL hasAmbiguousLayout = NO;
 
         for (UIView *view in self.layoutKits.allValues) {
-            /*
-             还有逻辑问题
-             */
             for (NSLayoutConstraint *oldLayoutConstrant in view.superview.constraints) {
                 for (NSLayoutConstraint *newLayoutConstrant in currentInstalledConstrants) {
-                    if ([oldLayoutConstrant.firstItem isEqual:newLayoutConstrant.firstItem] &&
-                        oldLayoutConstrant.firstAttribute == newLayoutConstrant.firstAttribute &&
-                        oldLayoutConstrant.active) {
-                        NSLog(@"\nOLD : %@\nNEW : %@", oldLayoutConstrant, newLayoutConstrant);
+                    if ([newLayoutConstrant similarTo:oldLayoutConstrant] && oldLayoutConstrant.active) {
                         hasAmbiguousLayout = YES;
-                        oldLayoutConstrant.active = NO;
-                    }
-                    if (oldLayoutConstrant.secondItem && newLayoutConstrant.secondItem && oldLayoutConstrant.active &&
-                        oldLayoutConstrant.secondAttribute == newLayoutConstrant.secondAttribute &&
-                        [oldLayoutConstrant.secondItem isEqual:newLayoutConstrant.secondItem]) {
-                        NSLog(@"\nOLD : %@\nNEW : %@", oldLayoutConstrant, newLayoutConstrant);
-                        hasAmbiguousLayout = YES;
-                        oldLayoutConstrant.active = NO;
+                        
+                        if (view.superview.repetitionLayoutConstrantsReporter) {
+                            oldLayoutConstrant.active = view.superview.repetitionLayoutConstrantsReporter(view, oldLayoutConstrant);
+                        } else if ([AUUGlobalDataStorage sharedStorage].needAutoCoverRepetitionLayoutConstrants) {
+                            oldLayoutConstrant.active = NO;
+                        }
+                        
+                        if ([AUUGlobalDataStorage sharedStorage].errorLayoutConstrantsReporter) {
+                            [AUUGlobalDataStorage sharedStorage].errorLayoutConstrantsReporter(oldLayoutConstrant, newLayoutConstrant);
+                        }
                     }
                 }
             }
         }
         
-        if (hasAmbiguousLayout && [self.sponsorView respondsToSelector:@selector(recursiveDescription)]) {
-            NSLog(@"\n"
-                  "|--------------------------------------------------------------------------------------------|\n"
-                  "|--------------------------------------------------------------------------------------------|\n"
-                  "|                                                                                            |\n"
-                  "|                           %@\n"
-                  "|                                                                                            |\n"
-                  "%@\n\n\n"
-                  ,self.sponsorView, [self.sponsorView recursiveDescription]);
+        if (hasAmbiguousLayout) {
+            [self.pri_sponsorView hierarchyLog];
         }
         
         NSLog(@"VFL %@", self.pri_VFLString);
 #endif
         
-        [self.sponsorView addConstraints:currentInstalledConstrants];
+        [self.pri_sponsorView addConstraints:currentInstalledConstrants];
         return self.pri_VFLString;
     } copy];
 }
@@ -275,7 +169,7 @@
                 // 设置相邻视图，和相邻视图其宽高属性的子VFL语句
                 AUUSubVFLConstraints *subConstrants = (AUUSubVFLConstraints *)key;
                 [self.layoutKits addEntriesFromDictionary:subConstrants.layoutKits];
-                [self.pri_VFLString appendFormat:@"[%@%@]", [self cacheView:subConstrants.sponsorView], subConstrants.pri_VFLString];
+                [self.pri_VFLString appendFormat:@"[%@%@]", [self cacheView:subConstrants.pri_sponsorView], subConstrants.pri_VFLString];
             }
         }
     return self;
@@ -284,7 +178,7 @@
 - (NSString *)cacheView:(UIView *)view {
     if (view.superview && [view.superview isKindOfClass:[UIView class]]) {
         // 当前VFL语句操作的父视图
-        self.sponsorView = view.superview;
+        self.pri_sponsorView = view.superview;
     }
     NSAssert1(view.nextResponder, @"当前视图[%@]没有被添加到需要的父视图上，无法进行自动布局", view);
     return [super cacheView:view];
@@ -329,7 +223,7 @@ NSString *lessThan(CGFloat length) {
                                               @"^\\([\\d\\.]+@[\\d\\.]+\\)$",            // (24@43)
                                               @"^\\(>=[\\d\\.]+\\)$",                    // (>=79)
                                               @"^\\(<=[\\d\\.]+\\)$"]]) {                // (<=24)
-            NSAssert2(1, @"当前子VFL(%@)没有设置有效的宽高属性，相关的视图:%@", key, self.sponsorView);
+            NSAssert2(1, @"当前子VFL(%@)没有设置有效的宽高属性，相关的视图:%@", key, self.pri_sponsorView);
         }
         self.pri_VFLString = key;
     }
@@ -348,11 +242,11 @@ const char *__kSubVFLAssociatedKey = (void *)@"com.AUU.vfl.__kSubVFLAssociatedKe
         VFLConstrants = [[AUUSubVFLConstraints alloc] init];
         objc_setAssociatedObject(self, __kSubVFLAssociatedKey, VFLConstrants, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    VFLConstrants.sponsorView = self;
+    VFLConstrants.pri_sponsorView = self;
     return VFLConstrants;
 }
 
-#if kUseVFLSubscriptLayout
+#if kUIViewUseVFLSubscriptLayout
 // 将`UIView`的下标法做的操作转到其命名空间下实现
 - (id)objectForKeyedSubscript:(id)key {
     return self.VFL[key];

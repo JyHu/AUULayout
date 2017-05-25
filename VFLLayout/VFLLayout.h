@@ -10,8 +10,8 @@
 
 
 #import "AUUVFLLayout.h"
-#import "AUUVFLLayout+AUUAssist.h"
-#import "AUUDebugerTools.h"
+#import "AUUEdgeLayout.h"
+#import "AUULayoutAssistant.h"
 
 //! Project version number for VFLLayout.
 FOUNDATION_EXPORT double VFLLayoutVersionNumber;
