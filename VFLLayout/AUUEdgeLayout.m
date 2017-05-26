@@ -144,10 +144,12 @@
     return [self cacheSponsorAttribute:NSLayoutAttributeLastBaseline];
 }
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
 - (AUUSponsorParam *)firstBaseLine
 {
     return [self cacheSponsorAttribute:NSLayoutAttributeFirstBaseline];
 }
+#endif
 
 - (AUUSponsorParam *(^)(id))equal
 {
@@ -293,17 +295,32 @@
     } copy];
 }
 
-- (AUUSponsorParam *(^)(CGSize))sizeEqual
+- (AUUSponsorParam *(^)(id))sizeEqual
 {
-    return [^(CGSize size){
-        return self.widthEqual(@(size.width)).heightEqual(@(size.height));
+    return [^(id element){
+        if ([element isKindOfClass:[UIView class]]) {
+            return self.widthEqual(element).heightEqual(element);
+        } else if ([element isKindOfClass:[NSValue class]]) {
+            CGSize size = [element CGSizeValue];
+            return self.widthEqual(@(size.width)).heightEqual(@(size.height));
+        }
+        NSAssert(1, @"传递了一个错误的参数");
+        return [AUUSponsorParam new];
     }copy];
 }
 
-- (AUUSponsorParam *(^)(UIView *))centerEqual
+- (AUUSponsorParam *(^)(id))centerEqual
 {
-    return [^(UIView *view) {
-        return self.centerEqual(view).centerYEqual(view);
+    return [^(id element) {
+        if ([element isKindOfClass:[UIView class]]) {
+            return self.centerEqual(element).centerYEqual(element);
+        } else if ([element isKindOfClass:[NSValue class]]) {
+            CGPoint center = [element CGPointValue];
+            return self.centerXEqual(@(center.x)).centerYEqual(@(center.y));
+        }
+        
+        NSAssert(1, @"传递了一个错误的参数");
+        return [AUUSponsorParam new];
     } copy];
 }
 
@@ -324,16 +341,18 @@
     } copy];
 }
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
 - (AUUSponsorParam *(^)(id))firstBaseLineEqual
 {
     return [^(id element){
         return self.firstBaseLine.equal(element);
     } copy];
 }
+#endif
 
 @end
 
-@implementation UIView (AUUAssist)
+@implementation UIView (AUUEdgeLayout)
 
 - (AUUSponsorParam *)auu_layout
 {
@@ -395,11 +414,128 @@
     return [AUUPassivelyParam paramWithView:self layoutAttribute:NSLayoutAttributeLastBaseline];
 }
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
 - (AUUPassivelyParam *)auu_firstBaseLine
 {
     return [AUUPassivelyParam paramWithView:self layoutAttribute:NSLayoutAttributeFirstBaseline];
 }
+#endif
 
 @end
 
+#if kUIViewUsePihyLayoutEqual
 
+@implementation UIView (AUUPihyAssistant)
+
+- (AUUSponsorParam *(^)(id))topEqual
+{
+    return [^(id element) {
+        return self.auu_layout.topEqual(element);
+    } copy];
+}
+
+- (AUUSponsorParam *(^)(id))leftEqual
+{
+    return [^(id element) {
+        return self.auu_layout.leftEqual(element);
+    } copy];
+}
+
+- (AUUSponsorParam *(^)(id))bottomEqual
+{
+    return [^(id element) {
+        return self.auu_layout.bottomEqual(element);
+    } copy];
+}
+
+- (AUUSponsorParam *(^)(id))rightEqual
+{
+    return [^(id element) {
+        return self.auu_layout.rightEqual(element);
+    } copy];
+}
+
+- (AUUSponsorParam *(^)(id))centerXEqual
+{
+    return [^(id element) {
+        return self.auu_layout.centerXEqual(element);
+    } copy];
+}
+
+- (AUUSponsorParam *(^)(id))centerYEqual
+{
+    return [^(id element) {
+        return self.auu_layout.centerYEqual(element);
+    } copy];
+}
+
+- (AUUSponsorParam *(^)(id))leadingEqual
+{
+    return [^(id element) {
+        return self.auu_layout.leadingEqual(element);
+    } copy];
+}
+
+- (AUUSponsorParam *(^)(id))trailingEqual
+{
+    return [^(id element) {
+        return self.auu_layout.trailingEqual(element);
+    } copy];
+}
+
+- (AUUSponsorParam *(^)(id))widthEqual
+{
+    return [^(id element) {
+        return self.auu_layout.widthEqual(element);
+    } copy];
+}
+
+- (AUUSponsorParam *(^)(id))heightEqual
+{
+    return [^(id element) {
+        return self.auu_layout.heightEqual(element);
+    } copy];
+}
+
+- (AUUSponsorParam *(^)(id))sizeEqual
+{
+    return [^(id element) {
+        return self.auu_layout.sizeEqual(element);
+    } copy];
+}
+
+- (AUUSponsorParam *(^)(id))centerEqual
+{
+    return [^(id element) {
+        return self.auu_layout.centerEqual(element);
+    } copy];
+}
+
+- (AUUSponsorParam *(^)(UIEdgeInsets))edgeEqual
+{
+    return [^(UIEdgeInsets insets) {
+        return self.auu_layout.edgeEqual(insets);
+    } copy];
+}
+
+- (AUUSponsorParam *(^)(id))lastBaseLineEqual
+{
+    return [^(id element) {
+        return self.auu_layout.lastBaseLineEqual(element);
+    } copy];
+}
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
+
+- (AUUSponsorParam *(^)(id))firstBaseLineEqual
+{
+    return [^(id element) {
+        return self.auu_layout.firstBaseLineEqual(element);
+    } copy];
+}
+
+#endif
+
+@end
+
+#endif

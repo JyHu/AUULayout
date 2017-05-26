@@ -11,15 +11,12 @@
 #import "AUULayoutAssistant.h"
 #import "_AUULayoutAssistant.h"
 
-@implementation AUUVFLLayout
-@end
-
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #pragma mark - 为布局扩展下标法的基类
 #pragma mark -
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-@interface AUUVFLLayoutConstrants() <NSCopying>
+@interface AUUVFLLayout() <NSCopying>
 
 /**
  VFL语句中相关的视图，在主VFL中表示的是容器视图，在子VFL中表示的是当前要设置宽高属性的视图
@@ -49,7 +46,7 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wincomplete-implementation"
 
-@implementation AUUVFLLayoutConstrants
+@implementation AUUVFLLayout
 
 - (NSMutableDictionary<NSString *,UIView *> *)layoutKits {
     if (!_layoutKits) {
@@ -80,11 +77,16 @@
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    AUUVFLLayoutConstrants *layoutConstrants = [[[self class] allocWithZone:zone] init];
+    AUUVFLLayout *layoutConstrants = [[[self class] allocWithZone:zone] init];
     layoutConstrants.pri_sponsorView = self.pri_sponsorView;
     layoutConstrants.pri_VFLString = [self.pri_VFLString mutableCopy];
     layoutConstrants.layoutKits = [self.layoutKits mutableCopy];
     return layoutConstrants;
+}
+
+- (UIView *)sponsorView
+{
+    return self.pri_sponsorView;
 }
 
 @end
@@ -122,7 +124,7 @@
         NSArray *currentInstalledConstrants = [NSLayoutConstraint constraintsWithVisualFormat:self.pri_VFLString options:NSLayoutFormatDirectionMask metrics:nil views:self.layoutKits];
 #ifdef DEBUG
         BOOL hasAmbiguousLayout = NO;
-
+        
         for (UIView *view in self.layoutKits.allValues) {
             for (NSLayoutConstraint *oldLayoutConstrant in view.superview.constraints) {
                 for (NSLayoutConstraint *newLayoutConstrant in currentInstalledConstrants) {
@@ -313,7 +315,7 @@ const char *__kSubVFLAssociatedKey = (void *)@"com.AUU.vfl.__kSubVFLAssociatedKe
             return self[((AUUGroupVFLConstrants *)key).layoutObjects];
         } else {
             // 如果是其他类型的话，比如字符串、数值对象、视图等，需要遍历着去操作
-            self.layoutObjects = [self.layoutObjects map:^id(AUUVFLLayoutConstrants *obj, NSUInteger index) {
+            self.layoutObjects = [self.layoutObjects map:^id(AUUVFLLayout *obj, NSUInteger index) {
                 return obj[key];
             } checkClass:nil];
         }

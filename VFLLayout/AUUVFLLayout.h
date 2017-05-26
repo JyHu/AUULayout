@@ -32,9 +32,6 @@ typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
 // 批量的纵向布局的开始
 #define VA (@[V].VFL)
 
-@interface AUUVFLLayout : NSObject
-@end
-
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #pragma mark - 为布局扩展下标法的基类
@@ -42,12 +39,15 @@ typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-@interface AUUVFLLayoutConstrants : AUUVFLLayout
+@interface AUUVFLLayout : NSObject
 /*
  扩充的下标法
  */
 - (instancetype)objectAtIndexedSubscript:(NSUInteger)idx;
 - (instancetype)objectForKeyedSubscript:(id)key;
+
+@property (weak, nonatomic, readonly) UIView *sponsorView;
+
 @end
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -59,7 +59,7 @@ typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
  外部VFL的命名空间，用于VFL相关属性的设置、管理
  */
 
-@interface AUUVFLConstraints : AUUVFLLayoutConstrants
+@interface AUUVFLConstraints : AUUVFLLayout
 
 // VFL语句的初始化方法，在宏定义中已经使用，外部不需要调用这个方法，由于使用了宏定义无法设置私有属性才放出这个方法。
 - (AUUVFLConstraints *)resetWithDirection:(AUUVFLLayoutDirection)direction;
@@ -81,7 +81,7 @@ typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
 /*
  用于View相关的命名空间，设置子视图的宽高、优先级属性
  */
-@interface AUUSubVFLConstraints : AUUVFLLayoutConstrants
+@interface AUUSubVFLConstraints : AUUVFLLayout
 NSString *priority(CGFloat length, CGFloat priority);       // 优先级属性的生成
 NSString *between(CGFloat minLength, CGFloat maxLength);    // 宽高区间范围的生成
 NSString *greaterThan(CGFloat length);                      // 视图间距、宽高的最小值
@@ -134,13 +134,13 @@ NSString *lessThan(CGFloat length);                         // 视图间距、�
 #pragma mark -
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-@interface AUUGroupVFLConstrants : AUUVFLLayoutConstrants
+@interface AUUGroupVFLConstrants : AUUVFLLayout
 @property (copy, nonatomic, readonly) NSArray * (^end)();   // 结束语句，会返回一个vfl语句的数组
 @property (copy, nonatomic, readonly) NSArray * (^cut)();   // 结束语句，会返回一个vfl语句的数组
 @end
 
 /*
- 可操作的数组元素有 AUUVFLLayoutConstrants及其子类、UIView及其子类
+ 可操作的数组元素有 AUUVFLLayout及其子类、UIView及其子类
  */
 @interface NSArray (AUUVFLSpace)
 // 对数组扩充命名空间，因为数组本身就实现了下标法，所以为了避免调用冲突，就为其增加了一个命名空间，所有对于批量属性操作数组都必须调用这个属性
