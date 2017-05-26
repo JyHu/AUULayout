@@ -58,101 +58,45 @@
 
 @implementation AUUSponsorParam
 
-#define __CacheSponsorAttribute__(attribute)        \
-            self.pri_layoutAttribute = attribute;   \
-            return self;
+#define __CacheSponsorAttribute__(param, attr)      \
+            - (AUUSponsorParam *)param {            \
+                self.pri_layoutAttribute = attr;    \
+                return self;                        \
+            }
 
-- (AUUSponsorParam *)top {
-    __CacheSponsorAttribute__(NSLayoutAttributeTop)
-}
-
-- (AUUSponsorParam *)left {
-    __CacheSponsorAttribute__(NSLayoutAttributeLeft)
-}
-
-- (AUUSponsorParam *)bottom {
-    __CacheSponsorAttribute__(NSLayoutAttributeBottom)
-}
-
-- (AUUSponsorParam *)right {
-    __CacheSponsorAttribute__(NSLayoutAttributeRight)
-}
-
-- (AUUSponsorParam *)centerX {
-    __CacheSponsorAttribute__(NSLayoutAttributeCenterX)
-}
-
-- (AUUSponsorParam *)centerY {
-    __CacheSponsorAttribute__(NSLayoutAttributeCenterY)
-}
-
-- (AUUSponsorParam *)leading {
-    __CacheSponsorAttribute__(NSLayoutAttributeLeading)
-}
-
-- (AUUSponsorParam *)trailing {
-    __CacheSponsorAttribute__(NSLayoutAttributeTrailing)
-}
-
-- (AUUSponsorParam *)width {
-    __CacheSponsorAttribute__(NSLayoutAttributeWidth)
-}
-
-- (AUUSponsorParam *)height {
-    __CacheSponsorAttribute__(NSLayoutAttributeHeight)
-}
-
-- (AUUSponsorParam *)lastBaseLine {
-    __CacheSponsorAttribute__(NSLayoutAttributeLastBaseline)
-}
-
+__CacheSponsorAttribute__(top,          NSLayoutAttributeTop)
+__CacheSponsorAttribute__(left,         NSLayoutAttributeLeft)
+__CacheSponsorAttribute__(bottom,       NSLayoutAttributeBottom)
+__CacheSponsorAttribute__(right,        NSLayoutAttributeRight)
+__CacheSponsorAttribute__(centerX,      NSLayoutAttributeCenterX)
+__CacheSponsorAttribute__(centerY,      NSLayoutAttributeCenterY)
+__CacheSponsorAttribute__(leading,      NSLayoutAttributeLeading)
+__CacheSponsorAttribute__(trailing,     NSLayoutAttributeTrailing)
+__CacheSponsorAttribute__(width,        NSLayoutAttributeWidth)
+__CacheSponsorAttribute__(height,       NSLayoutAttributeHeight)
+__CacheSponsorAttribute__(lastBaseline,     NSLayoutAttributeLastBaseline)
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
-- (AUUSponsorParam *)firstBaseLine {
-    __CacheSponsorAttribute__(NSLayoutAttributeFirstBaseline)
-}
+__CacheSponsorAttribute__(firstBaseline,    NSLayoutAttributeFirstBaseline)
 #endif
 
-- (AUUSponsorParam *(^)(id))equal {
-    return [^(id element){                                                          \
-        return [self layoutConstrantWithRelation:NSLayoutRelationEqual releatedItem:element];    \
-    } copy];
-}
+#define __RelationSetting__(param, relation)                                                    \
+            - (AUUSponsorParam *(^)(id))param {                                                 \
+                return [^(id element){                                                          \
+                    return [self layoutConstrantWithRelation:relation releatedItem:element];    \
+                } copy];                                                                        \
+            }
 
-- (AUUSponsorParam *(^)(id))greaterThan {
-    return [^(id element){                                                          \
-        return [self layoutConstrantWithRelation:NSLayoutRelationGreaterThanOrEqual releatedItem:element];    \
-    } copy];
-}
-
-- (AUUSponsorParam *(^)(id))lessThan {
-    return [^(id element){                                                          \
-        return [self layoutConstrantWithRelation:NSLayoutRelationLessThanOrEqual releatedItem:element];    \
-    } copy];
-}
+__RelationSetting__(equal, NSLayoutRelationEqual)
+__RelationSetting__(greaterThan, NSLayoutRelationGreaterThanOrEqual)
+__RelationSetting__(lessThan, NSLayoutRelationLessThanOrEqual)
 
 - (AUUEdgeLayout *)layoutConstrantWithRelation:(NSLayoutRelation)relation releatedItem:(id)item {
     NSAssert1(self.pri_bindingView.superview, @"当前视图[%@]还没有添加到父视图上，请在添加约束前添加到你需要的父视图上", self.pri_bindingView);
     
     self.pri_bindingView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    NSLayoutConstraint *layoutConstrant = nil;
-    
-    if ([item isKindOfClass:[UIView class]]) {
-        layoutConstrant = [NSLayoutConstraint constraintWithItem:self.pri_bindingView attribute:self.pri_layoutAttribute
-                                                       relatedBy:relation toItem:item attribute:self.pri_layoutAttribute multiplier:1 constant:0];
-    } else if ([item isKindOfClass:[NSNumber class]]) {
-        layoutConstrant = [NSLayoutConstraint constraintWithItem:self.pri_bindingView attribute:self.pri_layoutAttribute
-                                                       relatedBy:relation toItem:nil attribute:NSLayoutAttributeNotAnAttribute
-                                                      multiplier:1 constant:[item doubleValue]];
-    } else if ([item isKindOfClass:[AUUPassivelyParam class]]) {
-        AUUPassivelyParam *param = (AUUPassivelyParam *)item;
-        layoutConstrant = [NSLayoutConstraint constraintWithItem:self.pri_bindingView attribute:self.pri_layoutAttribute
-                                                       relatedBy:relation toItem:param.pri_bindingView attribute:param.pri_layoutAttribute
-                                                      multiplier:param.pri_multiple constant:param.pri_offset];
-    } else {
-        NSLog(@"错误的信息");
-    }
-    
+    NSLayoutConstraint *layoutConstrant = [self constrantWithRelation:relation releatedItem:item];
+
     if (layoutConstrant) {
         for (NSLayoutConstraint *oldLayoutConstrant in self.pri_bindingView.superview.constraints) {
             // 如果两个约束类似的话，就报错
@@ -168,13 +112,39 @@
                 }
             }
         }
-        
         [self.pri_bindingView.superview addConstraint:layoutConstrant];
     }
     
     return self;
 }
 
+- (NSLayoutConstraint *)constrantWithRelation:(NSLayoutRelation)relation releatedItem:(id)item
+{
+    if ([item isKindOfClass:[UIView class]]) {
+        return [NSLayoutConstraint constraintWithItem:self.pri_bindingView attribute:self.pri_layoutAttribute
+                                            relatedBy:relation toItem:item attribute:self.pri_layoutAttribute multiplier:1 constant:0];
+    } else if ([item isKindOfClass:[NSNumber class]]) {
+        return [NSLayoutConstraint constraintWithItem:self.pri_bindingView attribute:self.pri_layoutAttribute
+                                            relatedBy:relation toItem:nil attribute:NSLayoutAttributeNotAnAttribute
+                                           multiplier:1 constant:[item doubleValue]];
+    } else if ([item isKindOfClass:[AUUPassivelyParam class]]) {
+        AUUPassivelyParam *param = (AUUPassivelyParam *)item;
+        return [NSLayoutConstraint constraintWithItem:self.pri_bindingView attribute:self.pri_layoutAttribute
+                                            relatedBy:relation toItem:param.pri_bindingView attribute:param.pri_layoutAttribute
+                                           multiplier:param.pri_multiple constant:param.pri_offset];
+    }
+    
+    return nil;
+}
+
+@end
+
+@implementation UIView (AUUSponsorParam)
+- (AUUSponsorParam *)auu_layout {
+    AUUSponsorParam *edgeLayout = [[AUUSponsorParam alloc] init];
+    edgeLayout.pri_bindingView = self;
+    return edgeLayout;
+}
 @end
 
 @implementation AUUSponsorParam (AUUEdgeLayout)
@@ -192,9 +162,9 @@ __SponsorParamSetting__(centerX)
 __SponsorParamSetting__(centerY)
 __SponsorParamSetting__(width)
 __SponsorParamSetting__(height)
-__SponsorParamSetting__(lastBaseLine)
+__SponsorParamSetting__(lastBaseline)
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
-__SponsorParamSetting__(firstBaseLine)
+__SponsorParamSetting__(firstBaseline)
 #endif
 
 - (AUUSponsorParam *(^)(id))sizeEqual {
@@ -226,78 +196,40 @@ __SponsorParamSetting__(firstBaseLine)
 
 - (AUUSponsorParam *(^)(UIEdgeInsets))edgeEqual {
     return [^(UIEdgeInsets insets) {
-        return  self.topEqual(@(insets.top))
-                    .leftEqual(@(insets.left))
+        return  self.topEqual(   @(insets.top))
+                    .leftEqual(  @(insets.left))
                     .bottomEqual(@(insets.bottom))
-                    .rightEqual(@(insets.right));
+                    .rightEqual( @(insets.right));
     } copy];
 }
 
 @end
 
-@implementation UIView (AUUEdgeLayout)
+@implementation UIView (AUUPassivelyParam)
 
-- (AUUSponsorParam *)auu_layout {
-    AUUSponsorParam *edgeLayout = [[AUUSponsorParam alloc] init];
-    edgeLayout.pri_bindingView = self;
-    return edgeLayout;
-}
+#define __PassivelyParamWithAttribute__(param, attr)                            \
+            - (AUUPassivelyParam *)auu_##param                                  \
+            {                                                                   \
+                AUUPassivelyParam *param = [[AUUPassivelyParam alloc] init];    \
+                param.pri_bindingView = self;                                   \
+                param.pri_layoutAttribute = attr;                               \
+                return param;                                                   \
+            }
 
-#define __PassivelyParamWithAttribute__(attribute)                          \
-            AUUPassivelyParam *param = [[AUUPassivelyParam alloc] init];    \
-            param.pri_bindingView = self;                                   \
-            param.pri_layoutAttribute = attribute;                          \
-            return param;
 
-- (AUUPassivelyParam *)auu_top
-{
-    __PassivelyParamWithAttribute__(NSLayoutAttributeTop)
-}
-
-- (AUUPassivelyParam *)auu_left {
-    __PassivelyParamWithAttribute__(NSLayoutAttributeLeft)
-}
-
-- (AUUPassivelyParam *)auu_bottom {
-    __PassivelyParamWithAttribute__(NSLayoutAttributeBottom)
-}
-
-- (AUUPassivelyParam *)auu_right {
-    __PassivelyParamWithAttribute__(NSLayoutAttributeRight)
-}
-
-- (AUUPassivelyParam *)auu_centerX {
-    __PassivelyParamWithAttribute__(NSLayoutAttributeCenterX)
-}
-
-- (AUUPassivelyParam *)auu_centerY {
-    __PassivelyParamWithAttribute__(NSLayoutAttributeCenterY)
-}
-
-- (AUUPassivelyParam *)auu_leading {
-    __PassivelyParamWithAttribute__(NSLayoutAttributeLeading)
-}
-
-- (AUUPassivelyParam *)auu_trailing {
-    __PassivelyParamWithAttribute__(NSLayoutAttributeTrailing)
-}
-
-- (AUUPassivelyParam *)auu_width {
-    __PassivelyParamWithAttribute__(NSLayoutAttributeWidth)
-}
-
-- (AUUPassivelyParam *)auu_height {
-    __PassivelyParamWithAttribute__(NSLayoutAttributeHeight)
-}
-
-- (AUUPassivelyParam *)auu_lastBaseLine {
-    __PassivelyParamWithAttribute__(NSLayoutAttributeLastBaseline)
-}
-
+__PassivelyParamWithAttribute__(top,        NSLayoutAttributeTop)
+__PassivelyParamWithAttribute__(left,       NSLayoutAttributeLeft)
+__PassivelyParamWithAttribute__(bottom,     NSLayoutAttributeBottom)
+__PassivelyParamWithAttribute__(right,      NSLayoutAttributeRight)
+__PassivelyParamWithAttribute__(centerX,    NSLayoutAttributeCenterX)
+__PassivelyParamWithAttribute__(centerY,    NSLayoutAttributeCenterY);
+__PassivelyParamWithAttribute__(leading,    NSLayoutAttributeLeading)
+__PassivelyParamWithAttribute__(trailing,   NSLayoutAttributeTrailing)
+__PassivelyParamWithAttribute__(width,      NSLayoutAttributeWidth)
+__PassivelyParamWithAttribute__(height,     NSLayoutAttributeHeight)
+__PassivelyParamWithAttribute__(lastBaseline,   NSLayoutAttributeLastBaseline)
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
-- (AUUPassivelyParam *)auu_firstBaseLine {
-    __PassivelyParamWithAttribute__(NSLayoutAttributeFirstBaseline)
-}
+__PassivelyParamWithAttribute__(firstBaseline,  NSLayoutAttributeFirstBaseline)
 #endif
 
 @end
@@ -321,9 +253,9 @@ __ViewPihyAssistantSetting__(width)
 __ViewPihyAssistantSetting__(height)
 __ViewPihyAssistantSetting__(size)
 __ViewPihyAssistantSetting__(center)
-__ViewPihyAssistantSetting__(lastBaseLine)
+__ViewPihyAssistantSetting__(lastBaseline)
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
-__ViewPihyAssistantSetting__(firstBaseLine)
+__ViewPihyAssistantSetting__(firstBaseline)
 #endif
 
 - (AUUSponsorParam *(^)(UIEdgeInsets))edgeEqual {

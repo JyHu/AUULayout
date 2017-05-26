@@ -124,7 +124,7 @@
         NSArray *currentInstalledConstrants = [NSLayoutConstraint constraintsWithVisualFormat:self.pri_VFLString options:NSLayoutFormatDirectionMask metrics:nil views:self.layoutKits];
 #ifdef DEBUG
         BOOL hasAmbiguousLayout = NO;
-        
+#endif
         for (UIView *view in self.layoutKits.allValues) {
             for (NSLayoutConstraint *oldLayoutConstrant in view.superview.constraints) {
                 for (NSLayoutConstraint *newLayoutConstrant in currentInstalledConstrants) {
@@ -144,11 +144,10 @@
                 }
             }
         }
-        
+#ifdef DEBUG
         if (hasAmbiguousLayout) {
             [self.pri_sponsorView hierarchyLog];
         }
-        
         NSLog(@"VFL %@", self.pri_VFLString);
 #endif
         

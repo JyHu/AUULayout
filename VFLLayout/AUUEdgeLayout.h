@@ -12,7 +12,7 @@
  view1.attr1 = view2.attr2 * multiplier + constant
  
  
- view1，发起约束请求的视图，在这里需要添加约束，需要调用 view1.auu_layout ，在[UIView (AUUEdgeLayout)]中定义的
+ view1，发起约束请求的视图，在这里需要添加约束，需要调用 view1.auu_layout ，在[UIView (AUUSponsorParam)]中定义的
  attr1，要设置的视图的约束属性，即 AUUSponsorParam 里的一系列位置属性
  view2，被动比较的视图
  attr2，被动比较视图的约束属性，在[AUUSponsorParam]中定义
@@ -44,10 +44,9 @@
 @property (retain, nonatomic, readonly) AUUSponsorParam *height;
 @property (retain, nonatomic, readonly) AUUSponsorParam *leading;
 @property (retain, nonatomic, readonly) AUUSponsorParam *trailing;
-@property (retain, nonatomic, readonly) AUUSponsorParam *lastBaseLine;
-
+@property (retain, nonatomic, readonly) AUUSponsorParam *lastBaseline;
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
-@property (retain, nonatomic, readonly) AUUSponsorParam *firstBaseLine NS_AVAILABLE_IOS(8_0);
+@property (retain, nonatomic, readonly) AUUSponsorParam *firstBaseline NS_AVAILABLE_IOS(8_0);
 #endif
 
 /**
@@ -56,6 +55,12 @@
 @property (copy, nonatomic, readonly) AUUSponsorParam *(^equal)(id element);
 @property (copy, nonatomic, readonly) AUUSponsorParam *(^greaterThan)(id element);
 @property (copy, nonatomic, readonly) AUUSponsorParam *(^lessThan)(id element);
+
+@end
+
+@interface UIView (AUUSponsorParam)
+
+@property (retain, nonatomic, readonly) AUUSponsorParam *auu_layout;
 
 @end
 
@@ -76,11 +81,11 @@
 @property (copy, nonatomic, readonly) AUUSponsorParam *(^heightEqual)  (id element);     // == height.equal
 @property (copy, nonatomic, readonly) AUUSponsorParam *(^sizeEqual)    (id element);     // == width.equal + height.equal
 @property (copy, nonatomic, readonly) AUUSponsorParam *(^centerEqual)  (id element);     // == centerX.equal + centerY.equal
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^lastBaseLineEqual) (id element);// == lastBaseLine.equal
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^lastBaselineEqual) (id element);// == lastBaseline.equal
 @property (copy, nonatomic, readonly) AUUSponsorParam *(^edgeEqual)    (UIEdgeInsets insets);    // == top.equal + left.equal + bottom.equal + right.equal
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^firstBaseLineEqual) (id element)   NS_AVAILABLE_IOS(8_0);
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^firstBaselineEqual) (id element)   NS_AVAILABLE_IOS(8_0);
 #endif
 
 @end
@@ -96,9 +101,7 @@
 /**
  扩充UIView，用于设置被动比较的视图的对比属性
  */
-@interface UIView (AUUEdgeLayout)
-
-@property (retain, nonatomic, readonly) AUUSponsorParam *auu_layout;
+@interface UIView (AUUPassivelyParam)
 
 @property (retain, nonatomic, readonly) AUUPassivelyParam *auu_top;
 @property (retain, nonatomic, readonly) AUUPassivelyParam *auu_left;
@@ -110,10 +113,10 @@
 @property (retain, nonatomic, readonly) AUUPassivelyParam *auu_trailing;
 @property (retain, nonatomic, readonly) AUUPassivelyParam *auu_width;
 @property (retain, nonatomic, readonly) AUUPassivelyParam *auu_height;
-@property (retain, nonatomic, readonly) AUUPassivelyParam *auu_lastBaseLine;
+@property (retain, nonatomic, readonly) AUUPassivelyParam *auu_lastBaseline;
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
-@property (retain, nonatomic, readonly) AUUPassivelyParam *auu_firstBaseLine NS_AVAILABLE_IOS(8_0);
+@property (retain, nonatomic, readonly) AUUPassivelyParam *auu_firstBaseline NS_AVAILABLE_IOS(8_0);
 #endif
 
 @end
@@ -149,10 +152,10 @@
 @property (copy, nonatomic, readonly) AUUSponsorParam *(^centerEqual)  (id element);     // == auu_layout.centerX.equal + centerY.equal
 // == auu_layout.top.equal + auu_layout.left.equal + auu_layout.bottom.equal + auu_layout.right.equal
 @property (copy, nonatomic, readonly) AUUSponsorParam *(^edgeEqual)    (UIEdgeInsets insets);
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^lastBaseLineEqual) (id element);
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^lastBaselineEqual) (id element);
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^firstBaseLineEqual) (id element)   NS_AVAILABLE_IOS(8_0);
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^firstBaselineEqual) (id element)   NS_AVAILABLE_IOS(8_0);
 #endif
 
 @end
