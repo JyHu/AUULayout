@@ -9,18 +9,18 @@
 #import <UIKit/UIKit.h>
 
 /*
- 使用方法：
- view1.auu_layout.top.equal(view2.auu_top.offset(10).multiple(1.5)).left......;
- 可以级联着写下去
- 
- 跟VFL混合使用
- H[10][view1.auu_layout.left.equal(view2.auu_left).bindingView].cut();
+ view1.attr1 = view2.attr2 * multiplier + constant
  
  
- 
- AUUSponsorParam.top = AUUSponsorParam.top * multiple + offset
+ view1，发起约束请求的视图，在这里需要添加约束，需要调用 view1.auu_layout ，在[UIView (AUUEdgeLayout)]中定义的
+ attr1，要设置的视图的约束属性，即 AUUSponsorParam 里的一系列位置属性
+ view2，被动比较的视图
+ attr2，被动比较视图的约束属性，在[AUUSponsorParam]中定义
+ multiplier，在AUUPassivelyParam中设置
+ constant，在AUUPassivelyParam中设置
  
  */
+
 
 
 /**
@@ -74,10 +74,10 @@
 @property (copy, nonatomic, readonly) AUUSponsorParam *(^trailingEqual)(id element);     // == trailing.equal
 @property (copy, nonatomic, readonly) AUUSponsorParam *(^widthEqual)   (id element);     // == width.equal
 @property (copy, nonatomic, readonly) AUUSponsorParam *(^heightEqual)  (id element);     // == height.equal
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^sizeEqual)    (id element);    // == width.equal + height.equal
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^centerEqual)  (id element);   // == centerX.equal + centerY.equal
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^sizeEqual)    (id element);     // == width.equal + height.equal
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^centerEqual)  (id element);     // == centerX.equal + centerY.equal
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^lastBaseLineEqual) (id element);// == lastBaseLine.equal
 @property (copy, nonatomic, readonly) AUUSponsorParam *(^edgeEqual)    (UIEdgeInsets insets);    // == top.equal + left.equal + bottom.equal + right.equal
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^lastBaseLineEqual) (id element);
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
 @property (copy, nonatomic, readonly) AUUSponsorParam *(^firstBaseLineEqual) (id element)   NS_AVAILABLE_IOS(8_0);
@@ -119,25 +119,36 @@
 @end
 
 #ifndef kUIViewUsePihyLayoutEqual
-#define kUIViewUsePihyLayoutEqual 1
+#define kUIViewUsePihyLayoutEqual 0
 #endif
 #if kUIViewUsePihyLayoutEqual
 
+/*
+ 为UIView扩充的方法，UIView.topEqual == UIView.auu_layout.topEqual
+ 相当于是少了中间的一步
+ 
+ 在这里做的扩充是为了在写约束条件的时候可以少写一点点，如果这里的扩充跟你的project里有冲突的话，
+ 可以在 import 这个库的前面定义这么一个宏 
+ #ifndef kUIViewUsePihyLayoutEqual 0
+ 这样就可以注销这里的扩充，这时候需要用 UIView.auu_layout... 去添加约束
+ */
+
 @interface UIView (AUUPihyAssistant)
 
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^topEqual)     (id element);     // == top.equal
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^leftEqual)    (id element);     // == left.equal
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^bottomEqual)  (id element);     // == bottom.equal
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^rightEqual)   (id element);     // == right.equal
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^centerXEqual) (id element);     // == centerX.equal
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^centerYEqual) (id element);     // == centerY.equal
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^leadingEqual) (id element);     // == leading.equal
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^trailingEqual)(id element);     // == trailing.equal
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^widthEqual)   (id element);     // == width.equal
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^heightEqual)  (id element);     // == height.equal
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^sizeEqual)    (id element);    // == width.equal + height.equal
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^centerEqual)  (id element);   // == centerX.equal + centerY.equal
-@property (copy, nonatomic, readonly) AUUSponsorParam *(^edgeEqual)    (UIEdgeInsets insets);    // == top.equal + left.equal + bottom.equal + right.equal
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^topEqual)     (id element);     // == auu_layout.top.equal
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^leftEqual)    (id element);     // == auu_layout.left.equal
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^bottomEqual)  (id element);     // == auu_layout.bottom.equal
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^rightEqual)   (id element);     // == auu_layout.right.equal
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^centerXEqual) (id element);     // == auu_layout.centerX.equal
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^centerYEqual) (id element);     // == auu_layout.centerY.equal
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^leadingEqual) (id element);     // == auu_layout.leading.equal
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^trailingEqual)(id element);     // == auu_layout.trailing.equal
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^widthEqual)   (id element);     // == auu_layout.width.equal
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^heightEqual)  (id element);     // == auu_layout.height.equal
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^sizeEqual)    (id element);     // == auu_layout.width.equal + height.equal
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^centerEqual)  (id element);     // == auu_layout.centerX.equal + centerY.equal
+// == auu_layout.top.equal + auu_layout.left.equal + auu_layout.bottom.equal + auu_layout.right.equal
+@property (copy, nonatomic, readonly) AUUSponsorParam *(^edgeEqual)    (UIEdgeInsets insets);
 @property (copy, nonatomic, readonly) AUUSponsorParam *(^lastBaseLineEqual) (id element);
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
