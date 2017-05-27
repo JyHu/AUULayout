@@ -16,30 +16,25 @@
 
 @implementation UIView (AUUAssistant)
 
-+ (void)setNeedAutoCoverRepetitionLayoutConstrants:(BOOL)autoCover
-{
++ (void)setNeedAutoCoverRepetitionLayoutConstrants:(BOOL)autoCover {
     [AUUGlobalDataStorage sharedStorage].needAutoCoverRepetitionLayoutConstrants = autoCover;
 }
 
-+ (void)setErrorLayoutConstrantsReporter:(void (^)(NSLayoutConstraint *, NSLayoutConstraint *))reporter
-{
++ (void)setErrorLayoutConstrantsReporter:(void (^)(NSLayoutConstraint *, NSLayoutConstraint *))reporter {
     [AUUGlobalDataStorage sharedStorage].errorLayoutConstrantsReporter = reporter;
 }
 
 const char *__repetitionLayoutConstrantsReporterAssociatedKey = (void *)@"com.auu.__repetitionLayoutConstrantsReporterAssociatedKey";
 
-- (void)setRepetitionLayoutConstrantsReporter:(BOOL (^)(UIView *, NSLayoutConstraint *))repetitionLayoutConstrantsReporter
-{
+- (void)setRepetitionLayoutConstrantsReporter:(BOOL (^)(UIView *, NSLayoutConstraint *))repetitionLayoutConstrantsReporter {
     objc_setAssociatedObject(self, __repetitionLayoutConstrantsReporterAssociatedKey, repetitionLayoutConstrantsReporter, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (BOOL (^)(UIView *, NSLayoutConstraint *))repetitionLayoutConstrantsReporter
-{
+- (BOOL (^)(UIView *, NSLayoutConstraint *))repetitionLayoutConstrantsReporter {
     return objc_getAssociatedObject(self, __repetitionLayoutConstrantsReporterAssociatedKey);
 }
 
-- (void)removeAllConstrants
-{
+- (void)removeAllConstrants {
     for (NSLayoutConstraint *layoutConstrant in self.constraints) {
         layoutConstrant.active = NO;
     }
@@ -47,8 +42,7 @@ const char *__repetitionLayoutConstrantsReporterAssociatedKey = (void *)@"com.au
     [self removeConstraints:self.constraints];
 }
 
-- (UIView *)rootResponderView
-{
+- (UIView *)rootResponderView {
     UIResponder *rootResponder = self;
     while (rootResponder.nextResponder) {
         rootResponder = rootResponder.nextResponder;

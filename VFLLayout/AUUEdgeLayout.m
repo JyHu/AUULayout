@@ -13,8 +13,8 @@
 
 
 @interface AUUEdgeLayout ()
-@property (weak, nonatomic) UIView *pri_bindingView;
-@property (assign, nonatomic) NSLayoutAttribute pri_layoutAttribute;
+@property (weak, nonatomic) UIView *pri_bindingView;                    // 缓存关联视图
+@property (assign, nonatomic) NSLayoutAttribute pri_layoutAttribute;    // 缓存约束属性
 @end
 
 @implementation AUUEdgeLayout
@@ -112,6 +112,7 @@ __RelationSetting__(lessThan, NSLayoutRelationLessThanOrEqual)
                 }
             }
         }
+        
         [self.pri_bindingView.superview addConstraint:layoutConstrant];
     }
     
@@ -121,6 +122,7 @@ __RelationSetting__(lessThan, NSLayoutRelationLessThanOrEqual)
 - (NSLayoutConstraint *)constrantWithRelation:(NSLayoutRelation)relation releatedItem:(id)item
 {
     if ([item isKindOfClass:[UIView class]]) {
+        NSAssert(((UIView *)item).superview, @"当前视图没有");
         return [NSLayoutConstraint constraintWithItem:self.pri_bindingView attribute:self.pri_layoutAttribute
                                             relatedBy:relation toItem:item attribute:self.pri_layoutAttribute multiplier:1 constant:0];
     } else if ([item isKindOfClass:[NSNumber class]]) {
@@ -149,8 +151,12 @@ __RelationSetting__(lessThan, NSLayoutRelationLessThanOrEqual)
 
 @implementation AUUSponsorParam (AUUEdgeLayout)
 
-#define __SponsorParamSetting__(attr)       \
-            - (AUUSponsorParam *(^)(id))attr##Equal { return [^(id element){ return self.attr.equal(element); } copy]; }
+#define __SponsorParamSetting__(attr)                       \
+            - (AUUSponsorParam *(^)(id))attr##Equal {       \
+                return [^(id element){                      \
+                    return self.attr.equal(element);        \
+                } copy];                                    \
+            }
 
 __SponsorParamSetting__(top)
 __SponsorParamSetting__(left)
@@ -175,7 +181,7 @@ __SponsorParamSetting__(firstBaseline)
             CGSize size = [element CGSizeValue];
             return self.widthEqual(@(size.width)).heightEqual(@(size.height));
         }
-        NSAssert(1, @"传递了一个错误的参数");
+        NSAssert(0, @"传递了一个错误的参数");
         return [AUUSponsorParam new];
     }copy];
 }
@@ -188,8 +194,7 @@ __SponsorParamSetting__(firstBaseline)
             CGPoint center = [element CGPointValue];
             return self.centerXEqual(@(center.x)).centerYEqual(@(center.y));
         }
-        
-        NSAssert(1, @"传递了一个错误的参数");
+        NSAssert(0, @"传递了一个错误的参数");
         return [AUUSponsorParam new];
     } copy];
 }
@@ -208,14 +213,12 @@ __SponsorParamSetting__(firstBaseline)
 @implementation UIView (AUUPassivelyParam)
 
 #define __PassivelyParamWithAttribute__(param, attr)                            \
-            - (AUUPassivelyParam *)auu_##param                                  \
-            {                                                                   \
+            - (AUUPassivelyParam *)auu_##param {                                \
                 AUUPassivelyParam *param = [[AUUPassivelyParam alloc] init];    \
                 param.pri_bindingView = self;                                   \
                 param.pri_layoutAttribute = attr;                               \
                 return param;                                                   \
             }
-
 
 __PassivelyParamWithAttribute__(top,        NSLayoutAttributeTop)
 __PassivelyParamWithAttribute__(left,       NSLayoutAttributeLeft)
@@ -234,36 +237,3 @@ __PassivelyParamWithAttribute__(firstBaseline,  NSLayoutAttributeFirstBaseline)
 
 @end
 
-#if kUIViewUsePihyLayoutEqual
-
-@implementation UIView (AUUPihyAssistant)
-
-#define __ViewPihyAssistantSetting__(attr)                          \
-            - (AUUSponsorParam *(^)(id))attr##Equal { return [^(id element) { return self.auu_layout.attr##Equal(element); } copy]; }
-
-__ViewPihyAssistantSetting__(top)
-__ViewPihyAssistantSetting__(left)
-__ViewPihyAssistantSetting__(bottom)
-__ViewPihyAssistantSetting__(right)
-__ViewPihyAssistantSetting__(centerX)
-__ViewPihyAssistantSetting__(centerY)
-__ViewPihyAssistantSetting__(leading)
-__ViewPihyAssistantSetting__(trailing)
-__ViewPihyAssistantSetting__(width)
-__ViewPihyAssistantSetting__(height)
-__ViewPihyAssistantSetting__(size)
-__ViewPihyAssistantSetting__(center)
-__ViewPihyAssistantSetting__(lastBaseline)
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
-__ViewPihyAssistantSetting__(firstBaseline)
-#endif
-
-- (AUUSponsorParam *(^)(UIEdgeInsets))edgeEqual {
-    return [^(UIEdgeInsets insets) {
-        return self.auu_layout.edgeEqual(insets);
-    } copy];
-}
-
-@end
-
-#endif
