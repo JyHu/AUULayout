@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "VFLLayout"
+  s.name         = "AUULayout"
   s.version      = "0.2.0"
   s.summary      = "An auto layout framework using VFL."
 
@@ -90,7 +90,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "VFLLayout/*.{h,m}"
+  s.source_files  = "AUULayout/*.{h,m}"
   # s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"

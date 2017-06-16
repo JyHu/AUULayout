@@ -13,6 +13,7 @@
 
 #import "AUUBaseCaseViewController.h"
 #import "NSObject+Factory.h"
-#import "VFLLayout.h"
+//#import "VFLLayout.h"
+#import "AUULayout.h"
 
 #endif /* LayoutExample_pch */
