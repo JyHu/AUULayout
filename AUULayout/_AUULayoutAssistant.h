@@ -23,6 +23,8 @@
 
 + (instancetype)sharedStorage;
 
+@property (assign, nonatomic) BOOL needDebugLod;
+
 @property (assign, nonatomic) BOOL needAutoCoverRepetitionLayoutConstrants;
 
 @property (copy, nonatomic) void (^errorLayoutConstrantsReporter)(NSLayoutConstraint *oldLayoutConstrant, NSLayoutConstraint *newLayoutConstrant);

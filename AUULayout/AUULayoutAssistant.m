@@ -12,6 +12,11 @@
 
 @implementation AUULayoutAssistant
 
++ (void)enableDebugLog:(BOOL)enable
+{
+    [AUUGlobalDataStorage sharedStorage].needDebugLod = enable;
+}
+
 @end
 
 @implementation UIView (AUUAssistant)

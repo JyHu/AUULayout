@@ -10,6 +10,11 @@
 
 @interface AUULayoutAssistant : NSObject
 
+/**
+ 是否需要显示一些测试的log信息
+ */
++ (void)enableDebugLog:(BOOL)enable;
+
 @end
 
 

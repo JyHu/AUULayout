@@ -19,6 +19,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    [AUULayoutAssistant enableDebugLog:YES];
+    
     [UIView setErrorLayoutConstrantsReporter:^(NSLayoutConstraint *oldLayoutConstrant, NSLayoutConstraint *newLayoutConstrant) {
         ((UIView *)oldLayoutConstrant.firstItem).backgroundColor = [UIColor redColor];
         ((UIView *)oldLayoutConstrant.secondItem).backgroundColor = [UIColor redColor];

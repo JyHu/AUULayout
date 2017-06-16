@@ -148,7 +148,9 @@
         if (hasAmbiguousLayout) {
             [self.pri_sponsorView hierarchyLog];
         }
-        NSLog(@"VFL %@", self.pri_VFLString);
+        if ([AUUGlobalDataStorage sharedStorage].needDebugLod) {
+            NSLog(@"VFL %@", self.pri_VFLString);
+        }
 #endif
         
         [self.pri_sponsorView addConstraints:currentInstalledConstrants];
