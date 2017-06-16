@@ -122,7 +122,7 @@ __RelationSetting__(lessThan, NSLayoutRelationLessThanOrEqual)
 - (NSLayoutConstraint *)constrantWithRelation:(NSLayoutRelation)relation releatedItem:(id)item
 {
     if ([item isKindOfClass:[UIView class]]) {
-        NSAssert(((UIView *)item).superview, @"当前视图没有");
+        NSAssert(((UIView *)item).nextResponder, @"当前视图没有父视图");
         return [NSLayoutConstraint constraintWithItem:self.pri_bindingView attribute:self.pri_layoutAttribute
                                             relatedBy:relation toItem:item attribute:self.pri_layoutAttribute multiplier:1 constant:0];
     } else if ([item isKindOfClass:[NSNumber class]]) {
@@ -189,7 +189,7 @@ __SponsorParamSetting__(firstBaseline)
 - (AUUSponsorParam *(^)(id))centerEqual {
     return [^(id element) {
         if ([element isKindOfClass:[UIView class]]) {
-            return self.centerEqual(element).centerYEqual(element);
+            return self.centerXEqual(element).centerYEqual(element);
         } else if ([element isKindOfClass:[NSValue class]]) {
             CGPoint center = [element CGPointValue];
             return self.centerXEqual(@(center.x)).centerYEqual(@(center.y));

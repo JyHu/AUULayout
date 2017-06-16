@@ -41,7 +41,7 @@ typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
 
 @interface AUUVFLLayout : NSObject
 /*
- 扩充的下标法
+ 扩充的下标法，这里不用id是因为这里在使用的时候最好不要去强制转换、判断数据类型。
  */
 - (instancetype)objectAtIndexedSubscript:(NSUInteger)idx;
 - (instancetype)objectForKeyedSubscript:(id)key;
@@ -107,7 +107,7 @@ NSString *lessThan(CGFloat length);                         // 视图间距、�
 #endif
 #if kUIViewUseVFLSubscriptLayout
 /*
- 对UIView扩充的下标法
+ 对UIView扩充的下标法，这里不用instance是因为返回的数据类型有改变
  */
 - (id)objectAtIndexedSubscript:(NSUInteger)idx;
 - (id)objectForKeyedSubscript:(id)key;
