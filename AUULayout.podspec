@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "AUULayout"
-  s.version      = "0.2.0"
+  s.version      = "0.3.0"
   s.summary      = "An auto layout framework using VFL."
 
   # This description is used to generate tags and improve search results.
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/JyHu/AUULayout.git", :tag => "0.2.0" }
+  s.source       = { :git => "https://github.com/JyHu/AUULayout.git", :tag => "0.3.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
