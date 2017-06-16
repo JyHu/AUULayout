@@ -129,7 +129,9 @@
             for (NSLayoutConstraint *oldLayoutConstrant in view.superview.constraints) {
                 for (NSLayoutConstraint *newLayoutConstrant in currentInstalledConstrants) {
                     if ([newLayoutConstrant similarTo:oldLayoutConstrant] && oldLayoutConstrant.active) {
+#ifdef DEBUG
                         hasAmbiguousLayout = YES;
+#endif
                         
                         if (view.superview.repetitionLayoutConstrantsReporter) {
                             oldLayoutConstrant.active = view.superview.repetitionLayoutConstrantsReporter(view, oldLayoutConstrant);
