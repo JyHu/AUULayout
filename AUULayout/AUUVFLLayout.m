@@ -71,7 +71,7 @@
     return key;
 }
 
-- (instancetype)objectAtIndexedSubscript:(NSUInteger)idx {
+- (instancetype)objectAtIndexedSubscript:(NSInteger)idx {
     return self[@(idx)];
 }
 
@@ -122,16 +122,11 @@
     return [^(){
         // 结束VFL语句，并设置到具体的视图上
         NSArray *currentInstalledConstrants = [NSLayoutConstraint constraintsWithVisualFormat:self.pri_VFLString options:NSLayoutFormatDirectionMask metrics:nil views:self.layoutKits];
-#ifdef DEBUG
-        BOOL hasAmbiguousLayout = NO;
-#endif
+
         for (UIView *view in self.layoutKits.allValues) {
             for (NSLayoutConstraint *oldLayoutConstrant in view.superview.constraints) {
                 for (NSLayoutConstraint *newLayoutConstrant in currentInstalledConstrants) {
                     if ([newLayoutConstrant similarTo:oldLayoutConstrant] && oldLayoutConstrant.active) {
-#ifdef DEBUG
-                        hasAmbiguousLayout = YES;
-#endif
                         
                         if (view.superview.repetitionLayoutConstrantsReporter) {
                             oldLayoutConstrant.active = view.superview.repetitionLayoutConstrantsReporter(view, oldLayoutConstrant);
@@ -147,9 +142,6 @@
             }
         }
 #ifdef DEBUG
-        if (hasAmbiguousLayout) {
-            [self.pri_sponsorView hierarchyLog];
-        }
         if ([AUUGlobalDataStorage sharedStorage].needDebugLod) {
             NSLog(@"VFL %@", self.pri_VFLString);
         }
@@ -163,9 +155,9 @@
 - (instancetype)objectForKeyedSubscript:(id)key {
     if ([key isKindOfClass:[NSNumber class]] ||
         ([key isKindOfClass:[NSString class]] && [key numberOfMatchesWithPattern:@"\\."] <= 1 &&
-         [key isLegalStringWithPatterns:@[@"^\\([0-9][0-9\\.]*\\)$", @"^\\(>=[0-9][0-9\\.]*\\)$", @"^\\(<=[0-9][0-9\\.]*\\)$"]])) {
+         [key isLegalStringWithPatterns:@[@"^-?\\([0-9][0-9\\.]*\\)$", @"^\\(>=[0-9][0-9\\.]*\\)$", @"^\\(<=[0-9][0-9\\.]*\\)$"]])) {
             // 设置两个视图的间距
-            [self.pri_VFLString appendFormat:@"%@-%@-", (self.pri_VFLString && self.pri_VFLString.length == 2 ? @"|" : @""), key];
+            [self.pri_VFLString appendFormat:@"%@-(%@)-", (self.pri_VFLString && self.pri_VFLString.length == 2 ? @"|" : @""), key];
         } else {
             if ([key isKindOfClass:[UIView class]]) {
                 // 设置相邻的视图
@@ -256,7 +248,7 @@ const char *__kSubVFLAssociatedKey = (void *)@"com.AUU.vfl.__kSubVFLAssociatedKe
 - (id)objectForKeyedSubscript:(id)key {
     return self.VFL[key];
 }
-- (id)objectAtIndexedSubscript:(NSUInteger)idx {
+- (id)objectAtIndexedSubscript:(NSInteger)idx {
     return self.VFL[idx];
 }
 #endif

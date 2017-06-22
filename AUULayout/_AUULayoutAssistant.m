@@ -46,31 +46,6 @@
 
 @end
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wincomplete-implementation"
-
-
-@implementation UIView (__AUUPrivate)
-
-- (void)hierarchyLog
-{
-#if DEBUG
-    if ([AUUGlobalDataStorage sharedStorage].needDebugLod) {
-        NSLog(@"\n"
-              "|--------------------------------------------------------------------------------------------|\n"
-              "|--------------------------------------------------------------------------------------------|\n"
-              "|                                                                                            |\n"
-              "|                           %@\n"
-              "|                                                                                            |\n"
-              "%@\n\n\n" , self, [self.rootResponderView recursiveDescription]);
-    }
-#endif
-}
-
-@end
-
-#pragma clang diagnostic pop
-
 @implementation AUUGlobalDataStorage
 
 + (instancetype)sharedStorage

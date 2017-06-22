@@ -101,7 +101,6 @@ __RelationSetting__(lessThan, NSLayoutRelationLessThanOrEqual)
         for (NSLayoutConstraint *oldLayoutConstrant in self.pri_bindingView.superview.constraints) {
             // 如果两个约束类似的话，就报错
             if ([oldLayoutConstrant similarTo:layoutConstrant] && oldLayoutConstrant.active) {
-                [self.pri_bindingView hierarchyLog];
                 if (self.pri_bindingView.superview.repetitionLayoutConstrantsReporter) {
                     oldLayoutConstrant.active = self.pri_bindingView.superview.repetitionLayoutConstrantsReporter(self.pri_bindingView, oldLayoutConstrant);
                 } else if ([AUUGlobalDataStorage sharedStorage].needAutoCoverRepetitionLayoutConstrants) {

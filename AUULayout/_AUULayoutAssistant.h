@@ -31,16 +31,6 @@
 
 @end
 
-@interface UIView (__AUUPrivate)
-
-#ifdef DEBUG
-- (id)recursiveDescription;
-#endif
-
-- (void)hierarchyLog;
-
-@end
-
 @interface NSArray (__AUUPrivate)
 
 - (NSArray *)map:(id (^)(id obj, NSUInteger index))map checkClass:(Class)cls;
