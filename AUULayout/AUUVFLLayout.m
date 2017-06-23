@@ -141,11 +141,9 @@
                 }
             }
         }
-#ifdef DEBUG
         if ([AUUGlobalDataStorage sharedStorage].needDebugLod) {
             NSLog(@"VFL %@", self.pri_VFLString);
         }
-#endif
         
         [self.pri_sponsorView addConstraints:currentInstalledConstrants];
         return self.pri_VFLString;
