@@ -26,6 +26,7 @@
 		1C1400491EAD9C32003654D1 /* AUUCase08ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1400481EAD9C32003654D1 /* AUUCase08ViewController.m */; };
 		1CE0595A1EADFE0400589AED /* AUUWebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE059591EADFE0400589AED /* AUUWebPageViewController.m */; };
 		1CE0595E1EADFF2C00589AED /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE0595D1EADFF2C00589AED /* WebKit.framework */; };
+		1CE3681E1FDAFD9C00D19194 /* VFLLayout.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 1CE3681D1FDAFD9C00D19194 /* VFLLayout.podspec */; };
 		1CFA8E7B1EF3FF0D00F2A65A /* AUULayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CFA8E741EF3FF0D00F2A65A /* AUULayout.framework */; };
 		1CFA8E7C1EF3FF0D00F2A65A /* AUULayout.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1CFA8E741EF3FF0D00F2A65A /* AUULayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1CFA8E821EF3FF2600F2A65A /* AUULayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CFA8E801EF3FF2600F2A65A /* AUULayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -95,12 +96,12 @@
 		1CE0595D1EADFF2C00589AED /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		1CE0595F1EAE1AAB00589AED /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1CE059631EAEE76200589AED /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1CE3681D1FDAFD9C00D19194 /* VFLLayout.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VFLLayout.podspec; sourceTree = "<group>"; };
 		1CFA8E741EF3FF0D00F2A65A /* AUULayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AUULayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CFA8E801EF3FF2600F2A65A /* AUULayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUULayout.h; sourceTree = "<group>"; };
 		1CFA8E811EF3FF2600F2A65A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1CFA8E8A1EF3FF6400F2A65A /* AUUVFLLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUVFLLayout.h; sourceTree = "<group>"; };
 		1CFA8E8B1EF3FF6400F2A65A /* AUUVFLLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUVFLLayout.m; sourceTree = "<group>"; };
-		1CFA8E941EF401A100F2A65A /* AUULayout.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AUULayout.podspec; sourceTree = "<group>"; };
 		409B586BDD38BF66EA7BF96B /* Pods-LayoutExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LayoutExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LayoutExample/Pods-LayoutExample.debug.xcconfig"; sourceTree = "<group>"; };
 		6C029BCCD79E05DEA1BA7D6C /* Pods-LayoutExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LayoutExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-LayoutExample/Pods-LayoutExample.release.xcconfig"; sourceTree = "<group>"; };
 		FF517BF1BBF9A7C9724DEBDE /* Pods_LayoutExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LayoutExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,8 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				1CE0595F1EAE1AAB00589AED /* LICENSE */,
-				1CFA8E941EF401A100F2A65A /* AUULayout.podspec */,
 				1CE059631EAEE76200589AED /* README.md */,
+				1CE3681D1FDAFD9C00D19194 /* VFLLayout.podspec */,
 				1CFA8E751EF3FF0D00F2A65A /* AUULayout */,
 				1C04A2941EABBCA300D4DB46 /* LayoutExample */,
 				1C04A2831EABBC1000D4DB46 /* Products */,
@@ -346,6 +347,7 @@
 				1C04A2A51EABBCA300D4DB46 /* LaunchScreen.storyboard in Resources */,
 				1C04A2A21EABBCA300D4DB46 /* Assets.xcassets in Resources */,
 				1C04A2A01EABBCA300D4DB46 /* Main.storyboard in Resources */,
+				1CE3681E1FDAFD9C00D19194 /* VFLLayout.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

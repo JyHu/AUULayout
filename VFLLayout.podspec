@@ -25,7 +25,7 @@ An auto layout framework using VFL and NSLayoutConstraint
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'JyHu' => 'auu.aug@gmail.com' }
-  s.source           = { :git => 'https://github.com/JyHu/AUULayout.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/JyHu/AUULayout.git', :tag => 0.4.0 }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
