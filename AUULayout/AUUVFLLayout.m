@@ -8,8 +8,101 @@
 
 #import "AUUVFLLayout.h"
 #import <objc/runtime.h>
-#import "AUULayoutAssistant.h"
-#import "_AUULayoutAssistant.h"
+
+@interface NSArray (__AUUPrivate)
+@end
+@implementation NSArray (__AUUPrivate)
+
+/**
+ 操作数组中的所有元素，并重新返回一个数组
+ 
+ @param map 数据转换的block
+ @param cls 要判断的数据类型，如果为nil，则所有的数据类型都可进行操作
+ @return 转换后的数组
+ */
+- (NSArray *)map:(id (^)(id obj, NSUInteger index))map checkClass:(Class)cls {
+    NSMutableArray *results = [[NSMutableArray alloc] init];
+    if (self && self.count > 0) {
+        for (NSUInteger i = 0; i < self.count; i ++) {
+            id cur = self[i];
+            if (!cls || (cls && [cur isKindOfClass:cls])) {
+                id temp = map(cur, i);
+                if (temp) {
+                    [results addObject:temp];
+                }
+            }
+        }
+    }
+    return results;
+}
+@end
+
+@interface AUULayoutAssistant ()
+// 是否需要调试log
+@property (assign, nonatomic) BOOL needDebugLod;
+// 是否需要自动的将重复的旧约束设置时效
+@property (assign, nonatomic) BOOL needAutoCoverRepetitionLayoutConstrants;
+// 缓存的全局的处理重复约束的block
+@property (copy, nonatomic) AUURepetitionLayoutConstrantsHandler repetitionLayoutConstrantsHandler;
+@end
+
+@implementation AUULayoutAssistant
+
++ (instancetype)sharedInstance {
+    static AUULayoutAssistant *assistant = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        assistant = [[AUULayoutAssistant alloc] init];
+    });
+    return assistant;
+}
+
++ (void)enableDebugLog:(BOOL)enable {
+    [AUULayoutAssistant sharedInstance].needDebugLod = enable;
+}
+
++ (void)setNeedAutoCoverRepetitionLayoutConstrants:(BOOL)autoCover {
+    [AUULayoutAssistant sharedInstance].needAutoCoverRepetitionLayoutConstrants = autoCover;
+}
+
++ (void)setRepetitionLayoutConstrantsHandler:(AUURepetitionLayoutConstrantsHandler)repetitionLayoutConstrantsHandler {
+    [AUULayoutAssistant sharedInstance].repetitionLayoutConstrantsHandler = repetitionLayoutConstrantsHandler;
+}
+
+@end
+
+@implementation UIView (AUUAssistant)
+- (void)removeAllConstrants {
+    for (NSLayoutConstraint *layoutConstrant in self.constraints) {
+        layoutConstrant.active = NO;
+    }
+    [self removeConstraints:self.constraints];
+}
+@end
+
+
+@interface NSLayoutConstraint (AUUAssistant)
+@end
+@implementation NSLayoutConstraint (AUUAssistant)
+
+- (BOOL)similarTo:(NSLayoutConstraint *)layoutConstrant {
+    // 如果第一个视图不一样则不类似 如果第一个attribute不一样则不类似
+    if (![self.firstItem isEqual:layoutConstrant.firstItem] || self.firstAttribute != layoutConstrant.firstAttribute) {
+        return NO;
+    }
+    
+    if ((!self.secondItem && !layoutConstrant.secondItem) ||
+        (self.secondItem && layoutConstrant.secondItem &&
+         [self.secondItem isEqual:layoutConstrant.secondItem] &&
+         self.secondAttribute == layoutConstrant.secondAttribute)) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+@end
+
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #pragma mark - 为布局扩展下标法的基类
@@ -50,7 +143,7 @@
         // viewcontroller的view不可以设置这个属性，否则会出问题
         view.translatesAutoresizingMaskIntoConstraints = NO;
     }
-    NSString *key = [NSString stringWithFormat:@"com_AUU_VFL_%@%@", NSStringFromClass([view class]), @([view hash])];
+    NSString *key = [NSString stringWithFormat:@"COM_AUU_VFL_%@%@", NSStringFromClass([view class]), @([view hash])];
     [self.layoutKits setObject:view forKey:key];
     return key;
 }
@@ -86,7 +179,7 @@
 }
 
 - (NSString *(^)())end {
-    return [^(){
+    return [^{
         // 以父视图的末尾结束当前的vfl语句
         [self.pri_VFLString appendString:@"|"];
         return self.cut();
@@ -94,7 +187,7 @@
 }
 
 - (NSString *(^)())cut {
-    return [^(){
+    return [^{
         // 结束VFL语句，并设置到具体的视图上
         NSArray *currentInstalledConstrants = [NSLayoutConstraint constraintsWithVisualFormat:self.pri_VFLString options:NSLayoutFormatDirectionMask metrics:nil views:self.layoutKits];
 
@@ -103,19 +196,16 @@
                 for (NSLayoutConstraint *newLayoutConstrant in currentInstalledConstrants) {
                     if ([newLayoutConstrant similarTo:oldLayoutConstrant] && oldLayoutConstrant.active) {
                         // 处理有冲突的约束
-                        if (view.superview.repetitionLayoutConstrantsReporter) {
-                            oldLayoutConstrant.active = view.superview.repetitionLayoutConstrantsReporter(view, oldLayoutConstrant);
-                        } else if ([AUUGlobalDataStorage sharedStorage].errorLayoutConstrantsReporter) {
-                            [AUUGlobalDataStorage sharedStorage].errorLayoutConstrantsReporter(oldLayoutConstrant, newLayoutConstrant);
-                        } else if ([AUUGlobalDataStorage sharedStorage].needAutoCoverRepetitionLayoutConstrants) {
+                        if ([AUULayoutAssistant sharedInstance].repetitionLayoutConstrantsHandler) {
+                            [AUULayoutAssistant sharedInstance].repetitionLayoutConstrantsHandler(oldLayoutConstrant, newLayoutConstrant);
+                        } else if ([AUULayoutAssistant sharedInstance].needAutoCoverRepetitionLayoutConstrants) {
                             oldLayoutConstrant.active = NO;
                         }
-                        
                     }
                 }
             }
         }
-        if ([AUUGlobalDataStorage sharedStorage].needDebugLod) {
+        if ([AUULayoutAssistant sharedInstance].needDebugLod) {
             NSLog(@"VFL %@", self.pri_VFLString);
         }
         
@@ -127,9 +217,6 @@
 - (instancetype)objectForKeyedSubscript:(id)key {
     if ([key isKindOfClass:[NSNumber class]] || [key isKindOfClass:[NSString class]]){
         // 设置两个视图的间距
-        if ([key isKindOfClass:[NSString class]]) {
-            key = [[key stringByReplacingOccurrencesOfString:@"(" withString:@""] stringByReplacingOccurrencesOfString:@")" withString:@""];
-        }
         [self.pri_VFLString appendFormat:@"%@-(%@)-", (self.pri_VFLString && self.pri_VFLString.length == 2 ? @"|" : @""), key];
     } else {
         if ([key isKindOfClass:[UIView class]]) {
@@ -139,7 +226,7 @@
             // 设置相邻视图，和相邻视图其宽高属性的子VFL语句
             AUUSubVFLConstraints *subConstrants = (AUUSubVFLConstraints *)key;
             [self.layoutKits addEntriesFromDictionary:subConstrants.layoutKits];
-            [self.pri_VFLString appendFormat:@"[%@%@]", [self cacheView:subConstrants.sponsorView], subConstrants.pri_VFLString];
+            [self.pri_VFLString appendFormat:@"[%@(%@)]", [self cacheView:subConstrants.sponsorView], subConstrants.pri_VFLString];
         }
     }
     return self;
@@ -177,10 +264,10 @@
 - (instancetype)objectForKeyedSubscript:(id)key {
     if ([key isKindOfClass:[NSNumber class]]) {
         // 设置宽高属性为具体的值，此处的VFL只作为附属的设置，不会作为累计的VFL，所以不需要可变的string
-        self.pri_VFLString = (NSMutableString *)[NSString stringWithFormat:@"(%@)", key];
+        self.pri_VFLString = (NSMutableString *)[NSString stringWithFormat:@"%@", key];
     } else if ([key isKindOfClass:[UIView class]]) {
         // 设置与某视图宽高相等
-        self.pri_VFLString = (NSMutableString *)[NSString stringWithFormat:@"(%@)", [self cacheView:key]];
+        self.pri_VFLString = (NSMutableString *)[NSString stringWithFormat:@"%@", [self cacheView:key]];
     } else if ([key isKindOfClass:[NSString class]]) {
         // 设置宽高的属性
         self.pri_VFLString = key;
@@ -277,7 +364,7 @@
 }
 
 - (NSArray *(^)())end {
-    return [^(void){
+    return [^{
         return [self.layoutObjects map:^id(AUUVFLConstraints *obj, NSUInteger index) {
             // 调用 AUUVFLConstraints 的end属性一个个的去结束vfl语句并设定
             return obj.end();
@@ -286,7 +373,7 @@
 }
 
 - (NSArray *(^)())cut {
-    return [^(void){
+    return [^{
         return [self.layoutObjects map:^id(AUUVFLConstraints *obj, NSUInteger index) {
             // 调用 AUUVFLConstraints 的cut属性一个个的去结束vfl语句并设定
             return obj.cut();

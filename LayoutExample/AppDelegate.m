@@ -21,13 +21,13 @@
     
     [AUULayoutAssistant enableDebugLog:YES];
     
-    [UIView setErrorLayoutConstrantsReporter:^(NSLayoutConstraint *oldLayoutConstrant, NSLayoutConstraint *newLayoutConstrant) {
+    [AUULayoutAssistant setRepetitionLayoutConstrantsHandler:^(NSLayoutConstraint *oldLayoutConstrant, NSLayoutConstraint *newLayoutConstrant) {
         ((UIView *)oldLayoutConstrant.firstItem).backgroundColor = [UIColor redColor];
         ((UIView *)oldLayoutConstrant.secondItem).backgroundColor = [UIColor redColor];
         ((UIView *)newLayoutConstrant.firstItem).backgroundColor = [UIColor greenColor];
         ((UIView *)newLayoutConstrant.secondItem).backgroundColor = [UIColor greenColor];
+        oldLayoutConstrant.active = NO;
     }];
-    
     
     return YES;
 }

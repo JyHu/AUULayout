@@ -27,6 +27,45 @@
 
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#pragma mark - 辅助方法
+#pragma mark -
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+typedef void (^AUURepetitionLayoutConstrantsHandler) (NSLayoutConstraint *oldLayoutConstrant, NSLayoutConstraint *newLayoutConstrant);
+
+@interface AUULayoutAssistant : NSObject
+/**
+ 是否需要显示一些测试的log信息
+ */
++ (void)enableDebugLog:(BOOL)enable;
+
+/**
+ 设置是否需要自动的使用新的布局属性去覆盖旧的布局属性，默认是yes，也就是说可以随便的写控制属性而不需要担心有重复冲突
+ 这个方法是全局的，默认是自动的覆盖
+ */
++ (void)setNeedAutoCoverRepetitionLayoutConstrants:(BOOL)autoCover;
+
+/**
+ 全局的截取布局冲突的属性
+ */
++ (void)setRepetitionLayoutConstrantsHandler:(AUURepetitionLayoutConstrantsHandler)handler;
+
+@end
+
+
+@interface UIView (AUUAssistant)
+
+/**
+ 移除所有的布局控制属性
+ */
+- (void)removeAllConstrants;
+
+@end
+
+
+
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #pragma mark - 为布局扩展下标法的基类
 #pragma mark -
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -80,10 +119,10 @@
 @interface AUUSubVFLConstraints : AUUVFLLayout
 @end
 
-#define AUUPriorityConstraints(priority, constraints) [NSString stringWithFormat:@"(%@@%@)", @(constraints), @(priority)]   // 优先级属性的生成
-#define AUUBetween(min, max)        [NSString stringWithFormat:@"(>=%@,<=%@)", @(min), @(max)]  // 宽高区间范围的生成
-#define AUUGreaterThan(constraints) [NSString stringWithFormat:@"(>=%@)", @(constraints)]       // 视图间距、宽高的最小值
-#define AUULessThan(constraints)    [NSString stringWithFormat:@"(<=%@)", @(constraints)]       // 视图间距、宽高的最大值
+#define AUUPriorityConstraints(priority, constraints) [NSString stringWithFormat:@"%@@%@", @(constraints), @(priority)]   // 优先级属性的生成
+#define AUUBetween(min, max)        [NSString stringWithFormat:@">=%@,<=%@", @(min), @(max)]  // 宽高区间范围的生成
+#define AUUGreaterThan(constraints) [NSString stringWithFormat:@">=%@", @(constraints)]       // 视图间距、宽高的最小值
+#define AUULessThan(constraints)    [NSString stringWithFormat:@"<=%@", @(constraints)]       // 视图间距、宽高的最大值
 
 /**
  为UIView单独做一个命名空间是为了减少对view的扩充，避免过多的属性、方法的扩充导致与其他库或者使用者各自需求的冲突

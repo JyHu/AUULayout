@@ -30,10 +30,6 @@
 		1CFA8E7C1EF3FF0D00F2A65A /* AUULayout.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1CFA8E741EF3FF0D00F2A65A /* AUULayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1CFA8E821EF3FF2600F2A65A /* AUULayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CFA8E801EF3FF2600F2A65A /* AUULayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CFA8E831EF3FF2600F2A65A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CFA8E811EF3FF2600F2A65A /* Info.plist */; };
-		1CFA8E8C1EF3FF6400F2A65A /* _AUULayoutAssistant.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CFA8E841EF3FF6400F2A65A /* _AUULayoutAssistant.h */; };
-		1CFA8E8D1EF3FF6400F2A65A /* _AUULayoutAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFA8E851EF3FF6400F2A65A /* _AUULayoutAssistant.m */; };
-		1CFA8E901EF3FF6400F2A65A /* AUULayoutAssistant.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CFA8E881EF3FF6400F2A65A /* AUULayoutAssistant.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1CFA8E911EF3FF6400F2A65A /* AUULayoutAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFA8E891EF3FF6400F2A65A /* AUULayoutAssistant.m */; };
 		1CFA8E921EF3FF6400F2A65A /* AUUVFLLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CFA8E8A1EF3FF6400F2A65A /* AUUVFLLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CFA8E931EF3FF6400F2A65A /* AUUVFLLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFA8E8B1EF3FF6400F2A65A /* AUUVFLLayout.m */; };
 		3CE926DD8B51BD84CE9DBE5F /* Pods_LayoutExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF517BF1BBF9A7C9724DEBDE /* Pods_LayoutExample.framework */; };
@@ -102,10 +98,6 @@
 		1CFA8E741EF3FF0D00F2A65A /* AUULayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AUULayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CFA8E801EF3FF2600F2A65A /* AUULayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUULayout.h; sourceTree = "<group>"; };
 		1CFA8E811EF3FF2600F2A65A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1CFA8E841EF3FF6400F2A65A /* _AUULayoutAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AUULayoutAssistant.h; sourceTree = "<group>"; };
-		1CFA8E851EF3FF6400F2A65A /* _AUULayoutAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AUULayoutAssistant.m; sourceTree = "<group>"; };
-		1CFA8E881EF3FF6400F2A65A /* AUULayoutAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUULayoutAssistant.h; sourceTree = "<group>"; };
-		1CFA8E891EF3FF6400F2A65A /* AUULayoutAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUULayoutAssistant.m; sourceTree = "<group>"; };
 		1CFA8E8A1EF3FF6400F2A65A /* AUUVFLLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUVFLLayout.h; sourceTree = "<group>"; };
 		1CFA8E8B1EF3FF6400F2A65A /* AUUVFLLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUVFLLayout.m; sourceTree = "<group>"; };
 		1CFA8E941EF401A100F2A65A /* AUULayout.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AUULayout.podspec; sourceTree = "<group>"; };
@@ -235,10 +227,6 @@
 				1CFA8E801EF3FF2600F2A65A /* AUULayout.h */,
 				1CFA8E8A1EF3FF6400F2A65A /* AUUVFLLayout.h */,
 				1CFA8E8B1EF3FF6400F2A65A /* AUUVFLLayout.m */,
-				1CFA8E881EF3FF6400F2A65A /* AUULayoutAssistant.h */,
-				1CFA8E891EF3FF6400F2A65A /* AUULayoutAssistant.m */,
-				1CFA8E841EF3FF6400F2A65A /* _AUULayoutAssistant.h */,
-				1CFA8E851EF3FF6400F2A65A /* _AUULayoutAssistant.m */,
 				1CFA8E811EF3FF2600F2A65A /* Info.plist */,
 			);
 			path = AUULayout;
@@ -272,9 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CFA8E821EF3FF2600F2A65A /* AUULayout.h in Headers */,
-				1CFA8E901EF3FF6400F2A65A /* AUULayoutAssistant.h in Headers */,
 				1CFA8E921EF3FF6400F2A65A /* AUUVFLLayout.h in Headers */,
-				1CFA8E8C1EF3FF6400F2A65A /* _AUULayoutAssistant.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,9 +440,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CFA8E911EF3FF6400F2A65A /* AUULayoutAssistant.m in Sources */,
 				1CFA8E931EF3FF6400F2A65A /* AUUVFLLayout.m in Sources */,
-				1CFA8E8D1EF3FF6400F2A65A /* _AUULayoutAssistant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
