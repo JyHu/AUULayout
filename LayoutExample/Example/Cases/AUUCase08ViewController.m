@@ -22,7 +22,7 @@
     H[20][view1[10]][AUUGreaterThan(100)][view2[10]][20].end();
     
     //    @[V,V].VFL[0][@[view1,view2]].end();
-    @[V].VFL[0][@[view1, view2]].end();
+    VA[@[view1, view2]].end();
     //    上面一句等于下面这两句的合并
     //    V[0][view1][0].end();
     //    V[0][view2][0].end();

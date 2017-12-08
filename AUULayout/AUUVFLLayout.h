@@ -71,15 +71,16 @@ typedef void (^AUURepetitionLayoutConstrantsHandler) (NSLayoutConstraint *oldLay
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-@interface AUUVFLLayout : NSObject
+@interface AUUBaseVFLLayout : NSObject
 /*
  扩充的下标法，这里不用id是因为这里在使用的时候最好不要去强制转换、判断数据类型。
  */
 - (instancetype)objectAtIndexedSubscript:(NSInteger)idx;
 - (instancetype)objectForKeyedSubscript:(id)key;
+@end
 
+@interface AUUVFLLayout : AUUBaseVFLLayout
 @property (weak, nonatomic, readonly) UIView *sponsorView;
-
 @end
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -136,10 +137,10 @@ typedef void (^AUURepetitionLayoutConstrantsHandler) (NSLayoutConstraint *oldLay
  然后就会禁止掉当前VFL布局方法里的下标法。
  此时可以使用 .VFL 空间名去做VFL布局
  */
-
 #ifndef kUIViewUseVFLSubscriptLayout
 #define kUIViewUseVFLSubscriptLayout 1
 #endif
+
 #if kUIViewUseVFLSubscriptLayout
 /*
  对UIView扩充的下标法，这里不用instance是因为返回的数据类型有改变
@@ -169,7 +170,7 @@ typedef void (^AUURepetitionLayoutConstrantsHandler) (NSLayoutConstraint *oldLay
 #pragma mark -
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-@interface AUUGroupVFLConstrants : AUUVFLLayout
+@interface AUUGroupVFLConstrants : AUUBaseVFLLayout
 @property (copy, nonatomic, readonly) NSArray * (^end)();   // 结束语句，会返回一个vfl语句的数组
 @property (copy, nonatomic, readonly) NSArray * (^cut)();   // 结束语句，会返回一个vfl语句的数组
 @end

@@ -46,7 +46,7 @@
         H[10][view4[view1]].cut();
         V[view4[view1]][10].end();
         
-#elif 1
+#elif 0
         
         // 方法3，对每行每列的视图做合并
         H[10][view1[100]][AUUGreaterThan(100)][view2[100]][10].end();

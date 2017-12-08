@@ -181,7 +181,6 @@
 		1C04A2AB1EABBF8000D4DB46 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				1C6108C61ED320F400852AAA /* Edge */,
 				1C04A2AC1EABBF8000D4DB46 /* Cases */,
 				1C04A2AE1EABBFB700D4DB46 /* AUUBaseCaseViewController.h */,
 				1C04A2AF1EABBFB700D4DB46 /* AUUBaseCaseViewController.m */,
@@ -212,13 +211,6 @@
 				1C1400481EAD9C32003654D1 /* AUUCase08ViewController.m */,
 			);
 			path = Cases;
-			sourceTree = "<group>";
-		};
-		1C6108C61ED320F400852AAA /* Edge */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Edge;
 			sourceTree = "<group>";
 		};
 		1CFA8E751EF3FF0D00F2A65A /* AUULayout */ = {

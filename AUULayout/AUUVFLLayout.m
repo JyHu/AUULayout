@@ -109,6 +109,19 @@
 #pragma mark -
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincomplete-implementation"
+
+@implementation AUUBaseVFLLayout
+
+- (instancetype)objectAtIndexedSubscript:(NSInteger)idx {
+    return self[@(idx)];
+}
+
+@end
+
+#pragma clang diagnostic pop
+
 @interface AUUVFLLayout() <NSCopying>
 
 // VFL语句中相关的视图，在主VFL中表示的是容器视图，在子VFL中表示的是当前要设置宽高属性的视图
@@ -125,8 +138,7 @@
 
 @end
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wincomplete-implementation"
+
 
 @implementation AUUVFLLayout
 
@@ -148,10 +160,6 @@
     return key;
 }
 
-- (instancetype)objectAtIndexedSubscript:(NSInteger)idx {
-    return self[@(idx)];
-}
-
 - (id)copyWithZone:(NSZone *)zone {
     AUUVFLLayout *layoutConstrants = [[[self class] allocWithZone:zone] init];
     layoutConstrants.sponsorView = self.sponsorView;
@@ -161,8 +169,6 @@
 }
 
 @end
-
-#pragma clang diagnostic pop
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #pragma mark - 对主VFL语句设置属性的类
@@ -384,12 +390,11 @@
 @end
 
 @implementation NSArray (AUUVFLSpace)
-const char *__kGroupVFLAssociatedKey = (void *)@"com.AUU.__kGroupVFLAssociatedKey";
 - (AUUGroupVFLConstrants *)VFL {
-    AUUGroupVFLConstrants *groupConstrants = objc_getAssociatedObject(self, __kGroupVFLAssociatedKey);
+    AUUGroupVFLConstrants *groupConstrants = objc_getAssociatedObject(self, _cmd);
     if (!groupConstrants) {
         groupConstrants = [[AUUGroupVFLConstrants alloc] init];
-        objc_setAssociatedObject(self, __kGroupVFLAssociatedKey, groupConstrants, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, _cmd, groupConstrants, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     groupConstrants.layoutObjects = self;
     return groupConstrants;

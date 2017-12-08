@@ -32,8 +32,14 @@
         H[10][label1[AUUPriorityConstraints(100, 100)]][5][label2[AUUPriorityConstraints(200, 100)]][10].end();
         H[10][label3[AUUPriorityConstraints(200, 100)]][5][label4[AUUPriorityConstraints(100, 100)]][10].end();
         
+        
+#if 1
+        VA[100][@[label1, label2]][100][@[label3, label4]].cut();
+#else
         V[100][label1][100][label3].cut();
         V[100][label2][100][label4].cut();
+#endif
+        
     }
     else if (self.testCaseType == AUUTestCaseTypeMasonry)
     {
