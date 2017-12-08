@@ -19,10 +19,14 @@
     UIView *view2 = [UIView generateView];
     [view1 addSubview:view2];
     
+    self.view.repetitionLayoutConstrantsReporter = ^BOOL(UIView *correlationView, NSLayoutConstraint *repetitionLayoutConstrant) {
+        return NO;
+    };
+    
     if (self.testCaseType == AUUTestCaseTypePackVFL) {
         H[20][view1][20].end();
         V[84][view1][20].end();
-        
+        V[64][view1][20].end();
         view2.edge(UIEdgeInsetsMake(40, 40, 40, 40));
         //        H[0][view2][0].end();
     }

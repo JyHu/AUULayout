@@ -66,8 +66,6 @@
                          PushAction(@"07-设置边界相对位置关系", @"AUUCase07ViewController"),
                          PushAction(@"08-设置距离的最大最小值", @"AUUCase08ViewController"),
                          WebInfoAction(@"09-属性的批量操作", @"https://github.com/JyHu/AUULayout/blob/master/Using/Using_v01.md/#9-属性的批量操作"),
-                         @"Edge",
-                         PushAction(@"02-初始", @"AUUEdge02ViewController"),
                          ];
     
     self.tableModel = [[NITableViewModel alloc] initWithSectionedArray:objects delegate:(id)[NICellFactory class]];

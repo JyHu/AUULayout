@@ -19,7 +19,7 @@
     [self.view addSubview:view1];
     [self.view addSubview:view2];
     
-    H[20][view1[10]][greaterThan(100)][view2[10]][20].end();
+    H[20][view1[10]][AUUGreaterThan(100)][view2[10]][20].end();
     
     //    @[V,V].VFL[0][@[view1,view2]].end();
     @[V].VFL[0][@[view1, view2]].end();
@@ -33,8 +33,8 @@
     [self.view addSubview:testView1];
     [self.view addSubview:testView2];
     
-    H[view1][greaterThan(50)][testView1[50]][lessThan(50)][view2].cut();
-    H[view1][lessThan(50)][testView2[50]][greaterThan(50)][view2].cut();
+    H[view1][AUUGreaterThan(50)][testView1[50]][AUULessThan(50)][view2].cut();
+    H[view1][AUULessThan(50)][testView2[50]][AUUGreaterThan(50)][view2].cut();
     
     V[100][testView1[50]][50][testView2[50]].cut();
 }

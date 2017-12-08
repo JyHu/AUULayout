@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 #import "AUUVFLLayout.h"
-#import "AUUEdgeLayout.h"
 #import "AUULayoutAssistant.h"
 
 //! Project version number for AUULayout.

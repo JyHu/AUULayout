@@ -9,10 +9,6 @@
 #import "_AUULayoutAssistant.h"
 #import "AUULayoutAssistant.h"
 
-@implementation _AUULayoutAssistant
-
-@end
-
 @implementation NSLayoutConstraint (AUUAssistant)
 
 - (BOOL)similarTo:(NSLayoutConstraint *)layoutConstrant
@@ -54,71 +50,11 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         globalDataStorage = [[AUUGlobalDataStorage alloc] init];
+        globalDataStorage.needAutoCoverRepetitionLayoutConstrants = YES;
     });
     return globalDataStorage;
 }
 
-- (instancetype)init
-{
-    if (self = [super init]) {
-        self.needAutoCoverRepetitionLayoutConstrants = YES;
-    }
-    return self;
-}
-
-@end
-
-@implementation NSString (__AUUPrivate)
-
-/**
- 判断是否满足这个正则表达式
- 
- @param pattern 正则表达式
- @return 是否满足条件
- */
-- (BOOL)isLegalStringWithPattern:(NSString *)pattern {
-    return [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern] evaluateWithObject:self];
-}
-
-/**
- 判断是否满足其中的某个正则表达式
- 
- @param patterns 正则表达式列表
- @return 是否满足条件
- */
-- (BOOL)isLegalStringWithPatterns:(NSArray *)patterns {
-    for (NSString *pattern in patterns) {
-        if ([self isLegalStringWithPattern:pattern]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
-/**
- 判断是否满足所有这些正则表达式
- 
- @param patterns 正则表达式列表
- @return 是否满足条件
- */
-- (BOOL)isLegalStringAllMatchPatterns:(NSArray *)patterns {
-    for (NSString *pattern in patterns) {
-        if (![self isLegalStringWithPattern:pattern]) {
-            return NO;
-        }
-    }
-    return YES;
-}
-/**
- 使用正则匹配来查找字符串中有多少个匹配的内容
- 
- @param pattern 用来匹配的正则表达式
- @return 匹配到的个数
- */
-- (NSUInteger)numberOfMatchesWithPattern:(NSString *)pattern {
-    NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
-    return [reg matchesInString:self options:NSMatchingReportCompletion range:NSMakeRange(0, self.length)].count;
-}
 @end
 
 @implementation NSArray (__AUUPrivate)

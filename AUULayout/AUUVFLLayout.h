@@ -16,17 +16,10 @@
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
-typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
-    AUUVFLLayoutDirectionUnknow,        // 未知
-    AUUVFLLayoutDirectionHorizontal,    // 横向
-    AUUVFLLayoutDirectionVertical,      // 纵向
-};
-
 // VFL横向布局的开始，必须(封装的一些方法除外)以其开头
-#define H ([[[AUUVFLConstraints alloc] init] resetWithDirection:AUUVFLLayoutDirectionHorizontal])
+#define H ([[AUUHorizontalVFLConstraints alloc] init])
 // VFL纵向布局的开始，必须(封装的一些方法除外)以其开头
-#define V ([[[AUUVFLConstraints alloc] init] resetWithDirection:AUUVFLLayoutDirectionVertical])
+#define V ([[AUUVerticalVFLConstraints alloc] init])
 // 批量的横向布局的开始
 #define HA (@[H].VFL)
 // 批量的纵向布局的开始
@@ -61,9 +54,6 @@ typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
 
 @interface AUUVFLConstraints : AUUVFLLayout
 
-// VFL语句的初始化方法，在宏定义中已经使用，外部不需要调用这个方法，由于使用了宏定义无法设置私有属性才放出这个方法。
-- (AUUVFLConstraints *)resetWithDirection:(AUUVFLLayoutDirection)direction;
-
 // 以父视图的右边或者底部结束VFL布局，比如 `H[10][view][10].end();` ，这时候不需要为view设置宽高属性
 @property (copy, nonatomic, readonly) NSString * (^end)();
 
@@ -71,6 +61,12 @@ typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
 @property (copy, nonatomic, readonly) NSString * (^cut)();
 
 @end
+
+@interface AUUHorizontalVFLConstraints : AUUVFLConstraints
+@end
+@interface AUUVerticalVFLConstraints : AUUVFLConstraints
+@end
+
 
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -82,12 +78,12 @@ typedef NS_ENUM(NSUInteger, AUUVFLLayoutDirection) {
  用于View相关的命名空间，设置子视图的宽高、优先级属性
  */
 @interface AUUSubVFLConstraints : AUUVFLLayout
-NSString *priority(CGFloat length, CGFloat priority);       // 优先级属性的生成
-NSString *between(CGFloat minLength, CGFloat maxLength);    // 宽高区间范围的生成
-NSString *greaterThan(CGFloat length);                      // 视图间距、宽高的最小值
-NSString *lessThan(CGFloat length);                         // 视图间距、宽高的最大值
 @end
 
+#define AUUPriorityConstraints(priority, constraints) [NSString stringWithFormat:@"(%@@%@)", @(constraints), @(priority)]   // 优先级属性的生成
+#define AUUBetween(min, max)        [NSString stringWithFormat:@"(>=%@,<=%@)", @(min), @(max)]  // 宽高区间范围的生成
+#define AUUGreaterThan(constraints) [NSString stringWithFormat:@"(>=%@)", @(constraints)]       // 视图间距、宽高的最小值
+#define AUULessThan(constraints)    [NSString stringWithFormat:@"(<=%@)", @(constraints)]       // 视图间距、宽高的最大值
 
 /**
  为UIView单独做一个命名空间是为了减少对view的扩充，避免过多的属性、方法的扩充导致与其他库或者使用者各自需求的冲突

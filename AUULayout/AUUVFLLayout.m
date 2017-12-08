@@ -18,27 +18,16 @@
 
 @interface AUUVFLLayout() <NSCopying>
 
-/**
- VFL语句中相关的视图，在主VFL中表示的是容器视图，在子VFL中表示的是当前要设置宽高属性的视图
- */
-@property (weak, nonatomic) UIView *pri_sponsorView;
+// VFL语句中相关的视图，在主VFL中表示的是容器视图，在子VFL中表示的是当前要设置宽高属性的视图
+@property (weak, nonatomic, readwrite) UIView *sponsorView;
 
-/**
- VFL语句，在主VFL中表示的是当前的完整的VFL语句，在子VFL中表示的是当前要设置的视图的宽高属性
- */
+// VFL语句，在主VFL中表示的是当前的完整的VFL语句，在子VFL中表示的是当前要设置的视图的宽高属性
 @property (retain, nonatomic) NSMutableString *pri_VFLString;
 
-/**
- VFL语句中保存视图的字典
- */
+// VFL语句中保存视图的字典
 @property (retain, nonatomic) NSMutableDictionary <NSString *, UIView *> *layoutKits;
 
-/**
- 缓存视图到字典中
- 
- @param view 要缓存的视图
- @return 为视图生成的HashKey
- */
+// 缓存视图到字典中，并返回为视图生成的HashKey
 - (NSString *)cacheView:(UIView *)view;
 
 @end
@@ -55,18 +44,13 @@
     return _layoutKits;
 }
 
-/**
- 缓存视图到字典
- 
- @param view 要缓存的视图
- @return 为这个视图生成的唯一的key
- */
+// 缓存视图到字典中，并返回为视图生成的HashKey
 - (NSString *)cacheView:(UIView *)view {
     if (view.superview && [view.superview isKindOfClass:[UIView class]]) {
         // viewcontroller的view不可以设置这个属性，否则会出问题
         view.translatesAutoresizingMaskIntoConstraints = NO;
     }
-    NSString *key = [NSString stringWithFormat:@"com_AUU_vfl_%@%@", NSStringFromClass([view class]), @([view hash])];
+    NSString *key = [NSString stringWithFormat:@"com_AUU_VFL_%@%@", NSStringFromClass([view class]), @([view hash])];
     [self.layoutKits setObject:view forKey:key];
     return key;
 }
@@ -75,18 +59,12 @@
     return self[@(idx)];
 }
 
-- (id)copyWithZone:(NSZone *)zone
-{
+- (id)copyWithZone:(NSZone *)zone {
     AUUVFLLayout *layoutConstrants = [[[self class] allocWithZone:zone] init];
-    layoutConstrants.pri_sponsorView = self.pri_sponsorView;
+    layoutConstrants.sponsorView = self.sponsorView;
     layoutConstrants.pri_VFLString = [self.pri_VFLString mutableCopy];
     layoutConstrants.layoutKits = [self.layoutKits mutableCopy];
     return layoutConstrants;
-}
-
-- (UIView *)sponsorView
-{
-    return self.pri_sponsorView;
 }
 
 @end
@@ -100,12 +78,9 @@
 
 @implementation AUUVFLConstraints
 
-- (AUUVFLConstraints *)resetWithDirection:(AUUVFLLayoutDirection)direction {
-    // vfl的开始
-    if (direction == AUUVFLLayoutDirectionHorizontal) {
-        self.pri_VFLString = [@"H:" mutableCopy];
-    } else {
-        self.pri_VFLString = [@"V:" mutableCopy];
+- (instancetype)initWithDirection:(NSString *)direction {
+    if (self = [super init]) {
+        self.pri_VFLString = [direction mutableCopy];
     }
     return self;
 }
@@ -115,7 +90,7 @@
         // 以父视图的末尾结束当前的vfl语句
         [self.pri_VFLString appendString:@"|"];
         return self.cut();
-    } copy];;
+    } copy];
 }
 
 - (NSString *(^)())cut {
@@ -127,16 +102,15 @@
             for (NSLayoutConstraint *oldLayoutConstrant in view.superview.constraints) {
                 for (NSLayoutConstraint *newLayoutConstrant in currentInstalledConstrants) {
                     if ([newLayoutConstrant similarTo:oldLayoutConstrant] && oldLayoutConstrant.active) {
-                        
+                        // 处理有冲突的约束
                         if (view.superview.repetitionLayoutConstrantsReporter) {
                             oldLayoutConstrant.active = view.superview.repetitionLayoutConstrantsReporter(view, oldLayoutConstrant);
+                        } else if ([AUUGlobalDataStorage sharedStorage].errorLayoutConstrantsReporter) {
+                            [AUUGlobalDataStorage sharedStorage].errorLayoutConstrantsReporter(oldLayoutConstrant, newLayoutConstrant);
                         } else if ([AUUGlobalDataStorage sharedStorage].needAutoCoverRepetitionLayoutConstrants) {
                             oldLayoutConstrant.active = NO;
                         }
                         
-                        if ([AUUGlobalDataStorage sharedStorage].errorLayoutConstrantsReporter) {
-                            [AUUGlobalDataStorage sharedStorage].errorLayoutConstrantsReporter(oldLayoutConstrant, newLayoutConstrant);
-                        }
                     }
                 }
             }
@@ -145,40 +119,52 @@
             NSLog(@"VFL %@", self.pri_VFLString);
         }
         
-        [self.pri_sponsorView addConstraints:currentInstalledConstrants];
+        [self.sponsorView addConstraints:currentInstalledConstrants];
         return self.pri_VFLString;
     } copy];
 }
 
 - (instancetype)objectForKeyedSubscript:(id)key {
-    if ([key isKindOfClass:[NSNumber class]] ||
-        ([key isKindOfClass:[NSString class]] && [key numberOfMatchesWithPattern:@"\\."] <= 1 &&
-         [key isLegalStringWithPatterns:@[@"^-?\\([0-9][0-9\\.]*\\)$", @"^\\(>=[0-9][0-9\\.]*\\)$", @"^\\(<=[0-9][0-9\\.]*\\)$"]])) {
-            // 设置两个视图的间距
-            [self.pri_VFLString appendFormat:@"%@-(%@)-", (self.pri_VFLString && self.pri_VFLString.length == 2 ? @"|" : @""), key];
-        } else {
-            if ([key isKindOfClass:[UIView class]]) {
-                // 设置相邻的视图
-                [self.pri_VFLString appendFormat:@"[%@]", [self cacheView:key]];
-            } else if ([key isKindOfClass:[AUUSubVFLConstraints class]]) {
-                // 设置相邻视图，和相邻视图其宽高属性的子VFL语句
-                AUUSubVFLConstraints *subConstrants = (AUUSubVFLConstraints *)key;
-                [self.layoutKits addEntriesFromDictionary:subConstrants.layoutKits];
-                [self.pri_VFLString appendFormat:@"[%@%@]", [self cacheView:subConstrants.pri_sponsorView], subConstrants.pri_VFLString];
-            }
+    if ([key isKindOfClass:[NSNumber class]] || [key isKindOfClass:[NSString class]]){
+        // 设置两个视图的间距
+        if ([key isKindOfClass:[NSString class]]) {
+            key = [[key stringByReplacingOccurrencesOfString:@"(" withString:@""] stringByReplacingOccurrencesOfString:@")" withString:@""];
         }
+        [self.pri_VFLString appendFormat:@"%@-(%@)-", (self.pri_VFLString && self.pri_VFLString.length == 2 ? @"|" : @""), key];
+    } else {
+        if ([key isKindOfClass:[UIView class]]) {
+            // 设置相邻的视图
+            [self.pri_VFLString appendFormat:@"[%@]", [self cacheView:key]];
+        } else if ([key isKindOfClass:[AUUSubVFLConstraints class]]) {
+            // 设置相邻视图，和相邻视图其宽高属性的子VFL语句
+            AUUSubVFLConstraints *subConstrants = (AUUSubVFLConstraints *)key;
+            [self.layoutKits addEntriesFromDictionary:subConstrants.layoutKits];
+            [self.pri_VFLString appendFormat:@"[%@%@]", [self cacheView:subConstrants.sponsorView], subConstrants.pri_VFLString];
+        }
+    }
     return self;
 }
 
 - (NSString *)cacheView:(UIView *)view {
     if (view.superview && [view.superview isKindOfClass:[UIView class]]) {
         // 当前VFL语句操作的父视图
-        self.pri_sponsorView = view.superview;
+        self.sponsorView = view.superview;
     }
     NSAssert1(view.nextResponder, @"当前视图[%@]没有被添加到需要的父视图上，无法进行自动布局", view);
     return [super cacheView:view];
 }
 
+@end
+
+@implementation AUUHorizontalVFLConstraints
+- (instancetype)init {
+    return [self initWithDirection:@"H:"];
+}
+@end
+@implementation AUUVerticalVFLConstraints
+- (instancetype)init {
+    return [self initWithDirection:@"V:"];
+}
 @end
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -188,38 +174,15 @@
 
 @implementation AUUSubVFLConstraints
 
-NSString *priority(CGFloat width, CGFloat priority) {
-    return [NSString stringWithFormat:@"(%@@%@)", @(width), @(priority)];
-}
-
-NSString *between(CGFloat minLength, CGFloat maxLength) {
-    return [NSString stringWithFormat:@"(>=%@,<=%@)", @(minLength), @(maxLength)];
-}
-
-NSString *greaterThan(CGFloat length) {
-    return [NSString stringWithFormat:@"(>=%@)", @(length)];
-}
-
-NSString *lessThan(CGFloat length) {
-    return [NSString stringWithFormat:@"(<=%@)", @(length)];
-}
-
 - (instancetype)objectForKeyedSubscript:(id)key {
     if ([key isKindOfClass:[NSNumber class]]) {
-        // 设置宽高属性为具体的值
+        // 设置宽高属性为具体的值，此处的VFL只作为附属的设置，不会作为累计的VFL，所以不需要可变的string
         self.pri_VFLString = (NSMutableString *)[NSString stringWithFormat:@"(%@)", key];
     } else if ([key isKindOfClass:[UIView class]]) {
         // 设置与某视图宽高相等
         self.pri_VFLString = (NSMutableString *)[NSString stringWithFormat:@"(%@)", [self cacheView:key]];
-    } else if ([key isKindOfClass:[NSString class]] && [key numberOfMatchesWithPattern:@"\\."] <= 1) {
+    } else if ([key isKindOfClass:[NSString class]]) {
         // 设置宽高的属性
-        if (![key isLegalStringWithPatterns:@[@"^\\([\\d\\.]+\\)$",                     // (34.87)
-                                              @"^\\([<>]=[\\d\\.]+,[<>]=[\\d\\.]+\\)$",  // (>=34,<=98)
-                                              @"^\\([\\d\\.]+@[\\d\\.]+\\)$",            // (24@43)
-                                              @"^\\(>=[\\d\\.]+\\)$",                    // (>=79)
-                                              @"^\\(<=[\\d\\.]+\\)$"]]) {                // (<=24)
-            NSAssert2(1, @"当前子VFL(%@)没有设置有效的宽高属性，相关的视图:%@", key, self.pri_sponsorView);
-        }
         self.pri_VFLString = key;
     }
     return self;
@@ -229,15 +192,13 @@ NSString *lessThan(CGFloat length) {
 
 @implementation UIView (AUUVFLSpace)
 
-const char *__kSubVFLAssociatedKey = (void *)@"com.AUU.vfl.__kSubVFLAssociatedKey";
-
 - (AUUSubVFLConstraints *)VFL {
-    AUUSubVFLConstraints *VFLConstrants = objc_getAssociatedObject(self, __kSubVFLAssociatedKey);
+    AUUSubVFLConstraints *VFLConstrants = objc_getAssociatedObject(self, _cmd);
     if (!VFLConstrants) {
         VFLConstrants = [[AUUSubVFLConstraints alloc] init];
-        objc_setAssociatedObject(self, __kSubVFLAssociatedKey, VFLConstrants, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, _cmd, VFLConstrants, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    VFLConstrants.pri_sponsorView = self;
+    VFLConstrants.sponsorView = self;
     return VFLConstrants;
 }
 
@@ -264,8 +225,7 @@ const char *__kSubVFLAssociatedKey = (void *)@"com.AUU.vfl.__kSubVFLAssociatedKe
 // 设置为指定的大小
 - (NSArray *(^)(CGFloat, CGFloat))fixedSize {
     return [^(CGFloat width, CGFloat height){
-        return @[H[self.VFL[@(width)]].cut(),
-                 V[self.VFL[@(height)]].cut()];
+        return @[H[self.VFL[@(width)]].cut(), V[self.VFL[@(height)]].cut()];
     } copy];
 }
 

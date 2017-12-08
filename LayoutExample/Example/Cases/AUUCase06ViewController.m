@@ -47,7 +47,7 @@
     [self.view addSubview:self.label];
     
     if (self.testCaseType == AUUTestCaseTypePackVFL) {
-        H[20][self.label[between(200, 300)]].cut();
+        H[20][self.label[AUUBetween(200, 300)]].cut();
         V[addButton][20][self.label].cut();
     }
     else if (self.testCaseType == AUUTestCaseTypeMasonry)

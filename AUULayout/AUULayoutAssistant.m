@@ -29,14 +29,12 @@
     [AUUGlobalDataStorage sharedStorage].errorLayoutConstrantsReporter = reporter;
 }
 
-const char *__repetitionLayoutConstrantsReporterAssociatedKey = (void *)@"com.auu.__repetitionLayoutConstrantsReporterAssociatedKey";
-
 - (void)setRepetitionLayoutConstrantsReporter:(BOOL (^)(UIView *, NSLayoutConstraint *))repetitionLayoutConstrantsReporter {
-    objc_setAssociatedObject(self, __repetitionLayoutConstrantsReporterAssociatedKey, repetitionLayoutConstrantsReporter, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(repetitionLayoutConstrantsReporter), repetitionLayoutConstrantsReporter, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (BOOL (^)(UIView *, NSLayoutConstraint *))repetitionLayoutConstrantsReporter {
-    return objc_getAssociatedObject(self, __repetitionLayoutConstrantsReporterAssociatedKey);
+    return objc_getAssociatedObject(self, @selector(repetitionLayoutConstrantsReporter));
 }
 
 - (void)removeAllConstrants {
@@ -55,7 +53,6 @@ const char *__repetitionLayoutConstrantsReporterAssociatedKey = (void *)@"com.au
             break;
         }
     }
-    
     return rootResponder ? ([rootResponder isKindOfClass:[UIViewController class]] ? [(UIViewController *)rootResponder view] : (UIView *)rootResponder) : nil;
 }
 

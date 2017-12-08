@@ -46,23 +46,23 @@
         H[10][view4[view1]].cut();
         V[view4[view1]][10].end();
         
-#elif 0
+#elif 1
         
         // 方法3，对每行每列的视图做合并
-        H[10][view1[100]][greaterThan(100)][view2[100]][10].end();
-        H[10][view4[100]][greaterThan(100)][view3[100]][10].end();
+        H[10][view1[100]][AUUGreaterThan(100)][view2[100]][10].end();
+        H[10][view4[100]][AUUGreaterThan(100)][view3[100]][10].end();
         
-        V[74][view1[100]][greaterThan(100)][view4[100]][10].end();
-        V[74][view2[100]][greaterThan(100)][view3[100]][10].end();
+        V[74][view1[100]][AUUGreaterThan(100)][view4[100]][10].end();
+        V[74][view2[100]][AUUGreaterThan(100)][view3[100]][10].end();
         
-#elif 1
+#elif 0
         // 方法4，对横竖分别合并
-        HA[10][@[view1,view4].VFL[100]][greaterThan(100)][@[view2,view3].VFL[100]][10].end();
-        VA[74][@[view1,view2].VFL[100]][greaterThan(100)][@[view4,view3].VFL[100]][10].end();
+        HA[10][@[view1,view4].VFL[100]][AUUGreaterThan(100)][@[view2,view3].VFL[100]][10].end();
+        VA[74][@[view1,view2].VFL[100]][AUUGreaterThan(100)][@[view4,view3].VFL[100]][10].end();
 #else
         
         // 方法5，使用数组按顺序对应的方式排列
-        @[H,H,V].VFL[@[@10, @10, @74]][@[view1, view4,view1,view2].VFL[100]][greaterThan(100)][@[view2,view3,view4,view3].VFL[100]][10].end();
+        @[H,H,V].VFL[@[@10, @10, @74]][@[view1, view4,view1,view2].VFL[100]][AUUGreaterThan(100)][@[view2,view3,view4,view3].VFL[100]][10].end();
         
 #endif
     }

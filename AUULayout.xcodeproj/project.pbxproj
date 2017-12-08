@@ -24,7 +24,6 @@
 		1C04A2C91EACD6C500D4DB46 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C04A2C71EACD6C500D4DB46 /* Masonry.framework */; };
 		1C04A2CA1EACD6C500D4DB46 /* Nimbus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C04A2C81EACD6C500D4DB46 /* Nimbus.framework */; };
 		1C1400491EAD9C32003654D1 /* AUUCase08ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1400481EAD9C32003654D1 /* AUUCase08ViewController.m */; };
-		1C6108C91ED3210600852AAA /* AUUEdge02ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6108C81ED3210600852AAA /* AUUEdge02ViewController.m */; };
 		1CE0595A1EADFE0400589AED /* AUUWebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE059591EADFE0400589AED /* AUUWebPageViewController.m */; };
 		1CE0595E1EADFF2C00589AED /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE0595D1EADFF2C00589AED /* WebKit.framework */; };
 		1CFA8E7B1EF3FF0D00F2A65A /* AUULayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CFA8E741EF3FF0D00F2A65A /* AUULayout.framework */; };
@@ -33,8 +32,6 @@
 		1CFA8E831EF3FF2600F2A65A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CFA8E811EF3FF2600F2A65A /* Info.plist */; };
 		1CFA8E8C1EF3FF6400F2A65A /* _AUULayoutAssistant.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CFA8E841EF3FF6400F2A65A /* _AUULayoutAssistant.h */; };
 		1CFA8E8D1EF3FF6400F2A65A /* _AUULayoutAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFA8E851EF3FF6400F2A65A /* _AUULayoutAssistant.m */; };
-		1CFA8E8E1EF3FF6400F2A65A /* AUUEdgeLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CFA8E861EF3FF6400F2A65A /* AUUEdgeLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1CFA8E8F1EF3FF6400F2A65A /* AUUEdgeLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFA8E871EF3FF6400F2A65A /* AUUEdgeLayout.m */; };
 		1CFA8E901EF3FF6400F2A65A /* AUULayoutAssistant.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CFA8E881EF3FF6400F2A65A /* AUULayoutAssistant.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CFA8E911EF3FF6400F2A65A /* AUULayoutAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFA8E891EF3FF6400F2A65A /* AUULayoutAssistant.m */; };
 		1CFA8E921EF3FF6400F2A65A /* AUUVFLLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CFA8E8A1EF3FF6400F2A65A /* AUUVFLLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -97,8 +94,6 @@
 		1C04A2C81EACD6C500D4DB46 /* Nimbus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimbus.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AUULayout-dkuyuezsgdeuvkgpwgibcryxtjzo/Build/Products/Debug-iphonesimulator/Nimbus/Nimbus.framework"; sourceTree = "<group>"; };
 		1C1400471EAD9C32003654D1 /* AUUCase08ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUCase08ViewController.h; sourceTree = "<group>"; };
 		1C1400481EAD9C32003654D1 /* AUUCase08ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUCase08ViewController.m; sourceTree = "<group>"; };
-		1C6108C71ED3210600852AAA /* AUUEdge02ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUEdge02ViewController.h; sourceTree = "<group>"; };
-		1C6108C81ED3210600852AAA /* AUUEdge02ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUEdge02ViewController.m; sourceTree = "<group>"; };
 		1CE059581EADFE0400589AED /* AUUWebPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUWebPageViewController.h; sourceTree = "<group>"; };
 		1CE059591EADFE0400589AED /* AUUWebPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUWebPageViewController.m; sourceTree = "<group>"; };
 		1CE0595D1EADFF2C00589AED /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -109,8 +104,6 @@
 		1CFA8E811EF3FF2600F2A65A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1CFA8E841EF3FF6400F2A65A /* _AUULayoutAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AUULayoutAssistant.h; sourceTree = "<group>"; };
 		1CFA8E851EF3FF6400F2A65A /* _AUULayoutAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AUULayoutAssistant.m; sourceTree = "<group>"; };
-		1CFA8E861EF3FF6400F2A65A /* AUUEdgeLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUEdgeLayout.h; sourceTree = "<group>"; };
-		1CFA8E871EF3FF6400F2A65A /* AUUEdgeLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUUEdgeLayout.m; sourceTree = "<group>"; };
 		1CFA8E881EF3FF6400F2A65A /* AUULayoutAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUULayoutAssistant.h; sourceTree = "<group>"; };
 		1CFA8E891EF3FF6400F2A65A /* AUULayoutAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUULayoutAssistant.m; sourceTree = "<group>"; };
 		1CFA8E8A1EF3FF6400F2A65A /* AUUVFLLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUUVFLLayout.h; sourceTree = "<group>"; };
@@ -232,8 +225,6 @@
 		1C6108C61ED320F400852AAA /* Edge */ = {
 			isa = PBXGroup;
 			children = (
-				1C6108C71ED3210600852AAA /* AUUEdge02ViewController.h */,
-				1C6108C81ED3210600852AAA /* AUUEdge02ViewController.m */,
 			);
 			path = Edge;
 			sourceTree = "<group>";
@@ -244,8 +235,6 @@
 				1CFA8E801EF3FF2600F2A65A /* AUULayout.h */,
 				1CFA8E8A1EF3FF6400F2A65A /* AUUVFLLayout.h */,
 				1CFA8E8B1EF3FF6400F2A65A /* AUUVFLLayout.m */,
-				1CFA8E861EF3FF6400F2A65A /* AUUEdgeLayout.h */,
-				1CFA8E871EF3FF6400F2A65A /* AUUEdgeLayout.m */,
 				1CFA8E881EF3FF6400F2A65A /* AUULayoutAssistant.h */,
 				1CFA8E891EF3FF6400F2A65A /* AUULayoutAssistant.m */,
 				1CFA8E841EF3FF6400F2A65A /* _AUULayoutAssistant.h */,
@@ -284,7 +273,6 @@
 			files = (
 				1CFA8E821EF3FF2600F2A65A /* AUULayout.h in Headers */,
 				1CFA8E901EF3FF6400F2A65A /* AUULayoutAssistant.h in Headers */,
-				1CFA8E8E1EF3FF6400F2A65A /* AUUEdgeLayout.h in Headers */,
 				1CFA8E921EF3FF6400F2A65A /* AUUVFLLayout.h in Headers */,
 				1CFA8E8C1EF3FF6400F2A65A /* _AUULayoutAssistant.h in Headers */,
 			);
@@ -457,7 +445,6 @@
 				1C04A2B91EAC9F8900D4DB46 /* AUUCase03ViewController.m in Sources */,
 				1C04A2971EABBCA300D4DB46 /* main.m in Sources */,
 				1C04A2B61EAC9F3000D4DB46 /* AUUCase02ViewController.m in Sources */,
-				1C6108C91ED3210600852AAA /* AUUEdge02ViewController.m in Sources */,
 				1C04A2BC1EAC9FAF00D4DB46 /* AUUCase04ViewController.m in Sources */,
 				1C04A2B01EABBFB700D4DB46 /* AUUBaseCaseViewController.m in Sources */,
 			);
@@ -468,7 +455,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CFA8E911EF3FF6400F2A65A /* AUULayoutAssistant.m in Sources */,
-				1CFA8E8F1EF3FF6400F2A65A /* AUUEdgeLayout.m in Sources */,
 				1CFA8E931EF3FF6400F2A65A /* AUUVFLLayout.m in Sources */,
 				1CFA8E8D1EF3FF6400F2A65A /* _AUULayoutAssistant.m in Sources */,
 			);
@@ -780,6 +766,7 @@
 				1CFA8E7F1EF3FF0D00F2A65A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
