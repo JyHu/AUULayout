@@ -95,10 +95,10 @@ typedef void (^AUURepetitionLayoutConstrantsHandler) (NSLayoutConstraint *oldLay
 @interface AUUVFLConstraints : AUUVFLLayout
 
 // 以父视图的右边或者底部结束VFL布局，比如 `H[10][view][10].end();` ，这时候不需要为view设置宽高属性
-@property (copy, nonatomic, readonly) NSString * (^end)();
+@property (copy, nonatomic, readonly) NSString * (^end)(void);
 
 // 以设置的最后一个视图结束VFL布局，比如 `H[10][view[100]].cut();` 就是以view作为最后的结尾，这种情况需要为view设置宽高属性。
-@property (copy, nonatomic, readonly) NSString * (^cut)();
+@property (copy, nonatomic, readonly) NSString * (^cut)(void);
 
 @end
 
@@ -171,8 +171,8 @@ typedef void (^AUURepetitionLayoutConstrantsHandler) (NSLayoutConstraint *oldLay
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 @interface AUUGroupVFLConstrants : AUUBaseVFLLayout
-@property (copy, nonatomic, readonly) NSArray * (^end)();   // 结束语句，会返回一个vfl语句的数组
-@property (copy, nonatomic, readonly) NSArray * (^cut)();   // 结束语句，会返回一个vfl语句的数组
+@property (copy, nonatomic, readonly) NSArray * (^end)(void);   // 结束语句，会返回一个vfl语句的数组
+@property (copy, nonatomic, readonly) NSArray * (^cut)(void);   // 结束语句，会返回一个vfl语句的数组
 @end
 
 /*

@@ -184,7 +184,7 @@
     return self;
 }
 
-- (NSString *(^)())end {
+- (NSString *(^)(void))end {
     return [^{
         // 以父视图的末尾结束当前的vfl语句
         [self.pri_VFLString appendString:@"|"];
@@ -192,7 +192,7 @@
     } copy];
 }
 
-- (NSString *(^)())cut {
+- (NSString *(^)(void))cut {
     return [^{
         // 结束VFL语句，并设置到具体的视图上
         NSArray *currentInstalledConstrants = [NSLayoutConstraint constraintsWithVisualFormat:self.pri_VFLString options:NSLayoutFormatDirectionMask metrics:nil views:self.layoutKits];
@@ -369,7 +369,7 @@
     return self;
 }
 
-- (NSArray *(^)())end {
+- (NSArray *(^)(void))end {
     return [^{
         return [self.layoutObjects map:^id(AUUVFLConstraints *obj, NSUInteger index) {
             // 调用 AUUVFLConstraints 的end属性一个个的去结束vfl语句并设定
@@ -378,7 +378,7 @@
     } copy];
 }
 
-- (NSArray *(^)())cut {
+- (NSArray *(^)(void))cut {
     return [^{
         return [self.layoutObjects map:^id(AUUVFLConstraints *obj, NSUInteger index) {
             // 调用 AUUVFLConstraints 的cut属性一个个的去结束vfl语句并设定
