@@ -1,20 +1,20 @@
 # Tiny & Powerful VFL
 
-`AUUVFLLayout`是一个封装了Apple的`Visual Format Language`实现的一个自动布局的库。
+`AUULayout`是一个封装了Apple的`Visual Format Language`实现的一个自动布局的库。
 
 `VFL`是一个简单而又强大的描述性语言，由于`VFL`是使用字符串来描述组件间的关系，而字符串又有着天然的不确定性，所以才导致了VFL使用频率的低下。正由于此，同样是受于这种痛点，才萌生了做一个友好的封装的念头。
 
 ## 添加进项目
 
-`pod 'VFLLayout', '~> 0.2.0'`
+`pod 'AUULayout'`
 
 
 
-如果出现 `[!] Unable to find a pod with name, author, summary, or description matching 'VFLLayout'` 这个错误的话，这个问题好多的第三方都会遇到，这是因为Pod搜索的缓存，可以执行以下的命令：
+如果出现 `[!] Unable to find a pod with name, author, summary, or description matching 'AUULayout'` 这个错误的话，这个问题好多的第三方都会遇到，这是因为Pod搜索的缓存，可以执行以下的命令：
 
 `rm ~/Library/Caches/CocoaPods/search_index.json`
 
-然后再次的`pod search VFLLayout` 即可搜到。
+然后再次的`pod search AUULayout` 即可搜到。
 
 ## 关于使用
 
